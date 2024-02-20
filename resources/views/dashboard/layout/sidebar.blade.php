@@ -33,10 +33,10 @@
                     </a>
                 </li> --}}
                 <li class="nav-item">
-                    <a href="{{ route('spr') }}" class="nav-link {{ (request()->routeIs('spr') ? 'active' : '') }}">
+                    <a href="{{ route('spr.index') }}" class="nav-link {{ (request()->routeIs('spr.index') ? 'active' : '') }}">
                         <img src="{{ asset('assets/dist/img/spr1.png') }}" class="nav-icon" alt="Logo">
                         <p>
-                            INPUT SPR
+                            SPR
                         </p>
                     </a>
                 </li>

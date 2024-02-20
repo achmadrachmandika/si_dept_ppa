@@ -23,8 +23,11 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', [HomeController::class, 'index'])->name('home');
-Route::get('/spr', [SprController::class, 'index'])->name('spr');
+Route::get('/spr', [SprController::class, 'index'])->name('spr.index');
 Route::get('/lp3m', [lp3mController::class, 'index'])->name('lp3m');
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 Route::get('/pengalaman', [PengalamanController::class, 'index'])->name('pengalaman');
+
+Route::post('/proses-pengisian-barang', [SprController::class, 'prosesPengisianBarang'])->name('proses-pengisian-barang');
+
 
