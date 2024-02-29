@@ -23,11 +23,19 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', [HomeController::class, 'index'])->name('home');
-Route::get('/spr', [SprController::class, 'index'])->name('spr.index');
 Route::get('/lp3m', [lp3mController::class, 'index'])->name('lp3m');
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 Route::get('/pengalaman', [PengalamanController::class, 'index'])->name('pengalaman');
 
-Route::post('/proses-pengisian-barang', [SprController::class, 'prosesPengisianBarang'])->name('proses-pengisian-barang');
+
+Route::get('/spr/crud/index', [SprController::class, 'index'])->name('spr.index');
+Route::get('/spr/create', [SprController::class, 'create'])->name('spr.create');
+Route::post('/spr', [SprController::class, 'store'])->name('spr.store');
+Route::get('/spr/{id}', [SprController::class, 'show'])->name('spr.show');
+Route::get('/spr/{id}/edit', [SprController::class, 'edit'])->name('spr.edit');
+Route::put('/spr/{id}', [SprController::class, 'update'])->name('spr.update');
+Route::delete('/spr/{id}', [SprController::class, 'destroy'])->name('spr.destroy');
+
+
 
 

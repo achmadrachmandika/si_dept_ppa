@@ -12,11 +12,10 @@ return new class extends Migration
     public function up(): void
 {
     Schema::create('barangs', function (Blueprint $table) {
-        $table->id();
+        $table->string('no_spr')->primary(); // Mengubah no_spr menjadi primary key
         $table->string('nama_barang');
         $table->string('lokasi');
         $table->date('tanggal_kerusakan');
-        $table->string('no_spr');
         $table->string('kode_mesin');
         $table->string('no_aset');
         $table->time('jam_kerusakan');
@@ -28,6 +27,7 @@ return new class extends Migration
         $table->timestamps();
     });
 }
+
 
 
     /**

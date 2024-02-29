@@ -9,15 +9,34 @@ class Barang extends Model
 {
     use HasFactory;
 
+    /**
+     * The primary key associated with the table.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'no_spr';
+
+    /**
+     * Indicates if the primary key is auto-incrementing.
+     *
+     * @var bool
+     */
+    public $incrementing = false;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
+        'no_spr',
         'nama_barang',
         'lokasi',
         'tanggal_kerusakan',
-        'no_spr',
         'kode_mesin',
         'no_aset',
         'jam_kerusakan',
-        'pic_penerima', // Perbaiki penulisan kolom
+        'pic_penerima',
         'deskripsi_kerusakan',
         'site',
         'keterangan',
