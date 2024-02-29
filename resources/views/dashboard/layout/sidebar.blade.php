@@ -10,118 +10,34 @@
     <div class="sidebar">
         <!-- Sidebar user (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            {{-- <div class="image">
-                <img src="{{ asset('assets/dist/img/logo2.png') }}" class="img-circle elevation-2"
-                    alt="User Image">
-            </div> --}}
             <div class="info">
-                <a href="#" class="d-block">Perencanaan dan Pengendalian Operasi</a>
+                <a href="#" class="d-block">PPA</a>
             </div>
         </div>
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                <!-- Add icons to the links using the .nav-icon class
-                     with font-awesome or any other icon font library -->
-                {{-- <li class="nav-item">
-                    <a href="{{ route('home') }}" class="nav-link {{ (request()->routeIs('home') ? 'active' : '') }}">
-                        <i class="nav-icon fas fa-home"></i>
-                        <p>
-                            Dashboard
-                        </p>
-                    </a>
-                </li> --}}
                 <li class="nav-item">
-                    <a href="{{ route('spr.index') }}" class="nav-link {{ (request()->routeIs('spr.index') ? 'active' : '') }}">
+                    <a href="{{ route('spr.index') }}"
+                        class="nav-link {{ (request()->routeIs('spr.index') ? 'active' : '') }}">
                         <img src="{{ asset('assets/dist/img/spr1.png') }}" class="nav-icon" alt="Logo">
-                        <p>
-                            SPR
-                        </p>
+                        <p>SPR</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('lp3m') }}"
-                        class="nav-link {{ (request()->routeIs('lp3m') ? 'active' : '') }}">
+                    <a href="{{ route('lp3m') }}" class="nav-link {{ (request()->routeIs('lp3m') ? 'active' : '') }}">
                         <i class="nav-icon fas fa-user"></i>
-                        <p>
-                            INPUT LP3M
-                        </p>
+                        <p>INPUT LP3M</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('pengalaman') }}"
                         class="nav-link {{ (request()->routeIs('pengalaman') ? 'active' : '') }}">
                         <i class="nav-icon fas fa-th"></i>
-                        <p>
-                            REKAP SARAH
-                        </p>
+                        <p>REKAP SARAH</p>
                     </a>
                 </li>
-                <li class="nav-item">
-                        <a href="{{ route('pengalaman') }}" class="nav-link {{ (request()->routeIs('pengalaman') ? 'active' : '') }}">
-                            <i class="nav-icon fas fa-th"></i>
-                            <p>     
-                                REKAP SARAH
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                            <a href="{{ route('pengalaman') }}" class="nav-link {{ (request()->routeIs('pengalaman') ? 'active' : '') }}">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>
-                                    REKAP SARAH
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                                <a href="{{ route('pengalaman') }}" class="nav-link {{ (request()->routeIs('pengalaman') ? 'active' : '') }}">
-                                    <i class="nav-icon fas fa-th"></i>
-                                    <p>
-                                        REKAP SARAH
-                                    </p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                    <a href="{{ route('pengalaman') }}" class="nav-link {{ (request()->routeIs('pengalaman') ? 'active' : '') }}">
-                                        <i class="nav-icon fas fa-th"></i>
-                                        <p>
-                                            REKAP SARAH
-                                        </p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                        <a href="{{ route('pengalaman') }}" class="nav-link {{ (request()->routeIs('pengalaman') ? 'active' : '') }}">
-                                            <i class="nav-icon fas fa-th"></i>
-                                            <p>
-                                                REKAP SARAH
-                                            </p>
-                                        </a>
-                                    </li>
-                                          <li class="nav-item">
-                            <a href="{{ route('pengalaman') }}" class="nav-link {{ (request()->routeIs('pengalaman') ? 'active' : '') }}">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>
-                                    REKAP SARAH
-                                </p>
-                            </a>
-                        </li>
-                              <li class="nav-item">
-                            <a href="{{ route('pengalaman') }}" class="nav-link {{ (request()->routeIs('pengalaman') ? 'active' : '') }}">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>
-                                    REKAP SARAH
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                                <a href="{{ route('pengalaman') }}" class="nav-link {{ (request()->routeIs('pengalaman') ? 'active' : '') }}">
-                                    <i class="nav-icon fas fa-th"></i>
-                                    <p>
-                                        REKAP SARAH
-                                    </p>
-                                </a>
-                            </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

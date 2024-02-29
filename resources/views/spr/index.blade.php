@@ -9,11 +9,8 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <h2 class="font-weight-bold">SPR</h2>
                         <div class="d-flex">
-                            <form class="form-inline" action="{{ route('spr.index') }}" method="POST">
-                                <input type="text" value="{{ request()->input('cari') }}" name="cari"
-                                    class="form-control mr-2" placeholder="Cari SPR">
-                                <button type="submit" class="btn btn-primary mr-2">Cari</button>
-                            </form>
+                            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Cari Nama.."
+                                title="Type in a name">
                             <a href="{{ route('spr.create') }}" class="btn btn-success">Tambah</a>
                         </div>
                     </div>
@@ -25,10 +22,10 @@
                     </div>
                     @endif
                     <div class="table-responsive">
-                        <table class="table table-striped">
+                        <table id="myTable" class="table table-striped">
+                            <!-- Tambahkan id myTable -->
                             <thead>
                                 <tr>
-                                    {{-- <th>ID</th> --}}
                                     <th>Nama</th>
                                     <th>Lokasi</th>
                                     <th>Status</th>
@@ -47,7 +44,6 @@
                             <tbody>
                                 @foreach ($spr as $crud)
                                 <tr>
-                                    {{-- <td>{{ $crud->id }}</td> --}}
                                     <td>{{ $crud->nama_barang }}</td>
                                     <td>{{ $crud->lokasi }}</td>
                                     <td>{{ $crud->status_kerusakan }}</td>
@@ -66,7 +62,8 @@
                                                 href="{{ route('spr.show', $crud->no_spr) }}">Show</a>
                                             <a class="btn btn-outline-primary mr-2"
                                                 href="{{ route('spr.edit', $crud->no_spr) }}">Edit</a>
-                                            <form action="{{ route('spr.destroy',$crud->no_spr) }}" method="POST">
+                                            <form action="{{ route('spr.destroy',$crud->no_spr) }}" method="POST"
+                                                onsubmit="return confirm('Are you sure you want to delete this record?')">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-outline-danger">Delete</button>
@@ -88,9 +85,25 @@
         </div>
     </div>
 </div>
-@endsection
 
-@section('scripts')
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script>
+    function myFunction() {
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0]; // Ubah indeks kolom menjadi 0 untuk mencari berdasarkan nama
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }       
+      }
+    }
+</script>
 @endsection
