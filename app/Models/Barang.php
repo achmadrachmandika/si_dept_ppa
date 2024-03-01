@@ -36,11 +36,12 @@ class Barang extends Model
         'kode_mesin',
         'no_aset',
         'jam_kerusakan',
-        'pic_penerima',
+        'user_peminta',
         'deskripsi_kerusakan',
         'site',
-        'keterangan',
-        'status_kerusakan'
+        'status_kerusakan',
+        'tanggal_sprditerima',
+        'jam_sprditerima'
     ];
 }
 

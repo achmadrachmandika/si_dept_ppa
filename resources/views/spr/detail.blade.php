@@ -28,50 +28,22 @@
                                 <table class="table table-bordered">
                                     <tbody>
                                         <tr>
-                                            <td><b>Nama Mesin/Bangunan/Fasilitas</b></td>
-                                            <td>{{ $barang->nama_barang }}</td>
-                                            <td><b>PIC Penerima</b></td>
-                                            <td>{{ $barang->pic_penerima }}</td>
+                                            <td> <b>Nama Mesin/Bangunan/Fasilitas:</b> {{ $barang->nama_barang }}</td>
+                                            <td><b>Lokasi:</b><br>{{ $barang->lokasi }}</td>
+                                            <td><b>Tanggal Kerusakan:</b><br>{{ $barang->tanggal_kerusakan }}</td>
+                                            <td><b>NO. SPR:</b><br>{{ $barang->no_spr }}</td>
                                         </tr>
                                         <tr>
-                                            <td><b>Kode Mesin/Nomor Mesin</b></td>
-                                            <td>{{ $barang->kode_mesin }}</td>
-                                            <td><b>Lokasi</b></td>
-                                            <td>{{ $barang->lokasi }}</td>
+                                            <td><b>Kode Mesin/Nomor Mesin:</b><br>{{ $barang->kode_mesin }}</td>
+                                            <td><b>No. Inventaris/Aset:</b><br>{{ $barang->no_aset }}</td>
+                                            <td><b>Jam Kerusakan:</b><br>{{ $barang->jam_kerusakan }}</td>
+                                            <td><b>User Peminta:</b><br>{{ $barang->user_peminta }}</td>
+                                       
                                         </tr>
                                         <tr>
-                                            <td><b>Jam Kerusakan</b></td>
-                                            <td>{{ $barang->jam_kerusakan }}</td>
-                                            <td><b>Tanggal Kerusakan</b></td>
-                                            <td>{{ $barang->tanggal_kerusakan }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Deskripsi Kerusakan</b></td>
-                                            <td>{{ $barang->deskripsi_kerusakan }}</td>
-                                            <td><b>No. SPR</b></td>
-                                            <td>{{ $barang->no_spr }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>No. Aset</b></td>
-                                            <td>{{ $barang->no_aset }}</td>
-                                            <td><b>Site</b></td>
-                                            <td>{{ $barang->site }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Keterangan</b></td>
-                                            <td colspan="3">{{ $barang->keterangan }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Status Kerusakan</b></td>
-                                            <td colspan="3">{{ $barang->status_kerusakan }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>User Peminta<br><br></b></td>
-                                            <td colspan="4"></td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Departemen<br>Pengendalian&Pemeliharaan Aset<br><br></b></td>
-                                            <td colspan="4"></td>
+                                        <td style="width: 300px; max-width: 300px; min-width: 300px;"><b>Uraian Kerusakan:</b><br>{{ $barang->deskripsi_kerusakan }}</td>
+                                            <td><b>Site:</b><br>{{ $barang->site }}</td>
+                                            <td colspan="3"><b>Kondisi Mesin:</b><br>{{ $barang->status_kerusakan }}</td>
                                         </tr>
                                     </tbody>
                                 </table>

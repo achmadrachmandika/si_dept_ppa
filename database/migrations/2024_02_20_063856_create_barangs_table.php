@@ -19,11 +19,12 @@ return new class extends Migration
         $table->string('kode_mesin');
         $table->string('no_aset');
         $table->time('jam_kerusakan');
-        $table->string('pic_penerima')->nullable();
+        $table->string('user_peminta');
         $table->text('deskripsi_kerusakan');
         $table->enum('site', ['INKA MADIUN', 'GA BANYUWANGI', 'GA BANDUNG', 'GA JAKARTA', 'QC BANYUWANGI', 'QC BANDUNG', 'QC JAKARTA', 'LAIN NYA']);
-        $table->string('keterangan')->nullable();
         $table->enum('status_kerusakan', ['breakdown', 'tidak_breakdown']);
+        $table->date('tanggal_sprditerima');
+        $table->time('jam_sprditerima');
         $table->timestamps();
     });
 }

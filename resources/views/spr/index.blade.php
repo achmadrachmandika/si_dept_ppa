@@ -9,7 +9,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <h2 class="font-weight-bold">SPR</h2>
                         <div class="d-flex">
-                            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Cari Nama.."
+                            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="No SPR.."
                                 title="Type in a name">
                             <a href="{{ route('spr.create') }}" class="btn btn-success">Tambah</a>
                         </div>
@@ -33,9 +33,10 @@
                                     <th>No Aset</th>
                                     <th>Jam Kerusakan</th>
                                     <th>Tanggal SPR</th>
-                                    <th>Approv GA</th>
+                                    <th>Tanggal SPR diterima</th>
+                                    <th>Jam SPR diterima</th>
+                                    <th>User Peminta</th>
                                     <th>Deskripsi Kerusakan</th>
-                                    <th>Penyebab Kerusakan</th>
                                     <th>Site</th>
                                     <th>Kode Mesin</th>
                                     <th width="150px">Action</th>
@@ -51,9 +52,10 @@
                                     <td>{{ $crud->no_aset }}</td>
                                     <td>{{ $crud->jam_kerusakan}}</td>
                                     <td>{{ $crud->tanggal_kerusakan}}</td>
-                                    <td>{{ $crud->pic_penerima }}</td>
+                                    <td>{{ $crud->tanggal_sprditerima}}</td>
+                                    <td>{{ $crud->jam_sprditerima}}</td>
+                                    <td>{{ $crud->user_peminta }}</td>
                                     <td>{{ $crud->deskripsi_kerusakan }}</td>
-                                    <td>{{ $crud->keterangan }}</td>
                                     <td>{{ $crud->site }}</td>
                                     <td>{{ $crud->kode_mesin }}</td>
                                     <td>
@@ -94,7 +96,7 @@
       table = document.getElementById("myTable");
       tr = table.getElementsByTagName("tr");
       for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[0]; // Ubah indeks kolom menjadi 0 untuk mencari berdasarkan nama
+        td = tr[i].getElementsByTagName("td")[3]; // Ubah indeks kolom menjadi 0 untuk mencari berdasarkan nama
         if (td) {
           txtValue = td.textContent || td.innerText;
           if (txtValue.toUpperCase().indexOf(filter) > -1) {
