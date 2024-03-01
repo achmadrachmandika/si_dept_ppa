@@ -1,0 +1,56 @@
+
+
+label {
+    font-size: 0.7vw;
+    display: flex;
+    justify-content: center; /* Mengatur label menjadi di tengah secara horizontal */
+    align-items: center; /* Mengatur label menjadi di tengah secara vertikal */
+}
+
+.container{
+    max-width: 70vw !important;
+    margin-bottom: 100px;   
+}
+
+.bordered{
+    border: 1px solid #000000
+}
+
+.btn {
+    font-size: 0.9vw;
+}
+.textarea{
+    resize: none;
+    height: 96% !important;
+}
+
+
+.page-title {
+    font-size: 1.8vw;
+    text-decoration: underline;
+}
+
+.row-bot-1{
+    height: 10vh;
+}
+.row-bot-1_1{
+    height: 7vh;
+}
+
+.row-bot-2{
+    height: 31vh;
+}
+
+.row-bot-3{
+    height: 31vh;
+}
+
+@media screen and (max-width: 1280px) {
+
+}
+
+@media screen and (max-width: 768px) {
+
+}
+
+

@@ -30,12 +30,7 @@
                 @csrf
             <div class="row">
                 <div  class="bordered col-2"><img style="width:100%" src="{{ asset('assets/dist/img/logo-inka.png') }}" alt="logo inka"></div>
-                <div  class="bordered col-8"></div>
-                <div  class="bordered col-2">
-                    <a  href="{{ url('riwayat-lp3m')}}"class="btn btn-secondary" style="width:100%">
-                        <label>Lihat Riwayat LP3M</label>
-                    </a>
-                </div>
+                <div  class="bordered col-10"></div>
             </div>
             
             <div class="row">
@@ -96,7 +91,7 @@
             </div>
             <div class="row" >
                 <div class="bordered col-3" >
-                    <input class="form-control" type="text" name="nama_personil_1" id="nama_personil_1">
+                    <input class="form-control" type="text" name="kode_sparepart_1" id="kode_sparepart_1">
                     <div id="personils-container" ></div>
                     <div class="btn btn-secondary form-control mt-3 add-personil"><label>Tambah</label></div>
                 </div>
