@@ -11,7 +11,7 @@
         <!-- Sidebar user (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="info">
-                <a href="/dashboard/app" class="d-block">PPA</a>
+                <a href="/dashboard" class="d-block">PPA</a>
             </div>
         </div>
 

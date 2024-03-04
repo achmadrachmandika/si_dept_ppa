@@ -1,4 +1,4 @@
-<nav class="main-header navbar navbar-expand navbar-white navbar-light">
+{{-- <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
         <li class="nav-item">
@@ -29,7 +29,7 @@
                     </div>
                 </form>
             </div>
-        </li>
+        </li> --}}
 
         <!-- Messages Dropdown Menu -->
         {{-- <li class="nav-item dropdown">
@@ -119,7 +119,7 @@
                 <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
             </div>
         </li> --}}
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                 <i class="fas fa-expand-arrows-alt"></i>
             </a>
@@ -130,4 +130,4 @@
             </a>
         </li>
     </ul>
-</nav>
+</nav> --}}
