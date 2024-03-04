@@ -134,18 +134,19 @@
                         style="width: 100%; height: 150px;"
                         placeholder="Masukkan Deskripsi Kerusakan">{{ $barang->deskripsi_kerusakan }}</textarea>
                 </div>
-                <td style="width: 25%; padding-right: 10px;">
-                    <div style="height: 3vw">
-                        <label for="tanggal_sprditerima">SPR diterima tanggal, jam</label>
-                        <div style="display: flex;">
-                            <input type="date" name="tanggal_sprditerima" class="form-control" id="tanggal_sprditerima"
-                                aria-describedby="tanggal_sprditerima" style="width: 60%; height: 100%;"
-                                placeholder="Tanggal SPR diterima" value="{{ $barang->tanggal_sprditerima }}">
-                            <input type="time" name="jam_sprditerima" class="form-control" id="jam_sprditerima"
-                                aria-describedby="tanggal_sprditerima" style="width: 60%; height: 100%;"
-                                placeholder="Jam SPR diterima" value="{{ $barang->jam_sprditerima }}">
-                        </div>
+             <td style="width: 25%; padding-right: 10px;">
+                <div style="height: 3vw">
+                    <label for="tanggal_sprditerima">SPR diterima tanggal, jam</label>
+                    <div style="display: flex;">
+                        <input type="date" name="tanggal_sprditerima" class="form-control" id="tanggal_sprditerima"
+                            aria-describedby="tanggal_sprditerima" style="width: 60%; height: 100%;"
+                            placeholder="Tanggal SPR diterima" value="{{ $barang->tanggal_sprditerima }}" disabled>
+                        <input type="time" name="jam_sprditerima" class="form-control" id="jam_sprditerima"
+                            aria-describedby="tanggal_sprditerima" style="width: 60%; height: 100%;" placeholder="Jam SPR diterima"
+                            value="{{ $barang->jam_sprditerima }}" disabled>
                     </div>
+                </div>
+            </td>
 
                     <div style="margin-left: 20px;">
                         <label for="site">Site</label>
