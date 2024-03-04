@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('/dashboard/layout/app');
+    return view('welcome');
 });
 
 Route::get('/dashboard', [HomeController::class, 'index'])->name('home');
@@ -38,6 +38,9 @@ Route::get('/spr/{id}', [SprController::class, 'show'])->name('spr.show');
 Route::get('/spr/{id}/edit', [SprController::class, 'edit'])->name('spr.edit');
 Route::put('/spr/{id}', [SprController::class, 'update'])->name('spr.update');
 Route::delete('/spr/{id}', [SprController::class, 'destroy'])->name('spr.destroy');
+
+
+Route::get('/ajax-autocomplete', [lp3mController::class, 'searchCode'])->name('code.search');
 
 
 

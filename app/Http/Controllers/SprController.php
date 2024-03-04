@@ -30,7 +30,7 @@ class SprController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'no_spr' => 'required|string|max:255|unique:barangs,no_spr',
+            'nomor_spr' => 'required|string|max:255|unique:barangs,nomor_spr',
             'nama_barang' => 'required|string|max:255',
             'lokasi' => 'required|string|max:255',
             'tanggal_kerusakan' => 'required|date',

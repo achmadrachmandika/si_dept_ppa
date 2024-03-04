@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -48,7 +47,7 @@
                                     <td>{{ $crud->nama_barang }}</td>
                                     <td>{{ $crud->lokasi }}</td>
                                     <td>{{ $crud->status_kerusakan }}</td>
-                                    <td>{{ $crud->no_spr }}</td>
+                                    <td>{{ $crud->nomor_spr }}</td>
                                     <td>{{ $crud->no_aset }}</td>
                                     <td>{{ $crud->jam_kerusakan}}</td>
                                     <td>{{ $crud->tanggal_kerusakan}}</td>
@@ -61,10 +60,10 @@
                                     <td>
                                         <div class="d-flex">
                                             <a class="btn btn-outline-info mr-2"
-                                                href="{{ route('spr.show', $crud->no_spr) }}">Show</a>
+                                                href="{{ route('spr.show', $crud->nomor_spr) }}">Show</a>
                                             <a class="btn btn-outline-primary mr-2"
-                                                href="{{ route('spr.edit', $crud->no_spr) }}">Edit</a>
-                                            <form action="{{ route('spr.destroy',$crud->no_spr) }}" method="POST"
+                                                href="{{ route('spr.edit', $crud->nomor_spr) }}">Edit</a>
+                                            <form action="{{ route('spr.destroy',$crud->nomor_spr) }}" method="POST"
                                                 onsubmit="return confirm('Are you sure you want to delete this record?')">
                                                 @csrf
                                                 @method('DELETE')

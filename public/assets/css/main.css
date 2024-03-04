@@ -16,6 +16,23 @@ label {
     border: 1px solid #000000
 }
 
+.bordered-no-top{
+    border-top: none !important; 
+    border: 1px solid #000000
+}
+
+.bordered-no-bot{
+    border-bottom: none !important; 
+    border: 1px solid #000000
+}
+
+.border-top{
+    border-bottom: none !important; 
+    border-right: none !important; 
+    border-left: none !important; 
+    border: 10px solid #000000
+}
+
 .btn {
     font-size: 0.9vw;
 }
@@ -33,9 +50,9 @@ label {
 .row-bot-1{
     height: 10vh;
 }
-.row-bot-1_1{
+/* .row-bot-1_1{
     height: 7vh;
-}
+} */
 
 .row-bot-2{
     height: 31vh;
@@ -43,6 +60,14 @@ label {
 
 .row-bot-3{
     height: 31vh;
+}
+
+.h4{
+    text-align: left !important;
+}
+
+hr{
+    margin: 0 !important;
 }
 
 @media screen and (max-width: 1280px) {

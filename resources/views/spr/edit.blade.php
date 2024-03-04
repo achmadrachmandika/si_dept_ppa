@@ -148,23 +148,24 @@
                         </select>
                     </div>
             </div>
+            <div style="margin-top: 20px; margin-left: 20px;">
+                <label>Status Kerusakan</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="status_kerusakan" id="status_breakdown" value="breakdown" {{
+                        $barang->status_kerusakan == 'breakdown' ? 'checked' : '' }}>
+                    <label class="form-check-label" for="status_breakdown">Breakdown</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="status_kerusakan" id="status_tidak_breakdown"
+                        value="tidak_breakdown" {{ $barang->status_kerusakan == 'tidak_breakdown' ? 'checked' : '' }}>
+                    <label class="form-check-label" for="status_tidak_breakdown">Tidak Breakdown</label>
+                </div>
+            </div>
     </div>
     </td>
 </div>
 
-<div style="margin-top: 20px; margin-left: 20px;">
-    <label>Status Kerusakan</label>
-    <div class="form-check">
-        <input class="form-check-input" type="radio" name="status_kerusakan" id="status_breakdown" value="breakdown" {{
-            $barang->status_kerusakan == 'breakdown' ? 'checked' : '' }}>
-        <label class="form-check-label" for="status_breakdown">Breakdown</label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="radio" name="status_kerusakan" id="status_tidak_breakdown"
-            value="tidak_breakdown" {{ $barang->status_kerusakan == 'tidak_breakdown' ? 'checked' : '' }}>
-        <label class="form-check-label" for="status_tidak_breakdown">Tidak Breakdown</label>
-    </div>
-</div>
+
 
 <div style="margin-top: 20px; margin-left: 20px;">
     <div class="text-center">
