@@ -28,10 +28,7 @@ return new class extends Migration
         $table->timestamps();
     });
 
-    Schema::table('nama_tabel', function (Blueprint $table) {
-        $table->unsignedBigInteger('no_spr'); // Menggunakan tipe data unsignedBigInteger untuk foreign key
-        $table->foreign('no_spr')->references('no_spr')->on('barangs'); // Menetapkan no_spr sebagai foreign key yang merujuk ke kolom no_spr pada tabel barangs
-    });
+    
 }
 
 

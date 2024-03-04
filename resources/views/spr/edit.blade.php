@@ -187,14 +187,15 @@
             </div>
     </div>
     </td>
-</div>
-
-<div style="margin-top: 20px; margin-left: 20px;">
-    <div class="text-center">
-        <button type="submit" class="btn btn-primary">Submit</button>
-        <a href="{{ route('spr.index') }}" class="btn btn-secondary ml-2">Kembali</a>
+    <div style="margin-top: 20px; margin-left: 20px;">
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <a href="{{ route('spr.index') }}" class="btn btn-secondary ml-2">Kembali</a>
+        </div>
     </div>
 </div>
+
+
 </form>
 </div>
 </div>

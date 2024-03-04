@@ -95,8 +95,8 @@
                     <div class="col-8 bordered" style="height: 200px;">
                         <label for="deskripsi_kerusakan">Uraian Kerusakan*</label>
                         <div>{{ $barang->deskripsi_kerusakan }}</div>
-                        <div style="margin-top: 10px;">
-                            <td colspan="2" style="height: 10vh;">Kondisi Mesin<br>{{
+                        <div style="margin-top: 60px;">
+                            <td colspan="2" style="height: 10vh;">Kondisi Mesin:<br>{{
                                 $barang->status_kerusakan }}</td>
                         </div>
                     </div>
