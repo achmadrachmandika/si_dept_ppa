@@ -1,35 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="{{asset('assets/css/main.css')}}">
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    <!-- Popper JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-</head>
+<link rel="stylesheet" href="{{asset('assets/css/main.css')}}">
 @extends('layouts.app')
 
 
 @section('content')
-<body>
-    <div class=" container">
+<section class=" container">
+
+     
         <div class="card-body text-center">
             <form action="{{url('/create-lp3m')}}" class="form" method="post">
                 @csrf
             <div class="row">
-                <div  class="bordered col-2"><img style="width:100%" src="{{ asset('assets/dist/img/logo-inka.png') }}" alt="logo inka"></div>
+                <div  class="bordered col-2"><img style="width:80%" src="{{ asset('assets/dist/img/logo-inka.png') }}" alt="logo inka"></div>
                 <div  class="bordered col-8"></div>
                 <div  class="bordered col-2">
                     <a  href="{{ url('riwayat-lp3m')}}"class="btn btn-secondary" style="width:100%">
@@ -43,11 +24,11 @@
             </div>
 
             <div class="row">
-                <div class="bordered col-2">
+                <div  class="bordered col-2">
                     <label for="nomor_spr">Merujuk SPR No.</label>
-                    <input type="hidden" name="nomor_spr" id="nomor_spr" value="{{ $no_spr }}">
+                    <input type="text" class="form-control text-input" id="nomor_spr" name="nomor_spr">
                 </div>
-                <div class="bordered col-10"></div>
+                <div  class="bordered col-10"></div>
             </div>
             <br>
             <div class="row">
@@ -60,13 +41,13 @@
             </div>
 
             <div class="row">
-                <div class="bordered col-6 row-bot-1">
-                    <textarea class="textarea form-control" name="hasil_pengukuran" id="hasil_pengukuran"></textarea>
+                <div style=";height:5vw" class="bordered col-6">
+                    <textarea class="textarea form-control" name="hasil_pengukuran" id="hasil_pengukuran" style="width: 100%; height:100%;"></textarea>
                 </div>
-                <div class="bordered col-6 row-bot-1_1">
-                    <textarea class="textarea form-control" name="penyebab_kerusakan" id="penyebab_kerusakan"></textarea>
+                <div style=";height:3vw" class="bordered col-6">
+                    <textarea class="textarea form-control" name="penyebab_kerusakan" id="penyebab_kerusakan" style="width: 100%; height:100%"></textarea>
                     
-                    <div class=" radio-group mt-3" style="display: flex; flex-wrap: wrap;">
+                    <div class="radio-group mt-3" style="display: flex; flex-wrap: wrap;">
                         <div style="flex: 1;">
                             <input class="ml-2" class="form-control" type="radio" name="alasan" id="human_error" value="human_error">
                             <label class="mr-5"  for="human_error">Human Error</label>
@@ -84,24 +65,43 @@
             </div>
 
             <div class="row mt-3">
-                <div  class="bordered col-3">
+                <div id="personil_container" style="height: 14vw;" class="bordered col-3">
                     <label for="nama_personil_1">Nama Personil</label>
-                </div>
-                <div  class="bordered col-3">
-                    <label for="tanggal">Tanggal</label>
-                </div>
-                <div  class="bordered col-6">
-                    <label for="penyelesaian">Penyelesaian</label>
-                </div>
-            </div>
-            <div class="row" >
-                <div class="bordered col-3" >
-                    <input class="form-control" type="text" name="nama_personil_1" id="nama_personil_1">
-                    <div id="personils-container" ></div>
-                    <div class="btn btn-secondary form-control mt-3 add-personil"><label>Tambah</label></div>
+                    <input style="margin-bottom:5px;" type="text" class="form-control text-input" id="nama_personil_1" name="nama_personil_1">
+                
+                    <div id="personil_2_container" style="display: none;margin-bottom:5px">
+                        <input type="text" class="form-control text-input" id="nama_personil_2" name="nama_personil_2">
+                    </div>
+                
+                    <div id="personil_3_container" style="display: none;margin-bottom:5px">
+                        <input type="text" class="form-control text-input" id="nama_personil_3" name="nama_personil_3">
+                    </div>
+                    <div id="personil_4_container" style="display: none;margin-bottom:5px">
+                        <input type="text" class="form-control text-input" id="nama_personil_4" name="nama_personil_4">
+                    </div>
+                    <div id="personil_5_container" style="display: none;margin-bottom:5px">
+                        <input type="text" class="form-control text-input" id="nama_personil_5" name="nama_personil_5">
+                    </div>
+                    <div id="personil_6_container" style="display: none;margin-bottom:5px">
+                        <input type="text" class="form-control text-input" id="nama_personil_6" name="nama_personil_6">
+                    </div>
+                    <div id="personil_7_container" style="display: none;margin-bottom:5px">
+                        <input type="text" class="form-control text-input" id="nama_personil_7" name="nama_personil_7">
+                    </div>
+                    <div id="personil_8_container" style="display: none;margin-bottom:5px">
+                        <input type="text" class="form-control text-input" id="nama_personil_8" name="nama_personil_8">
+                    </div>
+                    <div id="personil_9_container" style="display: none;margin-bottom:5px">
+                        <input type="text" class="form-control text-input" id="nama_personil_9" name="nama_personil_9">
+                    </div>
+                    <div id="personil_10_container" style="display: nonemargin-bottom:5px;">
+                        <input type="text" class="form-control text-input" id="nama_personil_10" name="nama_personil_10">
+                    </div>
+                
+                    <div id="tambah_personil_btn" class="btn btn-secondary form-control mt-3"><label>Tambah Personil</label></div>
                 </div>
                 <div class="bordered col-3">
-                    
+                    <label for="tanggal">Tanggal</label>
                     <input type="date" class="form-control text-input" id="tanggal" name="tanggal">
 
                     <label for="jam_mulai">Jam Mulai</label>
@@ -113,63 +113,43 @@
                 
 
 
-                <div class="bordered col-6">
-                    
-                    <textarea class="textarea form-control" name="penyelesaian" id="penyelesaian"></textarea>
+                <div style=";height:14vw" class="bordered col-6">
+                    <label for="penyelesaian">Penyelesaian</label>
+                    <textarea class="textarea form-control" name="penyelesaian" id="penyelesaian" style="width: 100%; height:100%"></textarea>
+                
                 </div>
             </div>
 
-            <br>
-
-            <div class="row">
+            <div class="row" style="margin-top:22vw">
                 <div class="bordered col-8">
                     <label for="">Sparepart/Material Yang Digunakan</label>
                 </div>
-                <div class="bordered col-4"></div>
+                <div class="bordered col-2"></div>
             </div>
-
-            <div class="row " >
-                <div class="bordered col-1" >
-                    <label for="kode_sparepart_1">Kode</label>
-                </div>
-                <div class="bordered col-4" >
+            <div class="row mt-3" >
+                <div class="bordered col-5" >
                     <label for="nama_sparepart_1">Nama Sparepart</label>
+                    <input class="form-control" type="text" name="nama_sparepart_1" id="nama_sparepart_1">
+                    <div id="spareparts-container" ></div>
+                    <div class="btn btn-secondary form-control mt-3 add-sparepart"><label>Tambah Sparepart</label></div>
                 </div>
-                <div class="bordered col-4" >
-                    <label for="spesifikasi_sparepart_1">Spesifikasi Sparepart</label>
+                <div class="bordered col-3" >
+                    <label for="kode_sparepart_1">Kode</label>
+                    <input class="form-control" type="text" name="kode_sparepart_1" id="kode_sparepart_1">
+                    <div id="spareparts-code-container" ></div>
                 </div>
                 <div class="bordered col-1" >
                     <label for="jumlah_sparepart_1">Jumlah</label>
-                </div>
-                <div class="bordered col-2">
-                    <label for="keterangan">Keterangan</label>
-                
-                </div>
-            </div>
-            <div class="row" >
-                <div class="bordered col-1" >
-                    <input class="form-control" type="text" name="kode_sparepart_1" id="kode_sparepart_1">
-                    <div id="spareparts-code-container" ></div>
-                    <div class="btn btn-secondary form-control mt-3 add-sparepart"><label>Tambah</label></div>
-                </div>
-                <div class="bordered col-4" >
-                    <input class="form-control" type="text" name="nama_sparepart_1" id="nama_sparepart_1">
-                    <div id="spareparts-container" ></div>
-                </div>
-                <div class="bordered col-4" >
-                    <input class="form-control" type="text" name="spesifikasi_sparepart_1" id="spesifikasi_sparepart_1">
-                    <div id="spareparts-specs-container" ></div>
-                </div>
-                <div class="bordered col-1" >
                     <input class="form-control" type="text" name="jumlah_sparepart_1" id="jumlah_sparepart_1">
                     <div id="spareparts-count-container" ></div>
                 </div>
-                <div class="bordered col-2 ">
-                    <textarea class="textarea form-control" name="keterangan" id="keterangan"></textarea>
+                <div style=";height:37vw" class="bordered col-3">
+                    <label for="keterangan">Keterangan</label>
+                    <textarea class="textarea form-control" name="keterangan" id="keterangan" style="width: 100%; height:34.1vw"></textarea>
                 
                 </div>
             </div>
-            <br>
+        
             <div class="mb-3">
                 <input type="submit" class="form-control btn btn-primary">
             </div>
@@ -180,8 +160,10 @@
         </div>
                 
 
-</div>
-{{-- <script>
+</section>
+
+
+<script>
     var tambahPersonilBtn = document.getElementById('tambah_personil_btn');
 var personilContainers = document.querySelectorAll('[id^="personil_"]');
 var maxPersonil = 10 // Menentukan maksimum kontainer personil
@@ -197,53 +179,6 @@ tambahPersonilBtn.addEventListener('click', function() {
         }
     }
 });
-
-function add() {
-            Count++;
-            if (Count > maxs) {
-                return;
-            }
-            const newDiv1 = document.createElement('div');
-            newDiv1.innerHTML = `
-                <input class="form-control" style="margin-top:5px" type="text" name="nama__${Count}" id="nama__${Count}">
-            `;
-            container.appendChild(newDiv1);
-
-            console.log()
-
-            if (Count === maxs) {
-                document.querySelector('.add-').style.display = 'none';
-            }
-        }
-</script> --}}
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        let personilCount = 1;
-        const maxpersonils = 10;
-        const container = document.getElementById('personils-container');
-
-        function addPersonil() {
-            personilCount++;
-            if (personilCount > maxpersonils) {
-                return;
-            }
-            const newDivPersonil = document.createElement('div');
-            newDivPersonil.innerHTML = `
-                <input class="form-control" style="margin-top:5px" type="text" name="nama_personil_${personilCount}" id="nama_personil_${personilCount}">
-            `;
-            container.appendChild(newDivPersonil);
-
-            console.log()
-
-            if (personilCount === maxpersonils) {
-                document.querySelector('.add-personil').style.display = 'none';
-            }
-        }
-
-
-        document.querySelector('.add-personil').addEventListener('click', addPersonil);
-    });
 </script>
 
 <script>
@@ -251,12 +186,10 @@ function add() {
         let sparepartCount = 1;
         let sparepartCodeCount = 1;
         let sparepartCountCount = 1;
-        let sparepartSpecsCount = 1;
         const maxSpareparts = 10;
         const container = document.getElementById('spareparts-container');
         const code_container = document.getElementById('spareparts-code-container');
         const count_container = document.getElementById('spareparts-count-container');
-        const specs_container = document.getElementById('spareparts-specs-container');
 
         function addSparepart() {
             sparepartCount++;
@@ -271,7 +204,7 @@ function add() {
 
             console.log()
 
-            if (sparepartCount === maxSpareparts) {
+            if (sparepartCount === maxSpareparts - 1) {
                 document.querySelector('.add-sparepart').style.display = 'none';
             }
         }
@@ -281,8 +214,6 @@ function add() {
             if (sparepartCodeCount > maxSpareparts) {
                 return;
             }
-
-            console.log(sparepartCodeCount)
 
             const newDiv2 = document.createElement('div');
             newDiv2.innerHTML = `
@@ -304,31 +235,11 @@ function add() {
             count_container.appendChild(newDiv3);
         }
 
-        function addSparepartSpecs() {
-            sparepartSpecsCount++;
-            if (sparepartSpecsCount > maxSpareparts) {
-                return;
-            }
-
-            console.log(sparepartCodeCount)
-            const newDiv4 = document.createElement('div');
-            newDiv4.innerHTML = `
-                <input class="form-control" style="margin-top:5px" type="text" name="spesifikasi_sparepart_${sparepartSpecsCount}" id="spesifikasi_sparepart_${sparepartSpecsCount}">
-            `;
-            specs_container.appendChild(newDiv4); // Mengganti count_container menjadi specs_container
-            
-        }
-
         document.querySelector('.add-sparepart').addEventListener('click', addSparepart);
         document.querySelector('.add-sparepart').addEventListener('click', addSparepartCode);
         document.querySelector('.add-sparepart').addEventListener('click', addSparepartCount);
-        document.querySelector('.add-sparepart').addEventListener('click', addSparepartSpecs);
     });
 </script>
 
 <!-- /.content -->
-
-</body>
 @endsection
-
-

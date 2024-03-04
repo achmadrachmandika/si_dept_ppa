@@ -4,16 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Barang;
+use App\Models\Spr; // Import model Spr
 
 class SprController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-        public function index()
+    public function index()
     {
-         $spr = barang::orderBy('created_at', 'desc')->paginate(10);
-    return view('spr.index', compact('spr'));
+        $spr = Barang::orderBy('created_at', 'desc')->paginate(10); // Ubah 'barang' menjadi 'Barang'
+        return view('spr.index', compact('spr'));
     }
 
     /**
@@ -30,7 +31,7 @@ class SprController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'no_spr' => 'required|string|max:255|unique:barangs,no_spr',
+            'no_spr' => 'required|integer|unique:barangs,no_spr', // Ubah 'barangs' menjadi 'barangs'
             'nama_barang' => 'required|string|max:255',
             'lokasi' => 'required|string|max:255',
             'tanggal_kerusakan' => 'required|date',
@@ -103,5 +104,14 @@ class SprController extends Controller
         $barang->delete();
 
         return redirect()->route('spr.index')->with('success', 'Data berhasil dihapus.');
+    }
+
+    /**
+     * Display the specified resource based on SPR number.
+     */
+    public function showSprPage($no_spr)
+    {
+        $spr = Spr::where('no_spr', $no_spr)->first(); // Mengambil data SPR berdasarkan nomor SPR
+        return view('nama_view', ['no_spr' => $no_spr, 'spr' => $spr]);
     }
 }

@@ -12,7 +12,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('lp3ms', function (Blueprint $table) {
-            $table->id('nomor_spr')->autoIncrement()->startingValue(23001);
+             $table->unsignedBigInteger('no_spr'); // Menambah kolom no_spr di tabel lp3ms
+            $table->foreign('no_spr')->references('no_spr')->on('barangs'); // Menambah foreign key untuk merujuk ke tabel barangs
             $table->string('hasil_pengukuran');
             $table->string('penyebab_kerusakan');
             $table->string('alasan');

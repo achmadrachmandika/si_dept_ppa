@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
 {
     Schema::create('barangs', function (Blueprint $table) {
-        $table->string('no_spr')->primary(); // Mengubah no_spr menjadi primary key
+        $table->bigIncrements('no_spr'); // Mengubah no_spr menjadi primary key
         $table->string('nama_barang');
         $table->string('lokasi');
         $table->date('tanggal_kerusakan');
@@ -26,6 +26,11 @@ return new class extends Migration
         $table->date('tanggal_sprditerima');
         $table->time('jam_sprditerima');
         $table->timestamps();
+    });
+
+    Schema::table('nama_tabel', function (Blueprint $table) {
+        $table->unsignedBigInteger('no_spr'); // Menggunakan tipe data unsignedBigInteger untuk foreign key
+        $table->foreign('no_spr')->references('no_spr')->on('barangs'); // Menetapkan no_spr sebagai foreign key yang merujuk ke kolom no_spr pada tabel barangs
     });
 }
 

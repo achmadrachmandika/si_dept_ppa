@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+{{-- <div class="container"> --}}
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -48,7 +48,7 @@
                                     <td>{{ $crud->nama_barang }}</td>
                                     <td>{{ $crud->lokasi }}</td>
                                     <td>{{ $crud->status_kerusakan }}</td>
-                                    <td>{{ $crud->no_spr }}</td>
+                                     <td><strong>{{ $crud->no_spr }}</strong></td>
                                     <td>{{ $crud->no_aset }}</td>
                                     <td>{{ $crud->jam_kerusakan}}</td>
                                     <td>{{ $crud->tanggal_kerusakan}}</td>
@@ -108,4 +108,5 @@
       }
     }
 </script>
+
 @endsection

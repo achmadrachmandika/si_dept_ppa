@@ -19,26 +19,33 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('/dashboard/layout/app');
+    return view('dashboard.layout.app');
 });
 
 Route::get('/dashboard', [HomeController::class, 'index'])->name('home');
-Route::get('/lp3m', [lp3mController::class, 'index'])->name('lp3m');
-Route::get('/riwayat-lp3m', [lp3mController::class, 'riwayatLp3m']);
-Route::post('/create-lp3m', [lp3mController::class, 'create']);
-Route::get('/show-lp3m/{id}', [lp3mController::class, 'showLp3m']);
+
+// LP3M
+Route::get('/lp3m', [Lp3mController::class, 'index'])->name('lp3m');
+Route::get('/riwayat-lp3m', [Lp3mController::class, 'riwayatLp3m']);
+Route::post('/create-lp3m', [Lp3mController::class, 'create']);
+Route::get('/show-lp3m/{id}', [Lp3mController::class, 'showLp3m']);
+
+// Profile
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+
+// Pengalaman
 Route::get('/pengalaman', [PengalamanController::class, 'index'])->name('pengalaman');
 
-
-Route::get('/spr/crud/index', [SprController::class, 'index'])->name('spr.index');
-Route::get('/spr/create', [SprController::class, 'create'])->name('spr.create');
-Route::post('/spr', [SprController::class, 'store'])->name('spr.store');
-Route::get('/spr/{id}', [SprController::class, 'show'])->name('spr.show');
-Route::get('/spr/{id}/edit', [SprController::class, 'edit'])->name('spr.edit');
-Route::put('/spr/{id}', [SprController::class, 'update'])->name('spr.update');
-Route::delete('/spr/{id}', [SprController::class, 'destroy'])->name('spr.destroy');
-
+// SPR
+Route::prefix('spr')->group(function () {
+    Route::get('/crud/index', [SprController::class, 'index'])->name('spr.index');
+    Route::get('/create', [SprController::class, 'create'])->name('spr.create');
+    Route::post('/', [SprController::class, 'store'])->name('spr.store');
+    Route::get('/{id}', [SprController::class, 'show'])->name('spr.show');
+    Route::get('/{id}/edit', [SprController::class, 'edit'])->name('spr.edit');
+    Route::put('/{id}', [SprController::class, 'update'])->name('spr.update');
+    Route::delete('/{id}', [SprController::class, 'destroy'])->name('spr.destroy');
+});
 
 
 

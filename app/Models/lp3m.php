@@ -10,7 +10,7 @@ class lp3m extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nomor_spr',
+            'no_spr', // Menambah kolom no_spr
             'hasil_pengukuran',
             'penyebab_kerusakan',
             'alasan',

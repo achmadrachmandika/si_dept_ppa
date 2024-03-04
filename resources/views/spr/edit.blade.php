@@ -1,15 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Edit SPR</title>
+    <link rel="stylesheet" href="{{asset('assets/css/main.css')}}">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</head>
+
+
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container bordered bg-white">
     <div class="row">
-        <div class="bordered col-2 text-center"><img style="width:100%"
+        <div class="col-2 text-center"><img style="width:100%"
                 src="{{ asset('assets/dist/img/logo-inka.png') }}" alt="logo inka"></div>
-        <div class="bordered col-8 text-center"></div>
-        <div class="bordered col-2 text-center"></div>
+        <div class="col-8 text-center"></div>
+        <div class="col-2 text-center"></div>
     </div>
     <div class="row">
-        <div class="bordered col-12 text-center page-title" style="font-size: 24px;"><u>EDIT SURAT PERMINTAAN PERAWATAN
+        <div class="col-12 text-center page-title" style="font-size: 24px;"><u>EDIT SURAT PERMINTAAN PERAWATAN
                 /
                 PERBAIKAN</u>
         </div>
@@ -34,7 +58,7 @@
             <table>
                 <tr>
                     <td style="width: 20%; padding-right: 10px;">
-                        <div style="height: 4vw" class="bordered">
+                        <div style="height: 4vw">
                             <label for="nama_barang">Nama Mesin / Fasilitas / Gedung *</label>
                             <textarea class="form-control" name="nama_barang" id="nama_barang" rows="4"
                                 aria-describedby="nama_barang" style="width: 100%; height: 100%;"
@@ -42,7 +66,7 @@
                         </div>
                     </td>
                     <td style="width: 20%; padding-right: 10px;">
-                        <div style="height: 4vw" class="bordered">
+                        <div style="height: 4vw">
                             <label for="lokasi">Lokasi *</label>
                             <textarea class="form-control" name="lokasi" id="lokasi" rows="4"
                                 style="width: 100%; height: 100%;"
@@ -50,14 +74,14 @@
                         </div>
                     </td>
                     <td style="width: 15%; padding-right: 10px;">
-                        <div style="height: 4vw" class="bordered">
+                        <div style="height: 4vw">
                             <label for="tanggal_kerusakan">Tanggal Kerusakan*</label>
                             <input type="date" name="tanggal_kerusakan" class="form-control" id="tanggal_kerusakan"
                                 value="{{ $barang->tanggal_kerusakan }}">
                         </div>
                     </td>
                     <td style="width: 15%;">
-                        <div style="height: 4vw" class="bordered">
+                        <div style="height: 4vw">
                             <label for="no_spr">No SPR*</label>
                             <input type="text" name="no_spr" class="form-control" id="no_spr"
                                 style="width: 100%; height: 100%;" placeholder="NO. SPR" value="{{ $barang->no_spr }}">
@@ -69,7 +93,7 @@
             <table style="margin-top: 50px;">
                 <tr>
                     <td style="width: 25%; padding-right: 10px;">
-                        <div style="height: 3vw" class="bordered">
+                        <div style="height: 3vw">
                             <label for="kode_mesin">Kode Mesin</label>
                             <textarea class="form-control" name="kode_mesin" id="kode_mesin" rows="4"
                                 style="width: 100%; height: 100%;"
@@ -77,7 +101,7 @@
                         </div>
                     </td>
                     <td style="width: 25%; padding-right: 10px;">
-                        <div style="height: 3vw" class="bordered">
+                        <div style="height: 3vw">
                             <label for="no_aset">Nomor Aset</label>
                             <textarea class="form-control" name="no_aset" id="no_aset" rows="4"
                                 style="width: 100%; height: 100%;"
@@ -85,7 +109,7 @@
                         </div>
                     </td>
                     <td style="width: 25%; padding-right: 10px;">
-                        <div style="height: 3vw" class="bordered">
+                        <div style="height: 3vw">
                             <label for="jam_kerusakan">Jam Kerusakan*</label>
                             <input type="time" name="jam_kerusakan" class="form-control" id="jam_kerusakan"
                                 style="width: 100%; height: 100%;" placeholder="HH:MM"
@@ -93,7 +117,7 @@
                         </div>
                     </td>
                     <td style="width: 25%; padding-right: 10px;">
-                        <div style="height: 3vw" class="bordered">
+                        <div style="height: 3vw">
                             <label for="user_peminta">User Peminta</label>
                             <input type="text" name="user_peminta" class="form-control" id="user_peminta"
                                 style="width: 100%; height: 100%;" placeholder="Masukkan User Peminta"
@@ -111,7 +135,7 @@
                         placeholder="Masukkan Deskripsi Kerusakan">{{ $barang->deskripsi_kerusakan }}</textarea>
                 </div>
                 <td style="width: 25%; padding-right: 10px;">
-                    <div style="height: 3vw" class="bordered">
+                    <div style="height: 3vw">
                         <label for="tanggal_sprditerima">SPR diterima tanggal, jam</label>
                         <div style="display: flex;">
                             <input type="date" name="tanggal_sprditerima" class="form-control" id="tanggal_sprditerima"
@@ -148,22 +172,21 @@
                         </select>
                     </div>
             </div>
+            <div style="margin-top: 20px; margin-left: 20px;">
+                <label>Status Kerusakan</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="status_kerusakan" id="status_breakdown" value="breakdown" {{
+                        $barang->status_kerusakan == 'breakdown' ? 'checked' : '' }}>
+                   <label class="form-check-label" for="status_breakdown" style="font-size: 16px;">Breakdown</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="status_kerusakan" id="status_tidak_breakdown"
+                        value="tidak_breakdown" {{ $barang->status_kerusakan == 'tidak_breakdown' ? 'checked' : '' }}>
+                    <label class="form-check-label" for="status_tidak_breakdown" style="font-size: 16px;">Tidak Breakdown</label>
+                </div>
+            </div>
     </div>
     </td>
-</div>
-
-<div style="margin-top: 20px; margin-left: 20px;">
-    <label>Status Kerusakan</label>
-    <div class="form-check">
-        <input class="form-check-input" type="radio" name="status_kerusakan" id="status_breakdown" value="breakdown" {{
-            $barang->status_kerusakan == 'breakdown' ? 'checked' : '' }}>
-        <label class="form-check-label" for="status_breakdown">Breakdown</label>
-    </div>
-    <div class="form-check">
-        <input class="form-check-input" type="radio" name="status_kerusakan" id="status_tidak_breakdown"
-            value="tidak_breakdown" {{ $barang->status_kerusakan == 'tidak_breakdown' ? 'checked' : '' }}>
-        <label class="form-check-label" for="status_tidak_breakdown">Tidak Breakdown</label>
-    </div>
 </div>
 
 <div style="margin-top: 20px; margin-left: 20px;">

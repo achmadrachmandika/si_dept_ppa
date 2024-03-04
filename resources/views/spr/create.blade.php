@@ -1,127 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Buat SPR</title>
+    <link rel="stylesheet" href="{{asset('assets/css/main.css')}}">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</head>
+
 @extends('layouts.app')
 
 @section('content')
-
-<div class="row">
-    <div class="bordered col-2 text-center"><img style="width:100%" src="{{ asset('assets/dist/img/logo-inka.png') }}"
-            alt="logo inka"></div>
-    <div class="bordered col-8 text-center"></div>
-    <div class="bordered col-2 text-center"></div>
-</div>
-<div class="row">
-    <div class="bordered col-12 text-center page-title" style="font-size: 24px;"><u>SURAT PERMINTAAN PERAWATAN / PERBAIKAN</u>
+<div class="container bordered bg-white">
+    <div class="row">
+        <div class="col-2 text-center"><img style="width:100%" src="{{ asset('assets/dist/img/logo-inka.png') }}"
+                alt="logo inka"></div>
+        <div class="col-8 text-center"></div>
+        <div class="col-2 text-center"></div>
     </div>
-</div>
+    <div class="row">
+        <div class="col-12 text-center page-title" style="font-size: 24px;"><u>SURAT PERMINTAAN PERAWATAN /
+                PERBAIKAN</u>
+        </div>
+    </div>
 
-                <div class="card-body">
-                    @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <strong>Whoops!</strong> Terdapat beberapa masalah dengan inputan Anda.<br><br>
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    @endif
+    <div class="card-body">
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <strong>Whoops!</strong> Terdapat beberapa masalah dengan inputan Anda.<br><br>
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
 
+        <form method="post" action="{{ route('spr.store') }}" id="myForm">
+            @csrf
 
-                    <form method="post" action="{{ route('spr.store') }}" id="myForm">
-                        @csrf
-
-                        
-                 <table>
-                    <tr>
-                        <td style="width: 20%; padding-right: 10px;">
-                            <div style="height: 4vw" class="bordered">
-                                <label for="nama_barang">Nama Mesin / Fasilitas / Gedung *</label>
-                                <textarea class="textarea form-control" name="nama_barang" id="nama_barang"
-                                    aria-describedby="nama_barang" style="width: 100%; height: 90%;"
-                                    placeholder="Masukkan Nama Mesin/Bangunan/Fasilitas"></textarea>
-                            </div>
-                        </td>
-                        <td style="width: 20%; padding-right: 10px;">
-                            <div style="height: 4vw" class="bordered">
-                                <label for="lokasi">Lokasi *</label>
-                                <textarea class="textarea form-control" name="lokasi" id="lokasi" aria-describedby="lokasi"
-                                    style="width: 100%; height: 100%;" placeholder="Masukkan Lokasi"></textarea>
-                            </div>
-                        </td>
-                        <td style="width: 15%; padding-right: 10px;">
-                            <div style="height: 4vw" class="bordered">
-                                <label for="tanggal_kerusakan">Tanggal Kerusakan*</label>
-                                <input type="date" name="tanggal_kerusakan" class="form-control" id="tanggal_kerusakan"
-                                    aria-describedby="tanggal_kerusakan" onfocus="(this.type='date')" placeholder="Tanggal Kerusakan">
-                            </div>
-                        </td>
-                        <td style="width: 15%;">
-                            <div style="height: 4vw" class="bordered">
-                                <label for="no_spr">No SPR*</label>
-                                <input type="text" name="no_spr" class="form-control" id="no_spr" aria-describedby="no_spr"
-                                    style="width: 100%; height: 100%;" placeholder="NO. SPR">
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-
-                     <table style="margin-top: 50px;">
-                        <tr>
-                            <td style="width: 25%; padding-right: 10px;">
-                                <div style="height: 3vw" class="bordered">
-                                    <label for="kode_mesin">Kode Mesin</label>
-                                    <textarea class="textarea form-control" name="kode_mesin" id="kode_mesin" aria-describedby="kode_mesin"
-                                        style="width: 100%; height: 100%;" placeholder="Masukkan Kode Mesin"></textarea>
-                                </div>
-                            </td>
-                            <td style="width: 25%; padding-right: 10px;">
-                                <div style="height: 3vw" class="bordered">
-                                    <label for="no_aset">Nomor Aset</label>
-                                    <textarea class="textarea form-control" name="no_aset" id="no_aset" aria-describedby="no_aset"
-                                        style="width: 100%; height: 100%;" placeholder="Masukkan Nomor Aset"></textarea>
-                                </div>
-                            </td>
-                            <td style="width: 25%; padding-right: 10px;">
-                                <div style="height: 3vw" class="bordered">
-                                    <label for="jam_kerusakan">Jam Kerusakan</label>
-                                    <input type="time" name="jam_kerusakan" class="form-control" id="jam_kerusakan"
-                                        aria-describedby="jam_kerusakan" style="width: 100%; height: 100%;"
-                                        placeholder="Masukkan Jam Kerusakan">
-                                </div>
-                            </td>
-                            <td style="width: 20%; padding-right: 10px;">
-                               <div style="height: 3vw" class="bordered">
-                                    <label for="user_peminta">User Peminta</label>
-                                    <input type="text" name="user_peminta" class="form-control" id="user_peminta"
-                                        aria-describedby="user_peminta" style="width: 100%; height: 100%;"
-                                        placeholder="Masukkan User Peminta">
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
-
-             <div class="form-group" style="margin-top: 50px; display: flex;">
-                <div style="width: 50%;">
-                    <label for="deskripsi_kerusakan">Deskripsi Kerusakan</label>
-                    <textarea class="form-control" name="deskripsi_kerusakan" id="deskripsi_kerusakan" rows="3"
-                        style="width: 100%; height: 150px;"></textarea>
+            <div class="row">
+                <div class="col-3 bordered">
+                    <label for="nama_barang">Nama Mesin / Fasilitas / Gedung *</label>
                 </div>
-
-          <td style="width: 25%; padding-right: 10px;">
-            <div style="height: 3vw" class="bordered">
-                <label for="tanggal_sprditerima">SPR diterima tanggal, jam</label>
-                <div style="display: flex;">
-                    <input type="date" name="tanggal_sprditerima" class="form-control" id="tanggal_sprditerima"
-                        aria-describedby="tanggal_sprditerima" style="width: 60%; height: 100%;"
-                        placeholder="Tanggal SPR diterima">
-                    <input type="time" name="jam_sprditerima" class="form-control ml-2" id="jam_sprditerima"
-                        aria-describedby="jam_sprditerima" style="width: 60%; height: 100%;" placeholder="Jam SPR diterima">
+                <div class="col-3 bordered">
+                    <label for="lokasi">Lokasi *</label>
+                </div>
+                <div class="col-3 bordered">
+                    <label for="tanggal_kerusakan">Tanggal Kerusakan*</label>
+                </div>
+                <div class="col-3 bordered">
+                    <label for="no_spr">No SPR*</label>
                 </div>
             </div>
-        </td>
+            <div class="row">
+                <div class="col-3 bordered">
+                    <input class="textarea form-control" name="nama_barang" id="nama_barang"
+                        aria-describedby="nama_barang" placeholder="Masukkan Nama Mesin/Bangunan/Fasilitas" />
+                </div>
+                <div class="col-3 bordered">
+                    <input class="textarea form-control" name="lokasi" id="lokasi" aria-describedby="lokasi"
+                        placeholder="Masukkan Lokasi" />
+                </div>
+                <div class="col-3 bordered">
+                    <input type="date" name="tanggal_kerusakan" class="form-control" id="tanggal_kerusakan"
+                        aria-describedby="tanggal_kerusakan" onfocus="(this.type='date')"
+                        placeholder="Tanggal Kerusakan">
+                </div>
+                <div class="col-3 bordered">
+                    <input type="text" name="no_spr" class="form-control" id="no_spr" aria-describedby="no_spr"
+                        placeholder="NO. SPR">
+                </div>
+            </div>
 
-                <div style="margin-left: 20px;">
-                    <label for="site">Site</label>
-                    <select class="form-control" name="site" id="site">
+            <div class="row" style="margin-top: 30px;">
+                <div class="col-3 bordered">
+                    <label for="kode_mesin">Kode Mesin*</label>
+                </div>
+                <div class="col-3 bordered">
+                    <label for="no_aset">Nomor Aset*</label>
+                </div>
+                <div class="col-3 bordered">
+                    <label for="jam_kerusakan">Jam Kerusakan*</label>
+                </div>
+                <div class="col-3 bordered">
+                    <label for="user_peminta">User Peminta*</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-3 bordered">
+                    <input class="textarea form-control" name="kode_mesin" id="kode_mesin" aria-describedby="kode_mesin"
+                        placeholder="Masukkan Kode Mesin" />
+                </div>
+                <div class="col-3 bordered">
+                    <input class="textarea form-control" name="no_aset" id="no_aset" aria-describedby="no_aset"
+                        placeholder="Masukkan Nomor Aset" />
+                </div>
+                <div class="col-3 bordered">
+                    <input type="time" name="jam_kerusakan" class="form-control" id="jam_kerusakan"
+                        aria-describedby="jam_kerusakan" style="height: 90%; font-size: 13px"
+                        placeholder="Masukkan Jam Kerusakan">
+                </div>
+                <div class="col-3 bordered">
+                    <input type="text" name="user_peminta" class="form-control" id="user_peminta"
+                        aria-describedby="user_peminta" style="height: 90%; font-size: 13px"
+                        placeholder="Masukkan User Peminta">
+                </div>
+            </div>
+
+            <div class="row" style="margin-top: 30px;">
+                <div class="col-6 bordered" style="height: 200px;">
+                    <label for="deskripsi_kerusakan">Deskripsi Kerusakan</label>
+                    <textarea class="form-control" style="height: 160px;" name="deskripsi_kerusakan"
+                        id="deskripsi_kerusakan"></textarea>
+                </div>
+
+                <div class="col-2 bordered" style="height: 100%;">
+                    <label for="tanggal_sprditerima">Spr diterima tanggal,*</label>
+                    <input type="date" name="tanggal_sprditerima" class="form-control" id="tanggal_sprditerima"
+                        style="height: 35px;" placeholder="Tanggal SPR diterima">
+                </div>
+
+                <div class="col-2 bordered" style="height: 100%;">
+                    <label for="jam_sprditerima">Jam,*</label>
+                    <input type="time" name="jam_sprditerima" class="form-control ml-2" id="jam_sprditerima"
+                        style="height: 35px;" placeholder="Jam SPR diterima">
+                </div>
+
+                <div class="col-2 bordered" style="height: 100%;">
+                    <label for="site">Site,*</label>
+                    <select class="form-control" name="site" id="site" style="height: 35px";>
+
                         <option value="INKA MADIUN">INKA MADIUN</option>
                         <option value="GA BANYUWANGI">GA BANYUWANGI</option>
                         <option value="GA BANDUNG">GA BANDUNG</option>
@@ -133,29 +156,30 @@
                     </select>
                 </div>
             </div>
-            <div style="margin-top: 20px; margin-left: 20px;">
+
+            <div style="margin-top: 20px; margin-left: 20px; font-size: 13px">
                 <label>Status Kerusakan</label>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="status_kerusakan" id="status_breakdown" value="breakdown">
-                    <label class="form-check-label" for="status_breakdown">Breakdown</label>
+                    <input class="form-check-input" type="radio" name="status_kerusakan" id="status_breakdown"
+                        value="breakdown">
+                    <label class="form-check-label" for="status_breakdown" style="font-size: 16px;">Breakdown</label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="status_kerusakan" id="status_tidak_breakdown"
                         value="tidak_breakdown">
-                    <label class="form-check-label" for="status_tidak_breakdown">Tidak Breakdown</label>
+                    <label class="form-check-label" for="status_tidak_breakdown" style="font-size: 16px;">Tidak
+                        Breakdown</label>
                 </div>
             </div>
-        
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                            <a href="{{ route('spr.index') }}" class="btn btn-secondary ml-2">Kembali</a>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
 
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <a href="{{ route('spr.index') }}" class="btn btn-secondary ml-2">Kembali</a>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
 </div>
 
 @endsection
