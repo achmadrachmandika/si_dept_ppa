@@ -14,7 +14,7 @@ class Barang extends Model
      *
      * @var string
      */
-    protected $primaryKey = 'no_spr';
+    protected $primaryKey = 'nomor_spr';
 
     /**
      * Indicates if the primary key is auto-incrementing.
@@ -29,7 +29,7 @@ class Barang extends Model
      * @var array
      */
     protected $fillable = [
-        'no_spr',
+        'nomor_spr',
         'nama_barang',
         'lokasi',
         'tanggal_kerusakan',

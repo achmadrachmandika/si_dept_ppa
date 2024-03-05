@@ -27,8 +27,6 @@ Route::get('/lp3m', [lp3mController::class, 'index'])->name('lp3m');
 Route::get('/riwayat-lp3m', [lp3mController::class, 'riwayatLp3m']);
 Route::post('/create-lp3m', [lp3mController::class, 'create']);
 Route::get('/show-lp3m/{id}', [lp3mController::class, 'showLp3m']);
-Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
-Route::get('/pengalaman', [PengalamanController::class, 'index'])->name('pengalaman');
 
 
 Route::get('/spr/crud/index', [SprController::class, 'index'])->name('spr.index');

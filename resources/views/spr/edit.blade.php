@@ -27,7 +27,7 @@
         </div>
         @endif
 
-        <form method="post" action="{{ route('spr.update', $barang->no_spr) }}" id="myForm">
+        <form method="post" action="{{ route('spr.update', $barang->nomor_spr) }}" id="myForm">
             @csrf
             @method('PUT')
 
@@ -58,9 +58,9 @@
                     </td>
                     <td style="width: 15%;">
                         <div style="height: 4vw" class="bordered">
-                            <label for="no_spr">No SPR*</label>
-                            <input type="text" name="no_spr" class="form-control" id="no_spr"
-                                style="width: 100%; height: 100%;" placeholder="NO. SPR" value="{{ $barang->no_spr }}">
+                            <label for="nomor_spr">No SPR*</label>
+                            <input type="text" name="nomor_spr" class="form-control" id="nomor_spr"
+                                style="width: 100%; height: 100%;" placeholder="NO. SPR" value="{{ $barang->nomor_spr }}">
                         </div>
                     </td>
                 </tr>
