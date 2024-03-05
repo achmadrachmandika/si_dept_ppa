@@ -82,7 +82,7 @@ class SprController extends Controller
             'kode_mesin' => 'required|string|max:255',
             'no_aset' => 'required|string|max:255',
             'jam_kerusakan' => 'required|date_format:H:i',
-            'pic_penerima' => 'nullable|string|max:255',
+            'user_peminta' => 'required|string|max:255',
             'deskripsi_kerusakan' => 'required|string',
             'site' => 'required|in:INKA MADIUN,GA BANYUWANGI,GA BANDUNG,GA JAKARTA,QC BANYUWANGI,QC BANDUNG,QC JAKARTA,LAIN NYA',
             'keterangan' => 'nullable|string|max:255',

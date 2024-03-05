@@ -68,20 +68,20 @@
             </div>
             <div class="row">
                 <div class="col-3 bordered">
-                    <input class="textarea form-control" name="nama_barang" id="nama_barang"
+                    <input class="textarea form-control" value="{{ old('nama_barang') }}" name="nama_barang" id="nama_barang"
                         aria-describedby="nama_barang" placeholder="Masukkan Nama Mesin/Bangunan/Fasilitas" />
                 </div>
                 <div class="col-3 bordered">
-                    <input class="textarea form-control" name="lokasi" id="lokasi" aria-describedby="lokasi"
+                    <input class="textarea form-control" value="{{ old('lokasi') }}" name="lokasi" id="lokasi" aria-describedby="lokasi"
                         placeholder="Masukkan Lokasi" />
                 </div>
                 <div class="col-3 bordered">
-                    <input type="date" name="tanggal_kerusakan" class="form-control" id="tanggal_kerusakan"
+                    <input type="date" name="tanggal_kerusakan" value="{{ old('tanggal_kerusakan') }}" class="form-control" id="tanggal_kerusakan"
                         aria-describedby="tanggal_kerusakan" onfocus="(this.type='date')"
                         placeholder="Tanggal Kerusakan">
                 </div>
                 <div class="col-3 bordered">
-                    <input type="text" name="no_spr" class="form-control" id="no_spr" aria-describedby="no_spr"
+                    <input type="text" name="no_spr" class="form-control" value="{{ old('no_spr') }}" id="no_spr" aria-describedby="no_spr"
                         placeholder="NO. SPR">
                 </div>
             </div>
@@ -103,20 +103,20 @@
 
             <div class="row">
                 <div class="col-3 bordered">
-                    <input class="textarea form-control" name="kode_mesin" id="kode_mesin" aria-describedby="kode_mesin"
+                    <input class="textarea form-control" value="{{ old('kode_mesin') }}" name="kode_mesin" id="kode_mesin" aria-describedby="kode_mesin"
                         placeholder="Masukkan Kode Mesin" />
                 </div>
                 <div class="col-3 bordered">
-                    <input class="textarea form-control" name="no_aset" id="no_aset" aria-describedby="no_aset"
+                    <input class="textarea form-control" value="{{ old('no_aset') }}" name="no_aset" id="no_aset" aria-describedby="no_aset"
                         placeholder="Masukkan Nomor Aset" />
                 </div>
                 <div class="col-3 bordered">
-                    <input type="time" name="jam_kerusakan" class="form-control" id="jam_kerusakan"
+                    <input type="time" name="jam_kerusakan" class="form-control" value="{{ old('jam_kerusakan') }}" id="jam_kerusakan"
                         aria-describedby="jam_kerusakan" style="height: 90%; font-size: 13px"
                         placeholder="Masukkan Jam Kerusakan">
                 </div>
                 <div class="col-3 bordered">
-                    <input type="text" name="user_peminta" class="form-control" id="user_peminta"
+                    <input type="text" name="user_peminta" class="form-control" value="{{ old('user_peminta') }}" id="user_peminta"
                         aria-describedby="user_peminta" style="height: 90%; font-size: 13px"
                         placeholder="Masukkan User Peminta">
                 </div>
@@ -125,25 +125,25 @@
             <div class="row" style="margin-top: 30px;">
                 <div class="col-6 bordered" style="height: 200px;">
                     <label for="deskripsi_kerusakan">Deskripsi Kerusakan</label>
-                    <textarea class="form-control" style="height: 160px;" name="deskripsi_kerusakan"
+                    <textarea class="form-control" value="{{ old('deskripsi_kerusakan') }}" style="height: 160px;" name="deskripsi_kerusakan"
                         id="deskripsi_kerusakan"></textarea>
                 </div>
 
                 <div class="col-2 bordered" style="height: 100%;">
                     <label for="tanggal_sprditerima">Spr diterima tanggal,*</label>
-                    <input type="date" name="tanggal_sprditerima" class="form-control" id="tanggal_sprditerima"
+                    <input type="date" name="tanggal_sprditerima" class="form-control" value="{{ old('tanggal_sprditerima') }}" id="tanggal_sprditerima"
                         style="height: 35px;" placeholder="Tanggal SPR diterima">
                 </div>
 
                 <div class="col-2 bordered" style="height: 100%;">
                     <label for="jam_sprditerima">Jam,*</label>
-                    <input type="time" name="jam_sprditerima" class="form-control ml-2" id="jam_sprditerima"
+                    <input type="time" name="jam_sprditerima" class="form-control ml-2" value="{{ old('jam_sprditerima') }}" id="jam_sprditerima"
                         style="height: 35px;" placeholder="Jam SPR diterima">
                 </div>
 
                 <div class="col-2 bordered" style="height: 100%;">
                     <label for="site">Site,*</label>
-                    <select class="form-control" name="site" id="site" style="height: 35px";>
+                    <select class="form-control" value="{{ old('site') }}" name="site" id="site" style="height: 35px";>
 
                         <option value="INKA MADIUN">INKA MADIUN</option>
                         <option value="GA BANYUWANGI">GA BANYUWANGI</option>
