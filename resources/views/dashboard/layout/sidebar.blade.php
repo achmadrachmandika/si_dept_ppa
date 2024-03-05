@@ -11,7 +11,7 @@
         <!-- Sidebar user (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="info">
-                <a href="/" class="d-block">PPA</a>
+                <a href="/dashboard" class="d-block">PPA</a>
             </div>
         </div>
 
@@ -31,6 +31,19 @@
                         <p>INPUT LP3M</p>
                     </a>
                 </li>
+
+
+                <li class="nav-item">
+                    <a href="{{ route('logout') }}" class="nav-link"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <i class="nav-icon fas fa-sign-out-alt"></i>
+                        <p>
+                            Logout
+                        </p>
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

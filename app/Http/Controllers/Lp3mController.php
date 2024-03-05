@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Models\Barang;
 use App\Models\lp3m;
 use Illuminate\Support\Facades\DB; 
 
 class Lp3mController extends Controller
 {
-
 
         public function index(){
                 
@@ -162,6 +162,4 @@ class Lp3mController extends Controller
                         'data' => $data
                 ]);
         }
-
-
 }

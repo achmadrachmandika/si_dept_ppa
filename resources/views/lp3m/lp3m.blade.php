@@ -394,30 +394,3 @@
 </body>
 @endsection
 
-<!-- Kode CSRF -->
-{{-- <meta name="csrf-token" content="{{ csrf_token() }}"> --}}
-
-
-<!-- Kode form pencarian -->
-
-{{-- <option disabled selected value="">-Pilih-</option>
-                        <option value="Liter">Liter</option>
-                        <option value="Meter">Meter</option>
-                        <option value="m<sup>2</sup>">m2</option>
-                        <option value="m<sup>3</sup>">m3</option>
-                        <option value="Pcs">Pcs</option>
-                        <option value="Roll">Roll</option>
-                        <option value="Set">Set</option>
-                        <option value="Drum">Drum</option>
-                        <option value="Pack">Pack</option>
-                        <option value="Unit">Unit</option>
-                        <option value="PAI">PAI</option>
-                        <option value="Truk">Truk</option>
-                        <option value="Kg">Kg</option>
-                        <option value="Can">Can</option>
-                        <option value="Lonjor">Lonjor</option>
-                        <option value="Lembar">Lembar</option>
-                        <option value="Sack">Sack</option> --}}
-
-    
-

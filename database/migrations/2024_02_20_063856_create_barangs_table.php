@@ -27,6 +27,8 @@ return new class extends Migration
         $table->time('jam_sprditerima');
         $table->timestamps();
     });
+
+    
 }
 
 
