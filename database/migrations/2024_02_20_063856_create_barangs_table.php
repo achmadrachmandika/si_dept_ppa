@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
 {
     Schema::create('barangs', function (Blueprint $table) {
-        $table->string('no_spr')->primary(); // Mengubah no_spr menjadi primary key
+        $table->id('nomor_spr')->startingValue(23101); // Mengubah no_spr menjadi primary key
         $table->string('nama_barang');
         $table->string('lokasi');
         $table->date('tanggal_kerusakan');

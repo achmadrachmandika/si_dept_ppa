@@ -30,7 +30,7 @@ class SprController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'no_spr' => 'required|string|max:255|unique:barangs,no_spr',
+            // 'nomor_spr' => 'required|unique:barangs',
             'nama_barang' => 'required|string|max:255',
             'lokasi' => 'required|string|max:255',
             'tanggal_kerusakan' => 'required|date',
@@ -56,7 +56,7 @@ class SprController extends Controller
      */
     public function show($id)
     {
-        $barang = Barang::findOrFail($id);
+        $barang = Barang::where('nomor_spr',$id)->first();
         return view('spr.detail', compact('barang'));
     }
 
@@ -65,7 +65,7 @@ class SprController extends Controller
      */
     public function edit($id)
     {
-        $barang = Barang::findOrFail($id);
+        $barang = Barang::where('nomor_spr',$id)->first();
         return view('spr.edit', compact('barang'));
     }
 
@@ -88,8 +88,22 @@ class SprController extends Controller
             'status_kerusakan' => 'required|in:breakdown,tidak_breakdown',
         ]);
 
-        $barang = Barang::findOrFail($id);
-        $barang->update($request->all());
+        $barang = Barang::where('nomor_spr',$id)->first();
+
+        $barang->update([
+            'nomor_spr' => $request->input('nomor_spr'),
+            'nama_barang' => $request->input('nama_barang'),
+            'lokasi' => $request->input('lokasi'),
+            'tanggal_kerusakan' => $request->input('tanggal_kerusakan'),
+            'kode_mesin' => $request->input('kode_mesin'),
+            'no_aset' => $request->input('no_aset'),
+            'jam_kerusakan' => $request->input('jam_kerusakan'),
+            'pic_penerima' => $request->input('pic_penerima'),
+            'deskripsi_kerusakan' => $request->input('deskripsi_kerusakan'),
+            'site' => $request->input('site'),
+            'keterangan' => $request->input('keterangan'),
+            'status_kerusakan' => $request->input('status_kerusakan'),
+        ]);
 
         return redirect()->route('spr.index')->with('success', 'Data berhasil diperbarui.');
     }
@@ -99,7 +113,7 @@ class SprController extends Controller
      */
     public function destroy($id)
     {
-        $barang = Barang::findOrFail($id);
+        $barang = Barang::where('nomor_spr',$id);
         $barang->delete();
 
         return redirect()->route('spr.index')->with('success', 'Data berhasil dihapus.');

@@ -31,13 +31,6 @@
                         <p>INPUT LP3M</p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ route('pengalaman') }}"
-                        class="nav-link {{ (request()->routeIs('pengalaman') ? 'active' : '') }}">
-                        <i class="nav-icon fas fa-th"></i>
-                        <p>REKAP SARAH</p>
-                    </a>
-                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
