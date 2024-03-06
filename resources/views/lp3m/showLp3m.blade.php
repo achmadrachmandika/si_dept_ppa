@@ -57,10 +57,10 @@
 
             <div class="row">
                 <div class="bordered-no-bot col-6 row-bot-1">
-                    <p class="h4">{{$data->hasil_pengukuran}}</p>
+                    <p class="h6">{{$data->hasil_pengukuran}}</p>
                 </div>
                 <div class="bordered col-6 row-bot-1_1">
-                    <p class="h4">{{$data->penyebab_kerusakan}}</p>
+                    <p class="h6">{{$data->penyebab_kerusakan}}</p>
                       
                 </div>
             </div>
@@ -112,27 +112,27 @@
                 <div class="bordered col-3">
                     @for ($i = 1; $i <= 10; $i++)
                         @if (!empty($data["nama_personil_$i"]))
-                            <p class="h4">{{ $data["nama_personil_$i"] }}</p>
+                            <p class="h6">{{ $data["nama_personil_$i"] }}</p>
                             <hr>
                         @endif
                     @endfor
                 </div>
                 <div class="bordered col-3">
                     
-                    <p class="h4">{{$data->tanggal}}</p>
+                    <p class="h6">{{$data->tanggal}}</p>
 
                     <label class="" for="jam_mulai">Jam Mulai</label>
-                    <p class="h4">{{$data->jam_mulai}}</p>
+                    <p class="h6">{{$data->jam_mulai}}</p>
 
                     <label class="" for="jam_selesai">Jam Selesai</label>
-                    <p class="h4">{{$data->jam_selesai}}</p>
+                    <p class="h6">{{$data->jam_selesai}}</p>
                 </div>
                 
 
 
                 <div class="bordered col-6">
                     
-                    <p class="h4">{{$data->penyelesaian}}</p>
+                    <p class="h6">{{$data->penyelesaian}}</p>
                 </div>
             </div>
 
@@ -168,7 +168,7 @@
                 <div class="bordered col-1">
                     @for ($i = 1; $i <= 10; $i++)
                         @if (!empty($data["kode_sparepart_$i"]))
-                            <p class="h4">{{ $data["kode_sparepart_$i"] }}</p>
+                            <p class="h6">{{ $data["kode_sparepart_$i"] }}</p>
                             <hr>
                         @endif
                     @endfor
@@ -176,7 +176,7 @@
                 <div class="bordered col-4">
                     @for ($i = 1; $i <= 10; $i++)
                         @if (!empty($data["nama_sparepart_$i"]))
-                            <p class="h4">{{ $data["nama_sparepart_$i"] }}</p>
+                            <p class="h6">{{ $data["nama_sparepart_$i"] }}</p>
                             <hr>
                         @endif
                     @endfor
@@ -184,7 +184,7 @@
                 <div class="bordered col-4">
                     @for ($i = 1; $i <= 10; $i++)
                         @if (!empty($data["spek_sparepart_$i"]))
-                            <p class="h4">{{ $data["spek_sparepart_$i"] }}</p>
+                            <p class="h6">{{ $data["spek_sparepart_$i"] }}</p>
                             <hr>
                         @endif
                     @endfor
@@ -192,20 +192,20 @@
                 <div class="bordered col-1">
                     @for ($i = 1; $i <= 10; $i++)
                         @if (!empty($data["jumlah_sparepart_$i"]))
-                            <p class="h4">{{ $data["jumlah_sparepart_$i"] }}</p>
+                            <p class="h6">{{ $data["jumlah_sparepart_$i"] }} {{ $data["satuan_sparepart_$i"] }}</p>
                             <hr>
                         @endif
                     @endfor
                 </div>
                 <div class="bordered col-2 ">
-                    <p class="h4">{{$data->keterangan}}</p>
+                    <p class="h6">{{$data->keterangan}}</p>
                 
                 </div>
             </div>
             <br>
         </form>
         </div>
-        <p class="h4" style="margin:10px 0px 0px 10px">Form No.:IV-01.097 Rev. C</p> 
+        <p class="h6" style="margin:10px 0px 0px 10px">Form No.:IV-01.097 Rev. C</p> 
 
 </div>
 

@@ -24,18 +24,13 @@
 
 @section('content')
 <body>
-    <div class=" container">
-        <div class="card-body text-center">
+    <div class="card" style="margin:0px 20px;padding:20px">
+        <div class="text-center">
             <form action="{{url('/create-lp3m')}}" class="form" method="post">
                 @csrf
             <div class="row">
                 <div  class=" col-2"><img style="width:100%" src="{{ asset('assets/dist/img/logo-inka.png') }}" alt="logo inka"></div>
-                <div  class=" col-8"></div>
-                <div  class=" col-2">
-                    <a  href="{{ url('riwayat-lp3m')}}"class="btn btn-secondary" style="width:100%">
-                        <label>Lihat Riwayat LP3M</label>
-                    </a>
-                </div>
+                <div  class=" col-10"></div>
             </div>
             
             <div class="row">
@@ -46,7 +41,7 @@
                 <div  class=" col-2">
                     <label for="no_spr">Merujuk SPR No.</label>
                     <input type="text" name="no_spr" id="no_spr" class="form-control @error('no_spr') is-invalid @enderror" value="{{ old('no_spr') }}"
-                    placeholder="Masukkan kode.." required />
+                    placeholder="Cari.." required />
                     <div id="barangList"></div>
                     @error('no_spr')
                         <span class="invalid-feedback">{{ $message }}</span>
@@ -285,7 +280,9 @@
 
             const newDiv2 = document.createElement('div');
             newDiv2.innerHTML = `
-                <input class="form-control" style="margin-top:5px" type="text" name="kode_sparepart_${sparepartCodeCount}" id="kode_sparepart_${sparepartCodeCount}" required>
+
+                <input type="text" class="form-control" placeholder="Cari.." style="margin-top:5px" type="text" name="kode_sparepart_${sparepartCodeCount}" id="kode_sparepart_${sparepartCodeCount}" required>
+                <div id="SparepartList_${sparepartCodeCount}"></div>
             `;
             code_container.appendChild(newDiv2);
 
@@ -360,32 +357,100 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
-
-        $('#no_spr').keyup(function() {
-            var query = $(this).val();
-            if (query != '') {
-                var _token = $('input[name="csrf-token"]').val();
-                $.ajax({
-                    url: '/ajax-autocomplete',
-                    method: "GET",
-                    data: {
-                        query: query,
-                        _token: _token
-                    },
-                    success: function(data) {
-                        $('#barangList').fadeIn();
-                        $('#barangList').html(data);
-                    }
-                });
-            }
-        });
-
-        $(document).on('click', 'li', function() {
-            $('#no_spr').val($(this).text());
-            $('#barangList').fadeOut();
-        });
-
+    // Event handler untuk input no_spr
+    $('#no_spr').keyup(function() {
+        console.log('damn')
+        var query = $(this).val();
+        if (query != '') {
+            var _token = $('input[name="csrf-token"]').val();
+            $.ajax({
+                url: '/ajax-autocomplete',
+                method: "GET",
+                data: {
+                    query: query,
+                    _token: _token
+                },
+                success: function(data) {
+                    $('#barangList').fadeIn();
+                    $('#barangList').html(data);
+                }
+            });
+        }
     });
+
+    // Event handler untuk menangani klik pada elemen li di #barangList
+    $(document).on('click', '#barangList li', function() {
+        $('#no_spr').val($(this).text());
+        $('#barangList').fadeOut();
+    });
+
+
+    for (let i = 1; i <= 10; i++) {
+    $(document).on('keyup', `#kode_sparepart_${i}`, function() {
+        var query = $(this).val();
+        if (query != '') {
+            var _token = $('input[name="csrf-token"]').val();
+            $.ajax({
+                url: '/ajax-autocomplete-sparepart-code',
+                method: "GET",
+                data: {
+                    query: query,
+                    _token: _token
+                },
+                success: function(data) {
+                    $(`#SparepartList_${i}`).fadeIn();
+                    $(`#SparepartList_${i}`).html(data);
+                }
+            });
+        }
+    });
+
+    $(document).on('click', `#SparepartList_${i} li`, function() {
+        var nama_sparepart = $(this).data('nama');
+        var spek_sparepart = $(this).data('spek');
+        $(`#kode_sparepart_${i}`).val($(this).text());
+        $(`#nama_sparepart_${i}`).val(nama_sparepart);
+        $(`#spesifikasi_sparepart_${i}`).val(spek_sparepart);
+        $(`#SparepartList_${i}`).fadeOut();
+    });
+}
+
+
+    $(document).on('keyup', '#kode_sparepart_2', function() {
+        var query = $(this).val();
+        if (query != '') {
+            var _token = $('input[name="csrf-token"]').val();
+            $.ajax({
+                url: '/ajax-autocomplete-sparepart-code',
+                method: "GET",
+                data: {
+                    query: query,
+                    _token: _token
+                },
+                success: function(data) {
+                    $('#SparepartList_2').fadeIn();
+                    $('#SparepartList_2').html(data);
+                }
+            });
+        }
+    });
+
+    
+
+    // Event handler untuk menangani klik pada elemen li di #SparepartList_2
+    $(document).on('click', '#SparepartList_2 li', function() {
+        var nama_sparepart = $(this).data('nama');
+        var spek_sparepart = $(this).data('spek');
+        $('#kode_sparepart_2').val($(this).text());
+        $('#nama_sparepart_2').val(nama_sparepart);
+        $('#spesifikasi_sparepart_2').val(spek_sparepart);
+        $('#SparepartList_2').fadeOut();
+    });
+
+    
+
+    
+});
 
 </script>
 
