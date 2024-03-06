@@ -41,6 +41,7 @@ Route::get('/ajax-autocomplete-sparepart-code', [lp3mController::class, 'searchC
     Route::middleware('role:admin')->get('/edit-lp3m/{id}', [Lp3mController::class, 'editLp3m']);
     Route::middleware('role:admin')->post('/update-lp3m/{id}', [Lp3mController::class, 'updateLp3m']);
     Route::middleware('role:admin')->delete('/delete-lp3m/{id}', [Lp3mController::class, 'deleteLp3m']);
+    Route::get('/cetak-lp3m/{id}', [Lp3mController::class, 'cetaklp3m'])->name('cetak.lp3m');
     // SPR
     Route::middleware('role:admin')->prefix('spr')->group(function () {
         Route::get('/crud/index', [SprController::class, 'index'])->name('spr.index');
@@ -50,6 +51,8 @@ Route::get('/ajax-autocomplete-sparepart-code', [lp3mController::class, 'searchC
         Route::get('/{id}/edit', [SprController::class, 'edit'])->name('spr.edit');
         Route::put('/{id}', [SprController::class, 'update'])->name('spr.update');
         Route::delete('/{id}', [SprController::class, 'destroy'])->name('spr.destroy');
+        Route::get('/cetak-pdf/{nomor_spr}', [SprController::class, 'cetak_pdf'])->name('spr_pdf');
+
     });
 });
 

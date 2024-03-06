@@ -67,7 +67,7 @@
                     </div>
                     <div class="col-4 bordered text-center">
                         <label for="no_spr">No SPR*</label>
-                        <div>{{ $barang->no_spr }}</div>
+                        <div>{{ $barang->nomor_spr }}</div>
                     </div>
                 </div>
                 
@@ -131,8 +131,7 @@
 <div class="row justify-content-center">
     <div class="col-md-10 text-center">
         <a class="btn btn-success btn-sm" href="{{ route('spr.index') }}">Kembali</a>
-        {{-- <a class="btn btn-primary btn-sm ml-2" href="{{ route('spr.pdf') }}">Cetak PDF</a> --}}
-    </div>
+<a href="{{ route('spr_pdf', ['nomor_spr' => $barang->nomor_spr]) }}" class="btn btn-success btn-sm">Cetak PDF</a>    </div>
 </div>
 
 @endsection

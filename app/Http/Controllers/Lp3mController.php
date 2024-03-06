@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Barang;
 use App\Models\lp3m;
 use Illuminate\Support\Facades\DB; 
+use PDF;
 
 class Lp3mController extends Controller
 {
@@ -186,7 +187,6 @@ class Lp3mController extends Controller
                         'data' => $data
                 ]);
         }
-
         public function editLp3m($id){
 
 
@@ -233,6 +233,18 @@ class Lp3mController extends Controller
                 lp3m::where('no_spr', $id)->delete();
                 
                 return redirect('/riwayat-lp3m')->with('message-delete',"LP3M Untuk SPR No. " . $id . " Berhasil Dihapus");
+        }
+
+
+        public function cetaklp3m($id){
+        // Mengambil data LP3M berdasarkan ID
+        $lp3m = lp3m::findOrFail($id);
+        
+        // Membuat tampilan PDF dengan menggunakan Dompdf
+        $pdf = PDF::loadView('lp3m.cetaklp3m', compact('lp3m'));
+        
+        // Mengunduh PDF
+        return $pdf->download('lp3m.pdf');
         }
 
 }
