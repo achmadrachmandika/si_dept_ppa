@@ -42,6 +42,31 @@ class Lp3mController extends Controller
                     }
         }
 
+        public function searchCodeSparepart(Request $request)
+        {       
+                if ($request->get('query')) {
+                        $query = $request->get('query');
+                        $data = DB::table('spareparts')
+                            ->where('kode_material', 'LIKE', "%{$query}%")
+                            ->get();
+                    
+                        $output = '<ul class="dropdown-menu" style="display:block; position:absolute;; max-height: 120px; overflow-y: auto;">';
+                    
+                        foreach ($data as $row) {
+                                $output .= '
+                                <a href="#" style="text-decoration:none; color:black;">
+                                    <li data-nama="' . $row->nama_material . '" data-spek="' . $row->spek_material . '" style="background-color: white; list-style-type: none; cursor: pointer; padding-left:10px" onmouseover="this.style.backgroundColor=\'grey\'" onmouseout="this.style.backgroundColor=\'initial\'">'
+                                        . $row->kode_material .
+                                    '</li>
+                                </a>
+                                ';
+                        }
+                    
+                        $output .= '</ul>';
+                        echo $output;
+                    }
+        }
+
         public function create(request $request){
 
                 $validated = $request->validate([
@@ -140,9 +165,8 @@ class Lp3mController extends Controller
                 ];
 
                 
-
                 lp3m::create($data);
-                return redirect('/riwayat-lp3m');
+                return redirect('/riwayat-lp3m')->with('message', "LP3M  Untuk SPR No. " . $validated['no_spr'] . " Berhasil Dibuat");
         }
 
         public function riwayatLp3m(){
@@ -163,9 +187,56 @@ class Lp3mController extends Controller
                         'data' => $data
                 ]);
         }
+        public function editLp3m($id){
 
-            public function cetaklp3m($id)
-    {
+
+                $data = lp3m::where('no_spr', $id)->first();
+                
+                return view('lp3m.edit-Lp3m',[
+                        'data' => $data
+                ]);
+        }
+
+        public function updateLp3m(request $request, $id){
+
+                $validated = $request->validate([
+                        'no_spr' => 'required',
+                        'hasil_pengukuran' => 'required|string|max:255',
+                        'penyebab_kerusakan' => 'required|string|max:255',
+                        'alasan' => 'required',
+                        'tanggal' => 'required',
+                        'jam_mulai' => 'required',
+                        'jam_selesai' => 'required',
+                        'penyelesaian' => 'required|string|max:255',
+                        'keterangan' => 'required|string|max:255',
+                    ]);
+                
+
+                lp3m::where('no_spr',$id)->update([
+                        'no_spr' => $validated['no_spr'],
+                        'hasil_pengukuran' => $validated['hasil_pengukuran'],
+                        'penyebab_kerusakan' => $validated['penyebab_kerusakan'],
+                        'alasan' => $validated['alasan'],
+                        'tanggal' => $validated['tanggal'],
+                        'jam_mulai' => $validated['jam_mulai'],
+                        'jam_selesai' => $validated['jam_selesai'],
+                        'penyelesaian' => $validated['penyelesaian'],
+                        'keterangan' => $validated['keterangan'],
+                ]);
+                return redirect('/riwayat-lp3m')->with('message', "LP3M Untuk SPR No. " . $validated['no_spr'] . " Berhasil Diedit");
+
+        }
+
+        public function deleteLp3m($id){
+
+
+                lp3m::where('no_spr', $id)->delete();
+                
+                return redirect('/riwayat-lp3m')->with('message-delete',"LP3M Untuk SPR No. " . $id . " Berhasil Dihapus");
+        }
+
+
+        public function cetaklp3m($id){
         // Mengambil data LP3M berdasarkan ID
         $lp3m = lp3m::findOrFail($id);
         
@@ -174,5 +245,6 @@ class Lp3mController extends Controller
         
         // Mengunduh PDF
         return $pdf->download('lp3m.pdf');
-    }
+        }
+
 }

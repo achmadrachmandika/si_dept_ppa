@@ -26,7 +26,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('lp3m') }}" class="nav-link {{ (request()->routeIs('lp3m') ? 'active' : '') }}">
+                    <a href="{{ route('riwayatLp3m') }}" class="nav-link {{ (request()->routeIs('riwayatLp3m') ? 'active' : '') }}">
                         <i class="nav-icon fas fa-user"></i>
                         <p>INPUT LP3M</p>
                     </a>

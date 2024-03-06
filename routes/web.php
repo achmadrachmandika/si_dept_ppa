@@ -29,14 +29,18 @@ Route::middleware('auth')->group(function () {
     })->name('dashboard.app');
 
 Route::get('/ajax-autocomplete', [lp3mController::class, 'searchCode'])->name('code.search');
+Route::get('/ajax-autocomplete-sparepart-code', [lp3mController::class, 'searchCodeSparepart'])->name('code.search');
 
 
 
     // LP3M
     Route::middleware('role:admin')->get('/lp3m', [Lp3mController::class, 'index'])->name('lp3m');
-    Route::middleware('role:admin')->get('/riwayat-lp3m', [Lp3mController::class, 'riwayatLp3m']);
+    Route::middleware('role:admin')->get('/riwayat-lp3m', [Lp3mController::class, 'riwayatLp3m'])->name('riwayatLp3m');
     Route::middleware('role:admin')->post('/create-lp3m', [Lp3mController::class, 'create']);
     Route::middleware('role:admin')->get('/show-lp3m/{id}', [Lp3mController::class, 'showLp3m']);
+    Route::middleware('role:admin')->get('/edit-lp3m/{id}', [Lp3mController::class, 'editLp3m']);
+    Route::middleware('role:admin')->post('/update-lp3m/{id}', [Lp3mController::class, 'updateLp3m']);
+    Route::middleware('role:admin')->delete('/delete-lp3m/{id}', [Lp3mController::class, 'deleteLp3m']);
     Route::get('/cetak-lp3m/{id}', [Lp3mController::class, 'cetaklp3m'])->name('cetak.lp3m');
     // SPR
     Route::middleware('role:admin')->prefix('spr')->group(function () {
