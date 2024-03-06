@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Barang;
-use App\Models\Spr; // Import model Spr
+use PDF;
 
 class SprController extends Controller
 {
@@ -128,4 +128,13 @@ class SprController extends Controller
         $spr = Spr::where('no_spr', $no_spr)->first(); // Mengambil data SPR berdasarkan nomor SPR
         return view('nama_view', ['no_spr' => $no_spr, 'spr' => $spr]);
     }
+
+    public function cetak_pdf($no_spr){
+    $spr = Barang::where('nomor_spr', $no_spr)->first(); // Mengambil data dari model Barang dengan menggunakan 'nomor_spr'
+
+    $pdf = PDF::loadview('spr.spr_pdf', compact('spr')); // Menggunakan 'spr' sebagai data yang dikirim ke view
+    return $pdf->download('spr-pdf.pdf'); // Mengunduh PDF dengan nama file spr-pdf.pdf
+}
+
+
 }
