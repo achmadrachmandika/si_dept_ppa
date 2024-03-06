@@ -27,10 +27,12 @@
 
         <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper"
-    style="background-image: url('{{ asset('assets/dist/img/sepur-inka.jpeg') }}'); background-size: cover; background-position: center;">
-    @yield('content')
+style="background-image: url('{{ asset('assets/dist/img/mro2.jpg') }}'); background-size: contain; background-position: center;"    @yield('content')
     <div class="section" style="background-color: rgba(255, 255, 255, 0.8); padding: 20px;">
-        <h1 class="section-title" style="text-align: center;">Sistem Informasi Departemen PPA</h1>
+       <h1 class="section-title"
+        style="text-align: center; color: orange; background-color: black; font-family: 'Times New Roman', Times, serif;">
+        Sistem Informasi Departemen PPA
+    </h1>
         {{-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus
             ante dapibus diam. Sed nisi.</p> --}}
     </div>

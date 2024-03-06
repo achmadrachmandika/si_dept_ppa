@@ -81,7 +81,7 @@
                         </div>
                     </td>
                     <td style="width: 15%;">
-                        <div style="height: 4vw" class="bordered">
+                        <div style="height: 4vw">
                             <label for="nomor_spr">No SPR*</label>
                             <input type="text" name="nomor_spr" class="form-control" id="nomor_spr"
                                 style="width: 100%; height: 100%;" placeholder="NO. SPR" value="{{ $barang->nomor_spr }}">
