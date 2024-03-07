@@ -10,7 +10,7 @@
             <div  class=" col-10"></div>
             <div  class=" col-2">
                 <a  href="{{ url('/lp3m')}}"class="btn btn-success" style="width:100%;margin:20px 0px 20px 0px">
-                    <label>Buat LP3M</label>
+                    Buat LP3M
                 </a>
             </div>
         </div>

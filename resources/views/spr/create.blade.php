@@ -105,7 +105,8 @@
             <div class="row">
                 <div class="col-3 bordered">
                     <input class="textarea form-control" value="{{ old('kode_mesin') }}" name="kode_mesin" id="kode_mesin" aria-describedby="kode_mesin"
-                        placeholder="Masukkan Kode Mesin" />
+                        placeholder="Masukkan Kode Mesin">
+                        <div id="kodeMesinList"></div>
                 </div>
                 <div class="col-3 bordered">
                     <input class="textarea form-control" value="{{ old('no_aset') }}" name="no_aset" id="no_aset" aria-describedby="no_aset"
@@ -158,19 +159,23 @@
                 </div>
             </div>
 
-            <div style="margin-top: 20px; margin-left: 20px; font-size: 13px">
-                <label>Status Kerusakan</label>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="status_kerusakan" id="status_breakdown"
-                        value="breakdown">
-                    <label class="form-check-label" for="status_breakdown" style="font-size: 16px;">Breakdown</label>
+            <div class="row">
+                <div class="col mt-2 bordered">
+                    <label>Status Kerusakan</label>
                 </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="status_kerusakan" id="status_tidak_breakdown"
-                        value="tidak_breakdown">
-                    <label class="form-check-label" for="status_tidak_breakdown" style="font-size: 16px;">Tidak
-                        Breakdown</label>
+                <div class="col">
                 </div>
+            </div>
+            <div class="row">
+                <div class="col bordered mb-3">
+                    <div style="display:flex;justify-content: space-evenly;">
+                        <input type="radio" name="status_kerusakan" id="status_breakdown" value="breakdown">
+                        <label for="status_breakdown">Breakdown</label>
+                        <input type="radio" name="status_kerusakan" id="status_tidak_breakdown" value="tidak_breakdown">
+                        <label for="status_tidak_breakdown">Tidak Breakdown</label>
+                    </div>
+                </div>
+                <div class="col"></div>
             </div>
 
             <div class="text-center">
@@ -180,7 +185,44 @@
         </form>
     </div>
 </div>
-</div>
-</div>
+
 
 @endsection
+
+<script type="text/javascript">
+
+// });
+
+    $(document).on('keyup', `#kode_mesin`, function() {
+        var query = $(this).val();
+        
+        if (query != '') {  
+            console.log(query);
+            var _token = $('input[name="csrf-token"]').val();
+            $.ajax({
+                url: '/ajax-autocomplete-machine-code',
+                method: "GET",
+                data: {
+                    query: query,
+                    _token: _token
+                },
+                success: function(data) {
+                    $(`#kodeMesinList`).fadeIn();
+                    $(`#kodeMesinList`).html(data);
+                }
+            });
+        }
+    });
+
+    $(document).on('click', `#kodeMesinList li`, function() {
+        var no_aset = $(this).data('nama');
+
+        console.log('tes');
+        console.log(no_aset);
+        $(`#kode_mesin`).val($(this).text());
+        $(`#no_aset`).val(no_aset);
+        $(`#kodeMesinList`).fadeOut();
+    });
+
+
+</script>

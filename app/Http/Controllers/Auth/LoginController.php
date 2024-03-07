@@ -45,7 +45,7 @@ protected function authenticated(Request $request, $user)
 
 
     if ($user->hasRole('admin')) {
-        return redirect()->route('dashboard.app');
+        return redirect()->route('dashboard');
     }
 
     return redirect()->route('/welcome');

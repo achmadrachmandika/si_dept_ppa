@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{{ asset('assets/plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('assets/dist/css/adminlte.min.css') }}">
+    <link rel="stylesheet" href="{{asset('assets/css/main.css')}}">
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -26,7 +27,7 @@
         @include('/dashboard/layout/sidebar')
 
         <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper">
+      <div class="content-wrapper" id="dashboard">
             @yield('content')
         </div>
 

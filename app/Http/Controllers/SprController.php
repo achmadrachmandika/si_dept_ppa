@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Barang;
 use PDF;
-
+use Illuminate\Support\Facades\DB; 
 class SprController extends Controller
 {
     /**
@@ -30,7 +30,7 @@ class SprController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+       $data = $request->validate([
             // 'nomor_spr' => 'required|unique:barangs',
             'nama_barang' => 'required|string|max:255',
             'lokasi' => 'required|string|max:255',
@@ -47,6 +47,7 @@ class SprController extends Controller
             'jam_sprditerima' => 'required|date_format:H:i',
         ]);
 
+        dd($data);
         Barang::create($request->all());
 
         return redirect()->route('spr.index')->with('success', 'Data berhasil disimpan.');
@@ -117,24 +118,45 @@ class SprController extends Controller
         $barang = Barang::where('nomor_spr',$id);
         $barang->delete();
 
-        return redirect()->route('spr.index')->with('success', 'Data berhasil dihapus.');
+        return redirect()->route('spr.index')->with('message-delete', 'Data berhasil dihapus.');
     }
 
     /**
      * Display the specified resource based on SPR number.
      */
-    public function showSprPage($no_spr)
-    {
-        $spr = Spr::where('no_spr', $no_spr)->first(); // Mengambil data SPR berdasarkan nomor SPR
-        return view('nama_view', ['no_spr' => $no_spr, 'spr' => $spr]);
-    }
 
     public function cetak_pdf($no_spr){
     $spr = Barang::where('nomor_spr', $no_spr)->first(); // Mengambil data dari model Barang dengan menggunakan 'nomor_spr'
 
     $pdf = PDF::loadview('spr.spr_pdf', compact('spr')); // Menggunakan 'spr' sebagai data yang dikirim ke view
     return $pdf->download('spr-pdf.pdf'); // Mengunduh PDF dengan nama file spr-pdf.pdf
-}
+    }
+
+    public function searchCodeMachine(Request $request)
+        {       
+                if ($request->get('query')) {
+                    
+                        $query = $request->get('query');
+                        $data = DB::table('asets')
+                            ->where('no_unit', 'LIKE', "%{$query}%")
+                            ->get();
+                    
+                        $output = '<ul class="dropdown-menu" style="display:block; position:absolute;; max-height: 120px; overflow-y: auto;">';
+                    
+                        foreach ($data as $row) {
+                                $output .= '
+                                <a href="#" style="text-decoration:none; color:black;">
+                                    <li data-nama="' . $row->no_aset . '" style="background-color: white; list-style-type: none; cursor: pointer; padding-left:10px" onmouseover="this.style.backgroundColor=\'grey\'" onmouseout="this.style.backgroundColor=\'initial\'">'
+                                        . $row->no_unit .
+                                    '</li>
+                                </a>
+                                ';
+                        }
+                    
+                        $output .= '</ul>';
+                        echo $output;
+                    }
+        }
 
 
 }

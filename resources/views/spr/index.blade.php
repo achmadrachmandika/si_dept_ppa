@@ -20,6 +20,10 @@
                         <div class="alert alert-success">
                             <p>{{ $message }}</p>
                         </div>
+                        @elseif ($message = Session::get('message-delete'))
+                        <div class="alert alert-danger">
+                            <p>{{ $message }}</p>
+                        </div>
                         @endif
                         <div class="table-responsive">
                             <table id="myTable" class="table table-striped">
