@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Barang;
 use PDF;
 
+
 class SprController extends Controller
 {
     /**
@@ -13,8 +14,20 @@ class SprController extends Controller
      */
     public function index()
     {
-        $spr = Barang::orderBy('created_at', 'desc')->paginate(10); // Ubah 'barang' menjadi 'Barang'
-        return view('spr.index', compact('spr'));
+      // Membuat instance dari Lp3mController
+    $lp3mController = new Lp3mController();
+    
+    // Memanggil metode riwayatLp3m() untuk mendapatkan data LP3M
+    $lp3mData = $lp3mController->riwayatLp3m();
+    
+    // Mengambil data SPR dari LP3M
+    $lp3mSprs = $lp3mData['lp3mSprs'];
+    
+    // Mengambil data SPR dari model Barang
+    $spr = Barang::orderBy('created_at', 'desc')->paginate(10);
+    
+    // Mengirimkan data ke view
+    return view('spr.index', compact('spr', 'lp3mSprs'));
     }
 
     /**
