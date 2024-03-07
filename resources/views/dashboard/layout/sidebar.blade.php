@@ -20,7 +20,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('riwayatLp3m') }}" class="nav-link {{ (request()->routeIs('riwayatLp3m') ? 'active' : '') }}">
-                        <i class="nav-icon fas fa-user"></i>
+                        <img src="{{ asset('assets/dist/img/lp3m.png') }}" class="nav-icon" alt="Logo">
                         <p>LP3M</p>
                     </a>
                 </li>

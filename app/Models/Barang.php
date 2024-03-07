@@ -41,7 +41,8 @@ class Barang extends Model
         'site',
         'status_kerusakan',
         'tanggal_sprditerima',
-        'jam_sprditerima'
+        'jam_sprditerima',
+        'status_lp3m',
     ];
 }
 
