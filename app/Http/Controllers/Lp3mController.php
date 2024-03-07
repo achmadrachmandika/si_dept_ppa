@@ -169,14 +169,21 @@ class Lp3mController extends Controller
                 return redirect('/riwayat-lp3m')->with('message', "LP3M  Untuk SPR No. " . $validated['no_spr'] . " Berhasil Dibuat");
         }
 
-        public function riwayatLp3m(){
+               public function riwayatLp3m()
+{
+    // Ambil semua nomor SPR dari LP3M
+    $lp3mSprs = Lp3m::pluck('no_spr')->toArray();
+    
+    // Ambil data LP3M
+    $datas = Lp3m::all();
+    
+    // Kirimkan data ke view
+    return view('lp3m.riwayat-lp3m', compact('datas', 'lp3mSprs'));
+}
 
-                $data = lp3m::all();
-                
-                return view('lp3m.riwayat-lp3m',[
-                        'datas' => $data
-                ]);
-        }
+
+
+      
 
         public function showLp3m($id){
 

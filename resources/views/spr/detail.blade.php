@@ -290,6 +290,7 @@
                                         <td colspan="2" style="text-align: center;"><b>Site</b><br>{{ $barang->site }}</td>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -301,8 +302,8 @@
                 <div class="col-1"></div>
             </div>
         </div>
-        
-        
+        <div class="col-1"></div>
+    </div>
 </div>
 <div class="row justify-content-center">
     <div class="col-md-10 text-center">
@@ -322,3 +323,4 @@
         })
     })
 </script> --}}
+

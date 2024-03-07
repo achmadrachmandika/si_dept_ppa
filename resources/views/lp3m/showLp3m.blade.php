@@ -207,6 +207,7 @@
         </div>
         <a href="{{ route('lp3m') }}" class="btn btn-primary">Kembali</a>
         <a onclick="generatePDF()" class="btn btn-success">Cetak PDF</a>
+
 </div>
 
 
