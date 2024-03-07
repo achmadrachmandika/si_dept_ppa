@@ -19,17 +19,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function(){
     return view('/auth/login');
-});
+})->middleware('guest');
 
 Auth::routes();
 
 Route::middleware('auth')->group(function () {
-    Route::middleware('role:admin')->get('/dashboard', function(){
-        return view('dashboard.layout.app');
-    })->name('dashboard.app');
+    Route::middleware('role:admin')->get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
 
 Route::get('/ajax-autocomplete', [lp3mController::class, 'searchCode'])->name('code.search');
 Route::get('/ajax-autocomplete-sparepart-code', [lp3mController::class, 'searchCodeSparepart'])->name('code.search');
+Route::get('/ajax-autocomplete-machine-code', [SprController::class, 'searchCodeMachine'])->name('machineCode.search');
 
 
 
@@ -41,7 +40,6 @@ Route::get('/ajax-autocomplete-sparepart-code', [lp3mController::class, 'searchC
     Route::middleware('role:admin')->get('/edit-lp3m/{id}', [Lp3mController::class, 'editLp3m']);
     Route::middleware('role:admin')->post('/update-lp3m/{id}', [Lp3mController::class, 'updateLp3m']);
     Route::middleware('role:admin')->delete('/delete-lp3m/{id}', [Lp3mController::class, 'deleteLp3m']);
-    Route::get('/cetak-lp3m/{id}', [Lp3mController::class, 'cetaklp3m'])->name('cetak.lp3m');
     // SPR
     Route::middleware('role:admin')->prefix('spr')->group(function () {
         Route::get('/crud/index', [SprController::class, 'index'])->name('spr.index');

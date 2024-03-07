@@ -243,15 +243,5 @@ class Lp3mController extends Controller
         }
 
 
-        public function cetaklp3m($id){
-        // Mengambil data LP3M berdasarkan ID
-        $lp3m = lp3m::findOrFail($id);
-        
-        // Membuat tampilan PDF dengan menggunakan Dompdf
-        $pdf = PDF::loadView('lp3m.cetaklp3m', compact('lp3m'));
-        
-        // Mengunduh PDF
-        return $pdf->download('lp3m.pdf');
-        }
 
 }

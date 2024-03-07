@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="{{ route('lp3m') }}" class="brand-link">
+    <a href="{{ route('dashboard') }}" class="brand-link">
         <img src="{{ asset('assets/dist/img/logo-inka.png') }}" alt="AdminLTE Logo"
             class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">DEPT. PPA</span>
@@ -10,13 +10,6 @@
     <div class="sidebar">
         <!-- Sidebar user (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="info">
-                <a href="/dashboard" class="d-block">PPA</a>
-            </div>
-        </div>
-
-        <!-- Sidebar Menu -->
-        <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
                     <a href="{{ route('spr.index') }}"
@@ -28,7 +21,7 @@
                 <li class="nav-item">
                     <a href="{{ route('riwayatLp3m') }}" class="nav-link {{ (request()->routeIs('riwayatLp3m') ? 'active' : '') }}">
                         <i class="nav-icon fas fa-user"></i>
-                        <p>INPUT LP3M</p>
+                        <p>LP3M</p>
                     </a>
                 </li>
 
@@ -45,6 +38,11 @@
                         @csrf
                     </form>
             </ul>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            
         </nav>
         <!-- /.sidebar-menu -->
     </div>

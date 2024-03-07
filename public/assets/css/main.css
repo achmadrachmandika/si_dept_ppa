@@ -43,7 +43,7 @@ label {
 
 
 .page-title {
-    font-size: 1.8vw;
+    font-size: 27px;
     text-decoration: underline;
 }
 
@@ -62,12 +62,20 @@ label {
     height: 31vh;
 }
 
-.h6{
+
+p{
+    margin-top: 5px !important;
     text-align: left !important;
 }
 
 hr{
     margin: 0 !important;
+}
+
+
+#dashboard {
+    background-size: contain;
+    background-position: center;
 }
 
 @media screen and (max-width: 1280px) {
