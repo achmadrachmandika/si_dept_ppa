@@ -5,20 +5,19 @@ use App\Models\Barang;
 use App\Models\lp3m;
 class HomeController extends Controller
 {
-    public function index()
+  public function index()
     {
+        $spr = Barang::all();
+        $lp3m = Lp3m::all();
 
-        $spr = barang::all();
-        $lp3m = lp3m::all();
+        $countSpr = count($spr);
+        $countLp3m = count($lp3m);
 
-        $countspr = count($spr);
-        $countlp3m = count($lp3m);
-
-    
-    return view('dashboard',[
-            'countSpr' => $countspr,
-            'countLp3m' => $countlp3m
-    ]);
+        return view('dashboard', [
+            'countSpr' => $countSpr,
+            'countLp3m' => $countLp3m,
+            'countProcessedSpr' => $countLp3m
+        ]);
     }
 }
 

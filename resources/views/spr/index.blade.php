@@ -14,73 +14,6 @@
                             <a href="{{ route('spr.create') }}" class="btn btn-success">Tambah</a>
                         </div>
                     </div>
-
-                    <div class="card-body">
-                        @if ($message = Session::get('success'))
-                        <div class="alert alert-success">
-                            <p>{{ $message }}</p>
-                        </div>
-                        @elseif ($message = Session::get('message-delete'))
-                        <div class="alert alert-danger">
-                            <p>{{ $message }}</p>
-                        </div>
-                        @endif
-                        <div class="table-responsive">
-                            <table id="myTable" class="table table-striped">
-                                <!-- Tambahkan id myTable -->
-                                <thead>
-                                    <tr>
-                                        <th>Nama</th>
-                                        <th>Lokasi</th>
-                                        <th>Status</th>
-                                        <th>No SPR</th>
-                                        <th>No Aset</th>
-                                        <th>Jam Kerusakan</th>
-                                        <th>Tanggal SPR</th>
-                                        <th>Tanggal SPR diterima</th>
-                                        <th>Jam SPR diterima</th>
-                                        <th>User Peminta</th>
-                                        <th>Deskripsi Kerusakan</th>
-                                        <th>Site</th>
-                                        <th>Kode Mesin</th>
-                                        <th width="150px">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($spr as $crud)
-                                    <tr>
-                                        <td>{{ $crud->nama_barang }}</td>
-                                        <td>{{ $crud->lokasi }}</td>
-                                        <td>{{ $crud->status_kerusakan }}</td>
-                                        <td>{{ $crud->nomor_spr }}</td>
-                                        <td>{{ $crud->no_aset }}</td>
-                                        <td>{{ $crud->jam_kerusakan}}</td>
-                                        <td>{{ $crud->tanggal_kerusakan}}</td>
-                                        <td>{{ $crud->tanggal_sprditerima}}</td>
-                                        <td>{{ $crud->jam_sprditerima}}</td>
-                                        <td>{{ $crud->user_peminta }}</td>
-                                        <td>{{ $crud->deskripsi_kerusakan }}</td>
-                                        <td>{{ $crud->site }}</td>
-                                        <td>{{ $crud->kode_mesin }}</td>
-                                        <td>
-                                            <div class="d-flex">
-                                                <a class="btn btn-outline-info mr-2"
-                                                    href="{{ route('spr.show', $crud->nomor_spr) }}">Show</a>
-                                                <a class="btn btn-outline-primary mr-2"
-                                                    href="{{ route('spr.edit', $crud->nomor_spr) }}">Edit</a>
-                                                <form action="{{ route('spr.destroy',$crud->nomor_spr) }}" method="POST"
-                                                    onsubmit="return confirm('Are you sure you want to delete this record?')">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-outline-danger">Delete</button>
-                                                </form>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
                 </div>
                 <div class="card-body">
                     @if ($message = Session::get('success'))
@@ -129,7 +62,7 @@
                                     <td>
                                         <!-- Tambahkan logika untuk menampilkan tanda jika nomor SPR sudah di LP3M -->
                                         @if(in_array($crud->nomor_spr, $lp3mSprs))
-                                        <span class="spr-filled" disabled>✔️</span>
+                                        <span class="spr-filled text-danger">Closed</span>
                                         @endif
                                     </td>
                                     <td>
