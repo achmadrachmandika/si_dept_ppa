@@ -30,7 +30,7 @@ Route::get('/ajax-autocomplete', [lp3mController::class, 'searchCode'])->name('c
 Route::get('/ajax-autocomplete-sparepart-code', [lp3mController::class, 'searchCodeSparepart'])->name('code.search');
 Route::get('/ajax-autocomplete-machine-code', [SprController::class, 'searchCodeMachine'])->name('machineCode.search');
 
-
+Route::post('/filter-spr', [SprController::class, 'filterSPR'])->name('filter-spr');
 
     // LP3M
     Route::middleware('role:admin')->get('/lp3m', [Lp3mController::class, 'index'])->name('lp3m');

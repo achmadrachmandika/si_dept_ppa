@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Barang;
 use PDF;
-
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB; 
 
 class SprController extends Controller
@@ -15,6 +15,14 @@ class SprController extends Controller
      */
     public function index()
     {
+
+        $tahuns = Barang::selectRaw('YEAR(tanggal_sprditerima) as tahun')
+        ->groupBy('tahun')
+        ->pluck('tahun');
+
+        $queryTahun = [];
+        $queryBulan = [];
+
       // Membuat instance dari Lp3mController
     $lp3mController = new Lp3mController();
     
@@ -28,7 +36,7 @@ class SprController extends Controller
     $spr = Barang::orderBy('created_at', 'desc')->paginate(10);
     
     // Mengirimkan data ke view
-    return view('spr.index', compact('spr', 'lp3mSprs'));
+    return view('spr.index', compact('spr', 'lp3mSprs', 'queryTahun','queryBulan','tahuns'));
     }
 
     /**
@@ -60,8 +68,6 @@ class SprController extends Controller
             'tanggal_sprditerima' => 'required|date',
             'jam_sprditerima' => 'required|date_format:H:i',
         ]);
-
-        dd($data);
         Barang::create($request->all());
 
         return redirect()->route('spr.index')->with('success', 'Data berhasil disimpan.');
@@ -171,6 +177,68 @@ class SprController extends Controller
                         echo $output;
                     }
         }
+
+
+        public function filterSPR(Request $request)
+        {   
+            $tahuns = Barang::selectRaw('YEAR(tanggal_sprditerima) as tahun')
+            ->groupBy('tahun')
+            ->pluck('tahun');
+
+            $tahunArray = Barang::selectRaw('YEAR(tanggal_sprditerima) as tahun')
+            ->groupBy('tahun')
+            ->pluck('tahun')
+            ->toArray();
+
+            $daftarBulan = [
+                'january', 'february', 'march', 'april', 'may', 'june',
+                'july', 'august', 'september', 'october', 'november', 'december'
+            ];
+
+            $lp3mController = new Lp3mController();
+            // Memanggil metode riwayatLp3m() untuk mendapatkan data LP3M
+            $lp3mData = $lp3mController->riwayatLp3m();
+            // Mengambil data SPR dari LP3M
+            $lp3mSprs = $lp3mData['lp3mSprs'];
+
+            //-----------------------------------------------------FILTER BULAN-----------------------------------------------------//
+            $queryTahun = $request->tahun;
+            // Konversi data ke integer
+            $queryTahun = collect($queryTahun)->map(function ($item) {
+                return (int) $item;
+            })->toArray();
+
+
+            // Jika $queryTahun kosong, atur nilai menjadi array kosong
+            if ($queryTahun == null) {
+                $queryTahun = $tahunArray;
+            }
+
+            //---------------------------------------------------------------------------------------------------------------------//
+
+            //-----------------------------------------------------FILTER BULAN-----------------------------------------------------//
+            $queryBulan = $request->bulan;
+            if($queryBulan == null){
+                $queryBulan = $daftarBulan;
+            }
+             // Mengambil nilai 'date' dari request
+            // Mengonversi nama bulan menjadi nilai bulan dalam format angka
+            $bulan = collect($queryBulan)->map(function ($item) {
+                return Carbon::parse($item)->month;
+            })->toArray();
+
+            //---------------------------------------------------------------------------------------------------------------------//
+
+
+            // Mengambil data barang dengan tanggal_spr dibuat pada bulan dan tahun yang spesifik
+            $spr = Barang::whereIn(DB::raw('MONTH(tanggal_sprditerima)'), $bulan)
+            ->whereIn(DB::raw('YEAR(tanggal_sprditerima)'), $queryTahun)
+            ->get();
+
+
+            return view('spr.index', compact('spr', 'lp3mSprs', 'queryTahun','queryBulan','tahuns'));
+        }
+
 
 
 }
