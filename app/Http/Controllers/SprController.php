@@ -142,7 +142,7 @@ class SprController extends Controller
             'kode_mesin' => $request->input('kode_mesin'),
             'no_aset' => $request->input('no_aset'),
             'jam_kerusakan' => $request->input('jam_kerusakan'),
-            'pic_penerima' => $request->input('pic_penerima'),
+            'user_peminta' => $request->input('user_peminta'),
             'deskripsi_kerusakan' => $request->input('deskripsi_kerusakan'),
             'site' => $request->input('site'),
             'keterangan' => $request->input('keterangan'),
