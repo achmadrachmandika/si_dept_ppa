@@ -95,7 +95,7 @@
                                     <td>
                                         <!-- Tambahkan logika untuk menampilkan tanda jika nomor SPR sudah di LP3M -->
                                         @if(in_array($crud->nomor_spr, $lp3mSprs))
-                                        <span class="spr-filled" disabled>✔️</span>
+                                        <span class="spr-filled text-danger">Closed</span>
                                         @endif
                                     </td>
                                     <td>

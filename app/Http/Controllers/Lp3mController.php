@@ -162,10 +162,14 @@ class Lp3mController extends Controller
                         'satuan_sparepart_10' => $request->input('satuan_sparepart_10'),
 
                         'keterangan' => $request->input('keterangan'),
+                        
                 ];
 
                 
                 lp3m::create($data);
+
+                Barang::where('nomor_spr', $request->input('no_spr'))->update(['status_lp3m' => 'closed']);
+                
                 return redirect('/riwayat-lp3m')->with('message', "LP3M  Untuk SPR No. " . $validated['no_spr'] . " Berhasil Dibuat");
         }
 
@@ -216,7 +220,7 @@ class Lp3mController extends Controller
                         'jam_selesai' => 'required',
                         'penyelesaian' => 'required|string|max:255',
                         'keterangan' => 'required|string|max:255',
-                    ]);
+        ]);
                 
 
                 lp3m::where('no_spr',$id)->update([
@@ -236,9 +240,9 @@ class Lp3mController extends Controller
 
         public function deleteLp3m($id){
 
-
+        
                 lp3m::where('no_spr', $id)->delete();
-                
+                Barang::where('nomor_spr', $id)->update(['status_lp3m' => 'Open']); 
                 return redirect('/riwayat-lp3m')->with('message-delete',"LP3M Untuk SPR No. " . $id . " Berhasil Dihapus");
         }
 

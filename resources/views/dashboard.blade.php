@@ -104,8 +104,9 @@
        type: "column",
        name: "First Quarter",
        dataPoints: [
-       { label: "spr", y: {{$countSpr}} },
-       { label: "lp3m", y: {{$countLp3m}} },
+       { label: "Total SPR", y: {{$countSpr}} },
+    { label: "SPR selesai", y: {{$countProcessedSpr}} },
+       { label: "Total LP3M", y: {{$countLp3m}} },
     //    { label: "apple", y: 80 },                                    
     //    { label: "mango", y: 74 },
     //    { label: "grape", y: 64 }

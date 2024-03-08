@@ -205,7 +205,7 @@
             </div>
             <p class="h4" style="margin:10px 0px 0px 10px">Form No.:IV-01.097 Rev. C</p> 
         </div>
-        <a href="{{ route('lp3m') }}" class="btn btn-primary">Kembali</a>
+        <a href="{{ route('riwayatLp3m') }}" class="btn btn-primary">Kembali</a>
         <a onclick="generatePDF()" class="btn btn-success">Cetak PDF</a>
 
 </div>
