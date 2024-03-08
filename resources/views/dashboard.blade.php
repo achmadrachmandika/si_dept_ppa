@@ -18,6 +18,38 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.canvasjs.com/canvasjs.min.js"> </script>
+    <style>
+        .dropdown {
+          position: relative;
+          display: inline-block;
+        }
+        
+        .dropdown-content {
+          display: none;
+          position: absolute;
+          background-color: #f9f9f9;
+          min-width: 160px;
+          box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+          z-index: 1;
+        }
+        
+        .dropdown-content label {
+          display: block;
+          padding: 10px;
+        }
+        
+        .dropdown-content label:hover {
+          background-color: #ddd;
+        }
+        
+        .dropdown-content input[type="checkbox"] {
+          margin-right: 5px;
+        }
+        
+        .dropdown:hover .dropdown-content {
+          display: block;
+        }
+        </style>
 
 </head>
 
@@ -30,7 +62,24 @@
         <div class="card">
             <h1 class="section-title" style="text-align: center; color: rgb(255, 28, 28); background-color: rgb(49, 49, 49); font-family: 'Times New Roman', Times, serif;">
             Sistem Informasi Departemen PPA
-        </h1>
+            </h1>
+            <div class="row">
+                <div class="col">
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle form-control" type="button" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">
+                          Pilih
+                        </button>
+                        <div class="dropdown-content" style="padding:10px" aria-labelledby="dropdownMenuButton">
+                          <label><input type="checkbox" value="option1"> Option 1</label>
+                          <label><input type="checkbox" value="option2"> Option 2</label>
+                          <label><input type="checkbox" value="option3"> Option 3</label>
+                          <button class="form-control btn btn-primary"id="checkAllBtn">Check Semua</button>
+                          <button class="form-control btn btn-secondary"id="uncheckAllBtn">Uncheck Semua</button>
+                        </div>
+                      </div>
+                </div>
+                <div class="col"></div>
+            </div>
             <div id="chartContainer" style="height: 370px; width: 100%;"></div>
         </div>
     </div>
@@ -47,7 +96,7 @@
             theme: "light1", // "light2", "dark1", "dark2"
             animationEnabled: false, // change to true		
             title:{
-                text: "Basic Column Chart"
+                text: "Grafik SPR"
             },
             data: [  //array of dataSeries     
       { //dataSeries - first quarter
@@ -81,6 +130,26 @@
 
     }
 </script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var checkAllBtn = document.getElementById('checkAllBtn');
+      var uncheckAllBtn = document.getElementById('uncheckAllBtn');
+    
+      checkAllBtn.addEventListener('click', function() {
+        var checkboxes = document.querySelectorAll('.dropdown-content input[type="checkbox"]');
+        checkboxes.forEach(function(checkbox) {
+          checkbox.checked = true;
+        });
+      });
+    
+      uncheckAllBtn.addEventListener('click', function() {
+        var checkboxes = document.querySelectorAll('.dropdown-content input[type="checkbox"]');
+        checkboxes.forEach(function(checkbox) {
+          checkbox.checked = false;
+        });
+      });
+    });
+    </script>
 </html>
 
 
