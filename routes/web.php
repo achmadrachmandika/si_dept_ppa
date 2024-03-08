@@ -4,6 +4,8 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Lp3mController;
 use App\Http\Controllers\SprController;
+use App\Http\Controllers\ClosedController;
+use App\Http\Controllers\OpenController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +26,9 @@ Route::get('/', function(){
 Auth::routes();
 
 Route::middleware('auth')->group(function () {
+
+     Route::middleware('role:admin')->get('/laporan/closed', [ClosedController::class, 'index'])->name('laporan.closed');
+     Route::middleware('role:admin')->get('/laporan/open', [OpenController::class, 'index'])->name('laporan.open');
     Route::middleware('role:admin')->get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
 
 Route::get('/ajax-autocomplete', [lp3mController::class, 'searchCode'])->name('code.search');
