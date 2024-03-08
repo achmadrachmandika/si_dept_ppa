@@ -49,6 +49,7 @@
                 </thead>
                 <tbody>
                     @foreach($datas->sortByDesc('tanggal') as $data)
+                    <!-- Mengurutkan data berdasarkan tanggal secara descending -->
                     <tr>
                         <td>{{$data->no_spr}}</td>
                         <td>{{$data->hasil_pengukuran}}</td>

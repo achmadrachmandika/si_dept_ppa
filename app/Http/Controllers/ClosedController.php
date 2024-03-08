@@ -42,12 +42,84 @@ class ClosedController extends Controller
                 'lp3ms.spek_sparepart_1',
                 'lp3ms.jumlah_sparepart_1',
                 'lp3ms.satuan_sparepart_1',
+                'lp3ms.nama_sparepart_2',
+                'lp3ms.kode_sparepart_2',
+                'lp3ms.spek_sparepart_2',
+                'lp3ms.jumlah_sparepart_2',
+                'lp3ms.satuan_sparepart_2',
+                'lp3ms.nama_sparepart_3',
+                'lp3ms.kode_sparepart_3',
+                'lp3ms.spek_sparepart_3',
+                'lp3ms.jumlah_sparepart_3',
+                'lp3ms.satuan_sparepart_3',
+                'lp3ms.nama_sparepart_4',
+                'lp3ms.kode_sparepart_4',
+                'lp3ms.spek_sparepart_4',
+                'lp3ms.jumlah_sparepart_4',
+                'lp3ms.satuan_sparepart_4',
+                 'lp3ms.nama_sparepart_5',
+                'lp3ms.kode_sparepart_5',
+                'lp3ms.spek_sparepart_5',
+                'lp3ms.jumlah_sparepart_5',
+                'lp3ms.satuan_sparepart_5',
+                
+                 'lp3ms.nama_sparepart_6',
+                'lp3ms.kode_sparepart_6',
+                'lp3ms.spek_sparepart_6',
+                'lp3ms.jumlah_sparepart_6',
+                'lp3ms.satuan_sparepart_6',
+
+                 'lp3ms.nama_sparepart_7',
+                'lp3ms.kode_sparepart_7',
+                'lp3ms.spek_sparepart_7',
+                'lp3ms.jumlah_sparepart_7',
+                'lp3ms.satuan_sparepart_7',
+
+                 'lp3ms.nama_sparepart_8',
+                'lp3ms.kode_sparepart_8',
+                'lp3ms.spek_sparepart_8',
+                'lp3ms.jumlah_sparepart_8',
+                'lp3ms.satuan_sparepart_8',
+
+                 'lp3ms.nama_sparepart_9',
+                'lp3ms.kode_sparepart_9',
+                'lp3ms.spek_sparepart_9',
+                'lp3ms.jumlah_sparepart_9',
+                'lp3ms.satuan_sparepart_9',
+
+                 'lp3ms.nama_sparepart_10',
+                'lp3ms.kode_sparepart_10',
+                'lp3ms.spek_sparepart_10',
+                'lp3ms.jumlah_sparepart_10',
+                'lp3ms.satuan_sparepart_10',
+
+                'lp3ms.nama_personil_1',
+                'lp3ms.nama_personil_2',
+                'lp3ms.nama_personil_3',
+                'lp3ms.nama_personil_4',
+                'lp3ms.nama_personil_5',
+                'lp3ms.nama_personil_6',
+                'lp3ms.nama_personil_7',
+                'lp3ms.nama_personil_8',
+                'lp3ms.nama_personil_9',
+                'lp3ms.nama_personil_10',
+
+                'lp3ms.keterangan',
+
+                
             )
             ->leftJoin('lp3ms', 'barangs.nomor_spr', '=', 'lp3ms.no_spr')
             ->leftJoin('lp3ms AS lpr3ms', 'lp3ms.no_spr', '=', 'lpr3ms.no_spr') // Use a unique alias for the second instance
             ->where('barangs.status_lp3m', 'closed')
             ->get();
 
-        return view('laporan.closed', compact('closed'));
+           $tahuns = Barang::selectRaw('YEAR(tanggal_sprditerima) as tahun')
+            ->groupBy('tahun')
+            ->pluck('tahun');
+
+        $queryTahun = [];
+        $queryBulan = [];
+
+        return view('laporan.closed', compact('closed', 'tahuns', 'queryTahun', 'queryBulan'));
     }
 }
