@@ -38,13 +38,13 @@
             <table id="myTable" class="table table-striped">
                 <thead class="bg-secondary text-white text-center">
                     <tr>
-                        <th>No SPR</th>
-                        <th>Hasil Pengukuran</th>
-                        <th>Penyebab</th>
-                        <th>Tanggal</th>
-                        <th>Jam Mulai</th>
-                        <th>Penyelesaian</th>
-                        <th>Aksi</th>
+                        <th style="width: 500px; white-space: nowrap;">No SPR</th>
+                        <th style="width: 500px; white-space: nowrap;">Hasil Pengukuran</th>
+                        <th style="width: 500px; white-space: nowrap;">Penyebab</th>
+                        <th style="width: 500px; white-space: nowrap;">Tanggal</th>
+                        <th style="width: 500px; white-space: nowrap;">Jam Mulai</th>
+                        <th style="width: 500px; white-space: nowrap;">Penyelesaian</th>
+                        <th style="width: 500px; white-space: nowrap;">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
