@@ -27,13 +27,6 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('laporan.open') }}"
-                        class="nav-link {{ (request()->routeIs('laporan.open') ? 'active' : '') }}">
-                        <img src="{{ asset('assets/dist/img/proses.png') }}" class="nav-icon" alt="Logo">
-                        <p>Laporan SPR Proses</p>
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a href="{{ route('laporan.closed') }}"
                         class="nav-link {{ (request()->routeIs('laporan.closed') ? 'active' : '') }}">
                         <img src="{{ asset('assets/dist/img/closed.jpg') }}" class="nav-icon" alt="Logo">
