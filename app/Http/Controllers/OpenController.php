@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Barang;
 use App\Models\Lp3m;
+use Illuminate\Support\Facades\DB; 
 
 class OpenController extends Controller
 {
@@ -24,7 +25,7 @@ class OpenController extends Controller
                 'barangs.status_kerusakan', 
                 'barangs.tanggal_sprditerima', 
                 'barangs.jam_sprditerima', 
-                \DB::raw("'open' AS status_lp3m"), 
+                DB::raw("'open' AS status"), 
                 'lp3ms.no_spr', 
                 'lp3ms.hasil_pengukuran', 
                 'lp3ms.penyebab_kerusakan',
@@ -40,7 +41,7 @@ class OpenController extends Controller
             )
             ->leftJoin('lp3ms', 'barangs.nomor_spr', '=', 'lp3ms.no_spr')
             ->leftJoin('lp3ms AS lpr3ms', 'lp3ms.no_spr', '=', 'lpr3ms.no_spr') // Use a unique alias for the second instance
-            ->where('barangs.status_lp3m', 'open')
+            ->where('barangs.status', 'open')
             ->get();
 
         return view('laporan.open', compact('open'));

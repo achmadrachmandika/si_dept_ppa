@@ -60,11 +60,11 @@
                             <form method="POST" action="{{ url('delete-lp3m/'.$data->no_spr) }}">
                                 @csrf
                                 @method('DELETE')
-                                <a href="{{url('show-lp3m/'.$data->no_spr)}}" class="btn btn-secondary">Cek E-SPR</a>
-                                <a href="{{url('edit-lp3m/'.$data->no_spr)}}" class="btn btn-warning">Edit</a>
+                                <a href="{{url('show-lp3m/'.$data->no_spr)}}" class="btn btn-outline-info">Show</a>
+                                <a href="{{url('edit-lp3m/'.$data->no_spr)}}" class="btn btn-outline-primary">Edit</a>
                                 <button type="submit"
                                     onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"
-                                    class="btn btn-danger">Hapus</button>
+                                    class="btn btn-outline-danger">Hapus</button>
                             </form>
                         </td>
                     </tr>
