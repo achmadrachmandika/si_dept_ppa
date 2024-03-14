@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Barang;
 use App\Models\Lp3m;
+use Illuminate\Support\Facades\DB; 
 
 class ClosedController extends Controller
 {
@@ -29,7 +30,7 @@ class ClosedController extends Controller
                 'barangs.status_kerusakan', 
                 'barangs.tanggal_sprditerima', 
                 'barangs.jam_sprditerima', 
-                \DB::raw("'closed' AS status_lp3m"), 
+                DB::raw("'close' AS status"), 
                 'lp3ms.no_spr', 
                 'lp3ms.hasil_pengukuran', 
                 'lp3ms.penyebab_kerusakan',
@@ -110,7 +111,7 @@ class ClosedController extends Controller
             )
             ->leftJoin('lp3ms', 'barangs.nomor_spr', '=', 'lp3ms.no_spr')
             ->leftJoin('lp3ms AS lpr3ms', 'lp3ms.no_spr', '=', 'lpr3ms.no_spr') // Use a unique alias for the second instance
-            ->where('barangs.status_lp3m', 'closed')
+            ->where('lp3ms.no_spr', 'close')
             ->get();
 
            $tahuns = Barang::selectRaw('YEAR(tanggal_sprditerima) as tahun')

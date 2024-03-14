@@ -21,10 +21,11 @@ class BarangSeeder extends Seeder
                 'nama_barang' => 'Nama Barang ' . $i,
                 'lokasi' => 'Lokasi ' . $i,
                 'tanggal_kerusakan' => now()->subDays(rand(1, 100)),
-                'kode_mesin' => 'Kode Mesin ' . $i,
+                'kode_mesin' => ['gd-', 'g-', 'gdl-', 'tb-', 'wld-', 'ms-', 'crn-'][rand(0, 6)]. $i,
                 'no_aset' => 'No Aset ' . $i,
                 'jam_kerusakan' => now()->subMinutes(rand(1, 1440))->format('H:i:s'),
                 'user_peminta' => 'User Peminta ' . $i,
+                'status' => ['open', 'close'][rand(0, 1)], // Menambahkan kolom status dengan nilai acak antara 'open' dan 'close'
                 'deskripsi_kerusakan' => 'Deskripsi Kerusakan ' . $i,
                 'site' => ['INKA MADIUN', 'GA BANYUWANGI', 'GA BANDUNG', 'GA JAKARTA', 'QC BANYUWANGI', 'QC BANDUNG', 'QC JAKARTA', 'LAIN NYA'][rand(0, 7)],
                 'status_kerusakan' => ['breakdown', 'tidak_breakdown'][rand(0, 1)],

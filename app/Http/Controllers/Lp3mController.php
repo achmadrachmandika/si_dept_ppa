@@ -165,25 +165,24 @@ class Lp3mController extends Controller
                         
                 ];
 
+
                 
                 lp3m::create($data);
 
-                Barang::where('nomor_spr', $request->input('no_spr'))->update(['status_lp3m' => 'closed']);
+                Barang::where('nomor_spr', $request->input('no_spr'))->update(['status' => 'close']);
                 
                 return redirect('/riwayat-lp3m')->with('message', "LP3M  Untuk SPR No. " . $validated['no_spr'] . " Berhasil Dibuat");
         }
 
-               public function riwayatLp3m()
-{
-    // Ambil semua nomor SPR dari LP3M
-    $lp3mSprs = Lp3m::pluck('no_spr')->toArray();
-    
-    // Ambil data LP3M
-    $datas = Lp3m::all();
-    
-    // Kirimkan data ke view
-    return view('lp3m.riwayat-lp3m', compact('datas', 'lp3mSprs'));
-}
+        public function riwayatLp3m()
+        {
+        
+        // Ambil data LP3M
+        $datas = Lp3m::all();
+        
+        // Kirimkan data ke view
+        return view('lp3m.riwayat-lp3m', compact('datas'));
+        }
 
 
 
@@ -191,11 +190,12 @@ class Lp3mController extends Controller
 
         public function showLp3m($id){
 
-
+                $barang = Barang::where('nomor_spr', $id)->first(); // Mengambil data dari model Barang dengan menggunakan 'nomor_spr'
                 $data = lp3m::where('no_spr', $id)->first();
                 
                 return view('lp3m.showLp3m',[
-                        'data' => $data
+                        'data' => $data,
+                        'barang' => $barang
                 ]);
         }
         public function editLp3m($id){

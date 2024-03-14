@@ -37,6 +37,7 @@ class Barang extends Model
         'no_aset',
         'jam_kerusakan',
         'user_peminta',
+        'status',
         'deskripsi_kerusakan',
         'site',
         'status_kerusakan',

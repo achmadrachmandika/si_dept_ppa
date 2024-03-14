@@ -31,8 +31,8 @@
 
 @section('content') --}}
 <body>
-    <div class="container bordered bg-white">
-        <div id="printPage">
+    <div class="container bordered bg-white mt-3">
+        <div id="printPage" class='mt-3'>
             <div class="row" >
                 <div class="col-1"></div>
                 <div class="col-10">
@@ -128,11 +128,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    
-                    <p style="font-size: 0.7em; font-weight: normal;">*Lembar warna putih untuk Dep. PPA,
-                        lembar warna kuning untuk GA dan
-                        PAP, lembar warna merah untuk user.</p>
+                    </div>         
+                    <p style="font-size: 0.7em; font-weight: normal;">*Lembar warna putih untuk Dep. PPA, lembar warna kuning untuk GA dan PAP, lembar warna merah untuk user.</p>
                 </div>
                 <div class="col-1"></div>
             </div>
@@ -142,8 +139,7 @@
 
 <div class="row justify-content-center">
     <div class="col-md-10 text-center">
-        <a class="btn btn-success btn-sm" href="{{ route('spr.index') }}">Kembali</a>
-        <a id="generatePDF" class="btn btn-success btn-sm">Cetak PDF</a>
+        <a class="btn btn-success" href="{{ route('spr.index') }}">Kembali</a>
     </div>
 </div>
 
