@@ -109,6 +109,8 @@ class SprController extends Controller
             'status_kerusakan' => 'required|in:breakdown,tidak_breakdown',
         ]);
 
+        
+
         $barang = Barang::where('nomor_spr',$id)->first();
 
         $barang->update([

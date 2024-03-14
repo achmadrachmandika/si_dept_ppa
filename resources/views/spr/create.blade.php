@@ -191,7 +191,6 @@
 
 <script type="text/javascript">
 
-// });
 
     $(document).on('keyup', `#kode_mesin`, function() {
         var query = $(this).val();
