@@ -20,7 +20,7 @@
     <!-- Site wrapper -->
     <div class="wrapper">
         <!-- Navbar -->
-        {{-- @include('/dashboard/layout/header') --}}
+        @include('/dashboard/layout/header')
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
