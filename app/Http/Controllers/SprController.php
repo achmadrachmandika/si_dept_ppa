@@ -187,6 +187,15 @@ class SprController extends Controller
                 'july', 'august', 'september', 'october', 'november', 'december'
             ];
 
+            $daftarBagian = [
+                'gd', 'ins', 'wld', 'ms', 'crn', 'gdl',
+                'com', 'rd', 'fork', 'tbg', 'golf', 'kran','tb', 'lift', 'crl', 'bjn','g-','viar','lampu','ac', 'zeiweg'
+            ];
+
+            $daftarStatus = [
+                'open', 'close'
+            ];
+
             //-----------------------------------------------------FILTER BULAN-----------------------------------------------------//
             $queryTahun = $request->tahun;
             // Konversi data ke integer
@@ -218,25 +227,39 @@ class SprController extends Controller
             //-----------------------------------------------------FILTER BAGIAN-----------------------------------------------------//
             
             $queryBagian = $request->bagian;
-            $queryBagian = str_replace('gedung', 'gd', $queryBagian);
-            $queryBagian = str_replace('instalasi', 'ins', $queryBagian);
-            $queryBagian = str_replace('mesin_las', 'wld', $queryBagian);
-            $queryBagian = str_replace('mesin', 'ms', $queryBagian);
-            $queryBagian = str_replace('crane', 'crn', $queryBagian);
-            $queryBagian = str_replace('gardu_listrik', 'gdl', $queryBagian);
-            $queryBagian = str_replace('kompresor', 'com', $queryBagian);
-            $queryBagian = str_replace('rolling_door', 'rd', $queryBagian);
-            $queryBagian = str_replace('forklift', 'fork', $queryBagian);
-            $queryBagian = str_replace('tambangan', 'tbg', $queryBagian); 
-            $queryBagian = str_replace('golf_car', 'golf', $queryBagian);
-            $queryBagian = str_replace('pompa', 'kran', $queryBagian);
-            $queryBagian = str_replace('temporary_bogie', 'tb', $queryBagian); //overlap tbg
-            $queryBagian = str_replace('elevator', 'lift', $queryBagian);
-            $queryBagian = str_replace('carlifter', 'crl', $queryBagian);
-            $queryBagian = str_replace('bejana_tekan', 'bjn', $queryBagian);
-            $queryBagian = str_replace('genset', 'g-', $queryBagian); //overlap gd & gdl
+            if($queryBagian == null){
+                $queryBagian = $daftarBagian;
+            } else{
+                $queryBagian = str_replace('gedung', 'gd', $queryBagian);
+                $queryBagian = str_replace('instalasi', 'ins', $queryBagian);
+                $queryBagian = str_replace('mesin_las', 'wld', $queryBagian);
+                $queryBagian = str_replace('mesin', 'ms', $queryBagian);
+                $queryBagian = str_replace('crane', 'crn', $queryBagian);
+                $queryBagian = str_replace('gardu_listrik', 'gdl', $queryBagian);
+                $queryBagian = str_replace('kompresor', 'com', $queryBagian);
+                $queryBagian = str_replace('rolling_door', 'rd', $queryBagian);
+                $queryBagian = str_replace('forklift', 'fork', $queryBagian);
+                $queryBagian = str_replace('tambangan', 'tbg', $queryBagian); 
+                $queryBagian = str_replace('golf_car', 'golf', $queryBagian);
+                $queryBagian = str_replace('pompa', 'kran', $queryBagian);
+                $queryBagian = str_replace('temporary_bogie', 'tb', $queryBagian); //overlap tbg
+                $queryBagian = str_replace('elevator', 'lift', $queryBagian);
+                $queryBagian = str_replace('carlifter', 'crl', $queryBagian);
+                $queryBagian = str_replace('bejana_tekan', 'bjn', $queryBagian);
+                $queryBagian = str_replace('genset', 'g-', $queryBagian); //overlap gd & gdl
 
+            }
 
+            //---------------------------------------------------------------------------------------------------------------------//
+            
+            //-----------------------------------------------------FILTER STATUS-----------------------------------------------------//
+            
+            $queryStatus = $request->status;
+            
+            if($queryStatus == null){
+                $queryStatus = $daftarStatus;
+            }
+            //---------------------------------------------------------------------------------------------------------------------//
             
             
             // Mengambil data barang dengan tanggal_spr dibuat pada bulan dan tahun yang spesifik
@@ -263,6 +286,11 @@ class SprController extends Controller
                     
                 }
             })
+            ->where(function($query) use ($queryStatus) {
+                foreach ($queryStatus as $Status) {
+                    $query->orWhere('status', $Status);
+                }
+                })
             ->get();
 
             return view('spr.index', compact('spr', 'queryTahun','queryBulan' ,'queryBagian','queryStatus','tahuns'));
