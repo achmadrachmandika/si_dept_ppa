@@ -7,38 +7,36 @@
         <div class="input-group mb-3">
             <input type="text" id="myInput" onkeyup="myFunction()" class="form-control" placeholder="Cari Nomor SPR.."
                 aria-label="Cari Nomor SPR" aria-describedby="button-addon2">
-            <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="button" id="button-addon2">Cari</button>
-            </div>
         </div>
         <div class="table-responsive">
             <table class="table table-striped" id="myTable">
                 <thead>
                     <tr>
-                        <th>Nomor SPR</th>
-                        <th>Nama Barang</th>
+                        <th style="width: 500px; white-space: nowrap;">Nomor SPR</th>
+                        <th style="width: 500px; white-space: nowrap;">Nama Barang</th>
                         <th>Lokasi</th>
-                        <th>Tanggal Kerusakan</th>
-                        <th>Kode Mesin</th>
-                        <th>Nomor Aset</th>
-                        <th>Jam Kerusakan</th>
-                        <th>User Peminta</th>
-                        <th>Deskripsi Kerusakan</th>
+                        <th style="width: 500px; white-space: nowrap;">Tanggal Kerusakan</th>
+                        <th style="width: 500px; white-space: nowrap;">Kode Mesin</th>
+                        <th style="width: 500px; white-space: nowrap;">Nomor Aset</th>
+                        <th style="width: 500px; white-space: nowrap;">Jam Kerusakan</th>
+                        <th style="width: 500px; white-space: nowrap;">User Peminta</th>
+                        <th style="width: 500px; white-space: nowrap;">Deskripsi Kerusakan</th>
                         <th>Site</th>
-                        <th>Status Kerusakan</th>
-                        <th>Tanggal SPR di Terima</th>
-                        <th>Jam SPR di Terima</th>
-                        <th>Hasil Pengukuran</th>
-                        <th>Penyebab Kerusakan</th>
-                        <th>Tanggal</th>
-                        <th>Jam Mulai</th>
-                        <th>Jam Selesai</th>
-                        <th>Penyelesaian</th>
-                        <th>Nama Sparepart</th>
-                        <th>Kode Sparepart</th>
-                        <th>Spesifikasi Sparepart</th>
-                        <th>Jumlah Sparepart</th>
-                        <th>Satuan Sparepart</th>
+                        <th style="width: 500px; white-space: nowrap;">Status Kerusakan</th>
+                        <th style="width: 500px; white-space: nowrap;">Tanggal SPR di Terima</th>
+                        <th style="width: 500px; white-space: nowrap;">Jam SPR di Terima</th>
+                        <th style="width: 500px; white-space: nowrap;">Hasil Pengukuran</th>
+                        <th style="width: 500px; white-space: nowrap;">Penyebab Kerusakan</th>
+                        <th style="width: 500px; white-space: nowrap;">Tanggal</th>
+                        <th style="width: 500px; white-space: nowrap;">Jam Mulai</th>
+                        <th style="width: 500px; white-space: nowrap;">Jam Selesai</th>
+                        <th style="width: 500px; white-space: nowrap;">Penyelesaian</th>
+                        <th style="width: 500px; white-space: nowrap;">Nama Sparepart</th>
+                        <th style="width: 500px; white-space: nowrap;">Kode Sparepart</th>
+                        <th style="width: 500px; white-space: nowrap;">Spesifikasi Sparepart</th>
+                        <th style="width: 500px; white-space: nowrap;">Jumlah Sparepart</th>
+                        <th style="width: 500px; white-space: nowrap;">Nama Personil</th>
+                        <th style="width: 500px; white-space: nowrap;">Keterangan</th>
                     </tr>
                 </thead>
                 <tbody>
