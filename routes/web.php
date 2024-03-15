@@ -34,6 +34,7 @@ Route::get('/ajax-autocomplete-sparepart-code', [lp3mController::class, 'searchC
 Route::get('/ajax-autocomplete-machine-code', [SprController::class, 'searchCodeMachine'])->name('machineCode.search');
 
 Route::post('/filter-spr', [SprController::class, 'filterSPR'])->name('filter-spr');
+Route::post('/filter-home', [HomeController::class, 'filterHome'])->name('filter-home');
 
     // LP3M
     Route::middleware('role:admin')->get('/lp3m', [Lp3mController::class, 'index'])->name('lp3m');

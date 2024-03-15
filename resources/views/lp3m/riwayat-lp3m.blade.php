@@ -9,9 +9,10 @@
                     <div class="card-header">
                         <div class="d-flex justify-content-between align-items-center">
                             <h2 class="font-weight-bold">LP3M</h2>
-                            <div class="d-flex">
-                                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="No SPR.." title="Type in a name">
-                                <a href="{{ url('/lp3m')}}" class="btn btn-outline-success">Tambah</a>
+                            <div class="d-flex">  
+                                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="No SPR.." class="form-control" title="Type in a name">
+                                <button onclick="window.location.href='{{ url('/lp3m') }}'" class="btn btn-success ml-1" type="button"><span class="h6">Tambah</span></button>
+    
                             </div>
                         </div>
                     <div class="card-body">
