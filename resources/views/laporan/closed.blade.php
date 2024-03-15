@@ -20,9 +20,9 @@
                             <tr>
                                 <th style="width: 500px; white-space: nowrap;">Nomor SPR</th>
                                 <th style="width: 500px; white-space: nowrap;">Nama Barang</th>
+                                <th style="width: 500px; white-space: nowrap;">Kode Mesin</th>
                                 <th>Lokasi</th>
                                 <th style="width: 500px; white-space: nowrap;">Tanggal Kerusakan</th>
-                                 <th style="width: 500px; white-space: nowrap;">Kode Mesin</th>
                                 <th style="width: 500px; white-space: nowrap;">Nomor Aset</th>
                                 <th style="width: 500px; white-space: nowrap;">Jam Kerusakan</th>
                                 <th style="width: 500px; white-space: nowrap;">User Peminta</th>
@@ -51,9 +51,9 @@
                             <tr>
                                 <td>{{ $item->nomor_spr }}</td>
                                 <td style="width: 500px; white-space: nowrap;">{{ $item->nama_barang }}</td>
+                                <td>{{ $item->kode_mesin }}</td>
                                 <td style="width: 500px; white-space: nowrap;">{{ $item->lokasi }}</td>
                                 <td>{{ $item->tanggal_kerusakan }}</td>
-                                <td>{{ $item->kode_mesin }}</td>
                                 <td>{{ $item->no_aset }}</td>
                                 <td>{{ $item->jam_kerusakan }}</td>
                                 <td>{{ $item->user_peminta }}</td>

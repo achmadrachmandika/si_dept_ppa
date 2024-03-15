@@ -53,14 +53,14 @@ class SprController extends Controller
         'tanggal_kerusakan' => 'required|date',
         'kode_mesin' => 'required|string|max:255',
         'no_aset' => 'required|string|max:255',
-        'jam_kerusakan' => 'required|date_format:H:i',
+        'jam_kerusakan' => 'required',
         'user_peminta' => 'required|string|max:255',
         'deskripsi_kerusakan' => 'required|string',
         'site' => 'required|in:INKA MADIUN,GA BANYUWANGI,GA BANDUNG,GA JAKARTA,QC BANYUWANGI,QC BANDUNG,QC JAKARTA,LAIN NYA',
         'keterangan' => 'nullable|string|max:255',
         'status_kerusakan' => 'required|in:breakdown,tidak_breakdown',
         'tanggal_sprditerima' => 'required|date',
-        'jam_sprditerima' => 'required|date_format:H:i',
+        'jam_sprditerima' => 'required',
     ]);
 
      $data['status'] = 'open';
@@ -101,7 +101,7 @@ class SprController extends Controller
             'tanggal_kerusakan' => 'required|date',
             'kode_mesin' => 'required|string|max:255',
             'no_aset' => 'required|string|max:255',
-            'jam_kerusakan' => 'required|date_format:H:i',
+            'jam_kerusakan' => 'required',
             'user_peminta' => 'required|string|max:255',
             'deskripsi_kerusakan' => 'required|string',
             'site' => 'required|in:INKA MADIUN,GA BANYUWANGI,GA BANDUNG,GA JAKARTA,QC BANYUWANGI,QC BANDUNG,QC JAKARTA,LAIN NYA',
@@ -114,7 +114,6 @@ class SprController extends Controller
         $barang = Barang::where('nomor_spr',$id)->first();
 
         $barang->update([
-            'nomor_spr' => $request->input('nomor_spr'),
             'nama_barang' => $request->input('nama_barang'),
             'lokasi' => $request->input('lokasi'),
             'tanggal_kerusakan' => $request->input('tanggal_kerusakan'),

@@ -63,22 +63,60 @@
             <h1 class="section-title" style="text-align: center; color: rgb(255, 28, 28); background-color: rgb(49, 49, 49); font-family: 'Times New Roman', Times, serif;">
             Sistem Informasi Departemen PPA
             </h1>
+            
             <div class="row">
-                <div class="col">
-                    <div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle form-control" type="button" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">
-                          Pilih
-                        </button>
-                        <div class="dropdown-content" style="padding:10px" aria-labelledby="dropdownMenuButton">
-                          <label><input type="checkbox" value="option1"> Option 1</label>
-                          <label><input type="checkbox" value="option2"> Option 2</label>
-                          <label><input type="checkbox" value="option3"> Option 3</label>
-                          <button class="form-control btn btn-primary"id="checkAllBtn">Check Semua</button>
-                          <button class="form-control btn btn-secondary"id="uncheckAllBtn">Uncheck Semua</button>
-                        </div>
+              <div class="col">
+                <form action="{{route('filter-home')}}" method="post">
+                  @csrf
+                  <div class="dropdown">
+                      <button class="btn btn-outline-secondary dropdown-toggle form-control" type="button" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">
+                        <span class="h6">Tahun</span>
+                      </button>
+                      <div class="dropdown-content-year" aria-labelledby="dropdownMenuButton">
+                          @foreach($tahuns as $tahun)
+                          <label class="h6"><input type="checkbox" name="tahun[]" value="{{$tahun}}" {{ in_array($tahun, $queryTahun) ? 'checked' : '' }}>{{$tahun}}</label>
+                          @endforeach
+                        <button type='button' class="btn btn-primary form-control"id="checkAllBtnYear"><span class="h6">Pilih Semua</span></button>
+                        <button type='button' class="btn btn-outline-secondary form-control"id="uncheckAllBtnYear"><span class="h6">Batal</span></button>
                       </div>
-                </div>
-                <div class="col"></div>
+                    </div>
+                    <div class="dropdown">
+                      <button class="btn btn-outline-secondary dropdown-toggle form-control" type="button" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">
+                        <span class="h6">Bagian</span>
+                      </button>
+                      <div class="dropdown-content-dept" aria-labelledby="dropdownMenuButton">
+                          <label class="h6"><input type="checkbox" name="bagian[]" value="gedung" {{ in_array('gd', $queryBagian) ? 'checked' : '' }}> Gedung</label>
+                          <label class="h6"><input type="checkbox" name="bagian[]" value="instalasi" {{ in_array('ins', $queryBagian) ? 'checked' : '' }}> Instalasi</label>
+                          <label class="h6"><input type="checkbox" name="bagian[]" value="lampu" {{ in_array('lampu', $queryBagian) ? 'checked' : '' }}> Lampu</label>
+                          <label class="h6"><input type="checkbox" name="bagian[]" value="ac" {{ in_array('ac', $queryBagian) ? 'checked' : '' }}> AC</label>
+                          <label class="h6"><input type="checkbox" name="bagian[]" value="mesin_las" {{ in_array('wld', $queryBagian) ? 'checked' : '' }}> Mesin Las</label>
+                          <label class="h6"><input type="checkbox" name="bagian[]" value="mesin" {{ in_array('ms', $queryBagian) ? 'checked' : '' }}> Mesin</label>
+                          <label class="h6"><input type="checkbox" name="bagian[]" value="crane" {{ in_array('crn', $queryBagian) ? 'checked' : '' }}> Crane</label>
+                          <label class="h6"><input type="checkbox" name="bagian[]" value="gardu_listrik" {{ in_array('gdl', $queryBagian) ? 'checked' : '' }}> Gardu Listrik</label>
+                          <label class="h6"><input type="checkbox" name="bagian[]" value="kompresor" {{ in_array('com', $queryBagian) ? 'checked' : '' }}> Kompresor</label>
+                          <label class="h6"><input type="checkbox" name="bagian[]" value="rolling_door" {{ in_array('rd', $queryBagian) ? 'checked' : '' }}> Rolling Door</label>
+                          <label class="h6"><input type="checkbox" name="bagian[]" value="forklift" {{ in_array('fork', $queryBagian) ? 'checked' : '' }}> Forklift</label>
+                          <label class="h6"><input type="checkbox" name="bagian[]" value="tambangan" {{ in_array('tbg', $queryBagian) ? 'checked' : '' }}> Tambangan</label>
+                          <label class="h6"><input type="checkbox" name="bagian[]" value="golf_car" {{ in_array('golf', $queryBagian) ? 'checked' : '' }}> Mobil Golf</label>
+                          <label class="h6"><input type="checkbox" name="bagian[]" value="pompa" {{ in_array('kran', $queryBagian) ? 'checked' : '' }}> Pompa</label>
+                          <label class="h6"><input type="checkbox" name="bagian[]" value="temporary_bogie" {{ in_array('tb', $queryBagian) ? 'checked' : '' }}> Temporary Bogie</label>
+                          <label class="h6"><input type="checkbox" name="bagian[]" value="zeiweg" {{ in_array('zeiweg', $queryBagian) ? 'checked' : '' }}> Zeiweg</label>
+                          <label class="h6"><input type="checkbox" name="bagian[]" value="elevator" {{ in_array('lift', $queryBagian) ? 'checked' : '' }}> Elevator</label>
+                          <label class="h6"><input type="checkbox" name="bagian[]" value="viar" {{ in_array('viar', $queryBagian) ? 'checked' : '' }}> Viar</label>
+                          <label class="h6"><input type="checkbox" name="bagian[]" value="carlifter" {{ in_array('crl', $queryBagian) ? 'checked' : '' }}> Carlifter</label>
+                          <label class="h6"><input type="checkbox" name="bagian[]" value="bejana_tekan" {{ in_array('bjn', $queryBagian) ? 'checked' : '' }}> Bejana Tekan</label>
+                          <label class="h6"><input type="checkbox" name="bagian[]" value="genset" {{ in_array('g-', $queryBagian) ? 'checked' : '' }}> Genset</label>
+                          <button type='button' class="btn btn-primary form-control"id="checkAllBtnDept"><span class="h6">Pilih Semua</span></button>
+                          <button type='button' class="btn btn-outline-secondary form-control"id="uncheckAllBtnDept"><span class="h6">Batal</span></button>
+                      </div>
+                    </div>
+                  <div class="dropdown">
+                    <button type="submit" class="btn btn-success form-control"><span class="h6">Cari</span></button>
+                  </div>
+                    
+                  </div>
+                </form>
+              </div>
             </div>
             <div id="chartContainer" style="height: 370px; width: 100%;"></div>
         </div>
@@ -92,89 +130,152 @@
 <script type="text/javascript">
     window.onload = function () {
 
-        var chart = new CanvasJS.Chart("chartContainer", {
-            theme: "light1", // "light2", "dark1", "dark2"
-            animationEnabled: false, // change to true		
-            title:{
-                text: "Grafik SPR"
-            },
-            data: [  //array of dataSeries     
-      { //dataSeries - first quarter
-   /*** Change type "column" to "bar", "area", "line" or "pie"***/        
-       type: "column",
-       name: "First Quarter",
-       dataPoints: [
-       { label: "Total SPR", y: {{$countSpr}} },
-    { label: "SPR selesai", y: {{$countProcessedSpr}} },
-       { label: "Total LP3M", y: {{$countLp3m}} },
-    //    { label: "apple", y: 80 },                                    
-    //    { label: "mango", y: 74 },
-    //    { label: "grape", y: 64 }
-       ]
-     },
-    //  { //dataSeries - second quarter
-
-    //   type: "column",
-    //   name: "Second Quarter",                
-    //   dataPoints: [
-    //   { label: "banana", y: 63 },
-    //   { label: "orange", y: 73 },
-    //   { label: "apple", y: 88 },                                    
-    //   { label: "mango", y: 77 },
-    //   { label: "grape", y: 60 }
-    //   ]
-    // }
+var chart = new CanvasJS.Chart("chartContainer", {
+  animationEnabled: true,
+  title: {
+    text: "Data SPR"
+  },
+  axisY: {
+    title: "Jumlah SPR",
+    titleFontColor: "#4F81BC",
+    lineColor: "#4F81BC",
+    labelFontColor: "#4F81BC",
+    tickColor: "#4F81BC"
+  },
+  toolTip: {
+    shared: true
+  },
+  legend: {
+    cursor: "pointer",
+    itemclick: toggleDataSeries
+  },
+  data: [{
+    type: "column",
+    name: "Jumlah SPR",
+    legendText: "Jumlah SPR",
+    showInLegend: true,
+    dataPoints: [
+      { label: "Januari", y: {{$daftarSpr[1]}}, indexLabel: "{y}" },
+      { label: "Februari", y: {{$daftarSpr[2]}}, indexLabel: "{y}" },
+      { label: "Maret", y: {{$daftarSpr[3]}}, indexLabel: "{y}" },
+      { label: "April", y: {{$daftarSpr[4]}}, indexLabel: "{y}" },
+      { label: "Mei", y: {{$daftarSpr[5]}}, indexLabel: "{y}" },
+      { label: "Juni", y: {{$daftarSpr[6]}}, indexLabel: "{y}" },
+      { label: "Juli", y: {{$daftarSpr[7]}}, indexLabel: "{y}" },
+      { label: "Agustus", y: {{$daftarSpr[8]}}, indexLabel: "{y}" },
+      { label: "September", y: {{$daftarSpr[9]}}, indexLabel: "{y}" },
+      { label: "Oktober", y: {{$daftarSpr[10]}}, indexLabel: "{y}" },
+      { label: "November", y: {{$daftarSpr[11]}}, indexLabel: "{y}" },
+      { label: "Desember", y: {{$daftarSpr[12]}}, indexLabel: "{y}" },
     ]
-        });
-    chart.render();
+  },
+  {
+    type: "column",
+    name: "SPR Proses",
+    legendText: "SPR Proses",
+    showInLegend: true,
+    dataPoints: [
+      { label: "Januari", y: {{$daftarSprOpen[1]}}, indexLabel: "{y}" },
+      { label: "Februari", y: {{$daftarSprOpen[2]}}, indexLabel: "{y}" },
+      { label: "Maret", y: {{$daftarSprOpen[3]}}, indexLabel: "{y}" },
+      { label: "April", y: {{$daftarSprOpen[4]}}, indexLabel: "{y}" },
+      { label: "Mei", y: {{$daftarSprOpen[5]}}, indexLabel: "{y}" },
+      { label: "Juni", y: {{$daftarSprOpen[6]}}, indexLabel: "{y}" },
+      { label: "Juli", y: {{$daftarSprOpen[7]}}, indexLabel: "{y}" },
+      { label: "Agustus", y: {{$daftarSprOpen[8]}}, indexLabel: "{y}" },
+      { label: "September", y: {{$daftarSprOpen[9]}}, indexLabel: "{y}" },
+      { label: "Oktober", y: {{$daftarSprOpen[10]}}, indexLabel: "{y}" },
+      { label: "November", y: {{$daftarSprOpen[11]}}, indexLabel: "{y}" },
+      { label: "Desember", y: {{$daftarSprOpen[12]}}, indexLabel: "{y}" }
+    ]
+  },
+  {
+    type: "column",
+    name: "SPR Selesai",
+    legendText: "SPR Selesai",
+    showInLegend: true,
+    dataPoints: [
+      { label: "Januari", y: {{$daftarSprClose[1]}}, indexLabel: "{y}" },
+      { label: "Februari", y: {{$daftarSprClose[2]}}, indexLabel: "{y}" },
+      { label: "Maret", y: {{$daftarSprClose[3]}}, indexLabel: "{y}" },
+      { label: "April", y: {{$daftarSprClose[4]}}, indexLabel: "{y}" },
+      { label: "Mei", y: {{$daftarSprClose[5]}}, indexLabel: "{y}" },
+      { label: "Juni", y: {{$daftarSprClose[6]}}, indexLabel: "{y}" },
+      { label: "Juli", y: {{$daftarSprClose[7]}}, indexLabel: "{y}" },
+      { label: "Agustus", y: {{$daftarSprClose[8]}}, indexLabel: "{y}" },
+      { label: "September", y: {{$daftarSprClose[9]}}, indexLabel: "{y}" },
+      { label: "Oktober", y: {{$daftarSprClose[10]}}, indexLabel: "{y}" },
+      { label: "November", y: {{$daftarSprClose[11]}}, indexLabel: "{y}" },
+      { label: "Desember", y: {{$daftarSprClose[12]}}, indexLabel: "{y}" }
+    ]
+  },
+  
+  ]
+});
+chart.render();
 
-    }
+function toggleDataSeries(e) {
+  if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+    e.dataSeries.visible = false;
+  } else {
+    e.dataSeries.visible = true;
+  }
+  chart.render();
+}
+
+}
+
 </script>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      var checkAllBtn = document.getElementById('checkAllBtn');
-      var uncheckAllBtn = document.getElementById('uncheckAllBtn');
+  document.addEventListener("DOMContentLoaded", function() {
+      var checkAllBtnYear = document.getElementById('checkAllBtnYear');
+      var uncheckAllBtnYear = document.getElementById('uncheckAllBtnYear');
+      var checkAllBtnDept = document.getElementById('checkAllBtnDept');
+      var uncheckAllBtnDept = document.getElementById('uncheckAllBtnDept');
+      var checkAllBtnStatus = document.getElementById('checkAllBtnStatus');
+      var uncheckAllBtnStatus = document.getElementById('uncheckAllBtnStatus');
     
-      checkAllBtn.addEventListener('click', function() {
-        var checkboxes = document.querySelectorAll('.dropdown-content input[type="checkbox"]');
+      checkAllBtnYear.addEventListener('click', function() {
+        var checkboxes = document.querySelectorAll('.dropdown-content-year input[type="checkbox"]');
         checkboxes.forEach(function(checkbox) {
           checkbox.checked = true;
         });
       });
     
-      uncheckAllBtn.addEventListener('click', function() {
-        var checkboxes = document.querySelectorAll('.dropdown-content input[type="checkbox"]');
+      uncheckAllBtnYear.addEventListener('click', function() {
+        var checkboxes = document.querySelectorAll('.dropdown-content-year input[type="checkbox"]');
         checkboxes.forEach(function(checkbox) {
           checkbox.checked = false;
         });
       });
+        checkAllBtnDept.addEventListener('click', function() {
+        var checkboxes = document.querySelectorAll('.dropdown-content-dept input[type="checkbox"]');
+        checkboxes.forEach(function(checkbox) {
+          checkbox.checked = true;
+        });
+      });
+    
+      uncheckAllBtnDept.addEventListener('click', function() {
+        var checkboxes = document.querySelectorAll('.dropdown-content-dept input[type="checkbox"]');
+        checkboxes.forEach(function(checkbox) {
+          checkbox.checked = false;
+        });
+      });
+
+      checkAllBtnStatus.addEventListener('click', function() {
+        var checkboxes = document.querySelectorAll('.dropdown-content-status input[type="checkbox"]');
+        checkboxes.forEach(function(checkbox) {
+          checkbox.checked = true;
+        });
+      });
+    
+      uncheckAllBtnStatus.addEventListener('click', function() {
+        var checkboxes = document.querySelectorAll('.dropdown-content-status input[type="checkbox"]');
+        checkboxes.forEach(function(checkbox) {
+          checkbox.checked = false;
+        });
+      });
+      
     });
-    </script>
+</script>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{{-- <div class="content-wrapper"
-style="background-image: url('{{ asset('assets/dist/img/mro2.jpg') }}'); background-size: contain; background-position: center;"    @yield('content')
-    <div class="section" style="background-color: rgba(255, 255, 255, 0.8); padding: 20px;">
-       
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus
-            ante dapibus diam. Sed nisi.</p>
-    </div>
-</div> --}}
