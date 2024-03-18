@@ -60,9 +60,9 @@
 <body >
     <div class="container">
         <div class="card">
-            <h1 class="section-title" style="text-align: center; color: rgb(255, 28, 28); background-color: rgb(49, 49, 49); font-family: 'Times New Roman', Times, serif;">
+            {{-- <h1 class="section-title" style="text-align: center; color: rgb(255, 28, 28); background-color: rgb(49, 49, 49); font-family: 'Times New Roman', Times, serif;">
             Sistem Informasi Departemen PPA
-            </h1>
+            </h1> --}}
             
             <div class="row">
               <div class="col">
@@ -118,9 +118,12 @@
                 </form>
               </div>
             </div>
-            <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+            <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+            <div id="chartContainer2" style="height: 300px; width: 100%;"></div>
         </div>
     </div>
+
+    
     
 </body>
 
@@ -128,104 +131,145 @@
 @endsection
 
 <script type="text/javascript">
-    window.onload = function () {
+  window.onload = function () {
+        var chart = new CanvasJS.Chart("chartContainer", {
+            animationEnabled: true,
+            title: {
+                text: "Data SPR"
+            },
+            axisY: {
+                title: "Jumlah SPR",
+                titleFontColor: "#4F81BC",
+                lineColor: "#4F81BC",
+                labelFontColor: "#4F81BC",
+                tickColor: "#4F81BC"
+            },
+            toolTip: {
+                shared: true
+            },
+            legend: {
+                cursor: "pointer",
+                itemclick: toggleDataSeries
+            },
+            data: [{
+                    type: "column",
+                    name: "Jumlah SPR",
+                    legendText: "Jumlah SPR",
+                    showInLegend: true,
+                    dataPoints: [
+                        { label: "Januari", y: {{$daftarSpr[1]}}, indexLabel: "{y}" },
+                        { label: "Februari", y: {{$daftarSpr[2]}}, indexLabel: "{y}" },
+                        { label: "Maret", y: {{$daftarSpr[3]}}, indexLabel: "{y}" },
+                        { label: "April", y: {{$daftarSpr[4]}}, indexLabel: "{y}" },
+                        { label: "Mei", y: {{$daftarSpr[5]}}, indexLabel: "{y}" },
+                        { label: "Juni", y: {{$daftarSpr[6]}}, indexLabel: "{y}" },
+                        { label: "Juli", y: {{$daftarSpr[7]}}, indexLabel: "{y}" },
+                        { label: "Agustus", y: {{$daftarSpr[8]}}, indexLabel: "{y}" },
+                        { label: "September", y: {{$daftarSpr[9]}}, indexLabel: "{y}" },
+                        { label: "Oktober", y: {{$daftarSpr[10]}}, indexLabel: "{y}" },
+                        { label: "November", y: {{$daftarSpr[11]}}, indexLabel: "{y}" },
+                        { label: "Desember", y: {{$daftarSpr[12]}}, indexLabel: "{y}" }
+                    ]
+                },
+                {
+                    type: "column",
+                    name: "SPR Proses",
+                    legendText: "SPR Proses",
+                    showInLegend: true,
+                    dataPoints: [
+                        { label: "Januari", y: {{$daftarSprOpen[1]}}, indexLabel: "{y}" },
+                        { label: "Februari", y: {{$daftarSprOpen[2]}}, indexLabel: "{y}" },
+                        { label: "Maret", y: {{$daftarSprOpen[3]}}, indexLabel: "{y}" },
+                        { label: "April", y: {{$daftarSprOpen[4]}}, indexLabel: "{y}" },
+                        { label: "Mei", y: {{$daftarSprOpen[5]}}, indexLabel: "{y}" },
+                        { label: "Juni", y: {{$daftarSprOpen[6]}}, indexLabel: "{y}" },
+                        { label: "Juli", y: {{$daftarSprOpen[7]}}, indexLabel: "{y}" },
+                        { label: "Agustus", y: {{$daftarSprOpen[8]}}, indexLabel: "{y}" },
+                        { label: "September", y: {{$daftarSprOpen[9]}}, indexLabel: "{y}" },
+                        { label: "Oktober", y: {{$daftarSprOpen[10]}}, indexLabel: "{y}" },
+                        { label: "November", y: {{$daftarSprOpen[11]}}, indexLabel: "{y}" },
+                        { label: "Desember", y: {{$daftarSprOpen[12]}}, indexLabel: "{y}" }
+                    ]
+                },
+                {
+                    type: "column",
+                    name: "SPR Selesai",
+                    legendText: "SPR Selesai",
+                    showInLegend: true,
+                    dataPoints: [
+                        { label: "Januari", y: {{$daftarSprClose[1]}}, indexLabel: "{y}" },
+                        { label: "Februari", y: {{$daftarSprClose[2]}}, indexLabel: "{y}" },
+                        { label: "Maret", y: {{$daftarSprClose[3]}}, indexLabel: "{y}" },
+                        { label: "April", y: {{$daftarSprClose[4]}}, indexLabel: "{y}" },
+                        { label: "Mei", y: {{$daftarSprClose[5]}}, indexLabel: "{y}" },
+                        { label: "Juni", y: {{$daftarSprClose[6]}}, indexLabel: "{y}" },
+                        { label: "Juli", y: {{$daftarSprClose[7]}}, indexLabel: "{y}" },
+                        { label: "Agustus", y: {{$daftarSprClose[8]}}, indexLabel: "{y}" },
+                        { label: "September", y: {{$daftarSprClose[9]}}, indexLabel: "{y}" },
+                        { label: "Oktober", y: {{$daftarSprClose[10]}}, indexLabel: "{y}" },
+                        { label: "November", y: {{$daftarSprClose[11]}}, indexLabel: "{y}" },
+                        { label: "Desember", y: {{$daftarSprClose[12]}}, indexLabel: "{y}" }
+                    ]
+                }
+            ]
+        });
+        chart.render();
 
-var chart = new CanvasJS.Chart("chartContainer", {
-  animationEnabled: true,
-  title: {
-    text: "Data SPR"
-  },
-  axisY: {
-    title: "Jumlah SPR",
-    titleFontColor: "#4F81BC",
-    lineColor: "#4F81BC",
-    labelFontColor: "#4F81BC",
-    tickColor: "#4F81BC"
-  },
-  toolTip: {
-    shared: true
-  },
-  legend: {
-    cursor: "pointer",
-    itemclick: toggleDataSeries
-  },
-  data: [{
-    type: "column",
-    name: "Jumlah SPR",
-    legendText: "Jumlah SPR",
-    showInLegend: true,
-    dataPoints: [
-      { label: "Januari", y: {{$daftarSpr[1]}}, indexLabel: "{y}" },
-      { label: "Februari", y: {{$daftarSpr[2]}}, indexLabel: "{y}" },
-      { label: "Maret", y: {{$daftarSpr[3]}}, indexLabel: "{y}" },
-      { label: "April", y: {{$daftarSpr[4]}}, indexLabel: "{y}" },
-      { label: "Mei", y: {{$daftarSpr[5]}}, indexLabel: "{y}" },
-      { label: "Juni", y: {{$daftarSpr[6]}}, indexLabel: "{y}" },
-      { label: "Juli", y: {{$daftarSpr[7]}}, indexLabel: "{y}" },
-      { label: "Agustus", y: {{$daftarSpr[8]}}, indexLabel: "{y}" },
-      { label: "September", y: {{$daftarSpr[9]}}, indexLabel: "{y}" },
-      { label: "Oktober", y: {{$daftarSpr[10]}}, indexLabel: "{y}" },
-      { label: "November", y: {{$daftarSpr[11]}}, indexLabel: "{y}" },
-      { label: "Desember", y: {{$daftarSpr[12]}}, indexLabel: "{y}" },
-    ]
-  },
-  {
-    type: "column",
-    name: "SPR Proses",
-    legendText: "SPR Proses",
-    showInLegend: true,
-    dataPoints: [
-      { label: "Januari", y: {{$daftarSprOpen[1]}}, indexLabel: "{y}" },
-      { label: "Februari", y: {{$daftarSprOpen[2]}}, indexLabel: "{y}" },
-      { label: "Maret", y: {{$daftarSprOpen[3]}}, indexLabel: "{y}" },
-      { label: "April", y: {{$daftarSprOpen[4]}}, indexLabel: "{y}" },
-      { label: "Mei", y: {{$daftarSprOpen[5]}}, indexLabel: "{y}" },
-      { label: "Juni", y: {{$daftarSprOpen[6]}}, indexLabel: "{y}" },
-      { label: "Juli", y: {{$daftarSprOpen[7]}}, indexLabel: "{y}" },
-      { label: "Agustus", y: {{$daftarSprOpen[8]}}, indexLabel: "{y}" },
-      { label: "September", y: {{$daftarSprOpen[9]}}, indexLabel: "{y}" },
-      { label: "Oktober", y: {{$daftarSprOpen[10]}}, indexLabel: "{y}" },
-      { label: "November", y: {{$daftarSprOpen[11]}}, indexLabel: "{y}" },
-      { label: "Desember", y: {{$daftarSprOpen[12]}}, indexLabel: "{y}" }
-    ]
-  },
-  {
-    type: "column",
-    name: "SPR Selesai",
-    legendText: "SPR Selesai",
-    showInLegend: true,
-    dataPoints: [
-      { label: "Januari", y: {{$daftarSprClose[1]}}, indexLabel: "{y}" },
-      { label: "Februari", y: {{$daftarSprClose[2]}}, indexLabel: "{y}" },
-      { label: "Maret", y: {{$daftarSprClose[3]}}, indexLabel: "{y}" },
-      { label: "April", y: {{$daftarSprClose[4]}}, indexLabel: "{y}" },
-      { label: "Mei", y: {{$daftarSprClose[5]}}, indexLabel: "{y}" },
-      { label: "Juni", y: {{$daftarSprClose[6]}}, indexLabel: "{y}" },
-      { label: "Juli", y: {{$daftarSprClose[7]}}, indexLabel: "{y}" },
-      { label: "Agustus", y: {{$daftarSprClose[8]}}, indexLabel: "{y}" },
-      { label: "September", y: {{$daftarSprClose[9]}}, indexLabel: "{y}" },
-      { label: "Oktober", y: {{$daftarSprClose[10]}}, indexLabel: "{y}" },
-      { label: "November", y: {{$daftarSprClose[11]}}, indexLabel: "{y}" },
-      { label: "Desember", y: {{$daftarSprClose[12]}}, indexLabel: "{y}" }
-    ]
-  },
-  
-  ]
-});
-chart.render();
+        function toggleDataSeries(e) {
+            if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+                e.dataSeries.visible = false;
+            } else {
+                e.dataSeries.visible = true;
+            }
+            chart.render();
+        }
 
-function toggleDataSeries(e) {
-  if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
-    e.dataSeries.visible = false;
-  } else {
-    e.dataSeries.visible = true;
-  }
-  chart.render();
-}
+        var chart2 = new CanvasJS.Chart("chartContainer2", {
+            animationEnabled: true,
+            title: {
+                text: "Detail Data Mesin"
+            },
+            axisY: {
+                title: "Detail Jumlah Mesin",
+                maximum: 200 
+            },
+            data: [{
+                type: "bar",
+                showInLegend: true,
+                legendText: "Gold",
+                color: "gold",
+                dataPoints: [
+                    { label: "Gedung", y: {{$daftarSpr[1]}}, indexLabel: "{y}" },
+                    { label: "Instalasi", y: {{$daftarSpr[2]}}, indexLabel: "{y}" },
+                    { label: "Lampu", y: {{$daftarSpr[2]}}, indexLabel: "{y}" },
+                    { label: "AC", y: {{$daftarSpr[2]}}, indexLabel: "{y}" },
+                    { label: "Mesin Las", y: {{$daftarSpr[3]}}, indexLabel: "{y}" },
+                    { label: "Mesin", y: {{$daftarSpr[4]}}, indexLabel: "{y}" },
+                    { label: "Crane", y: {{$daftarSpr[5]}}, indexLabel: "{y}" },
+                    { label: "Gardu Listrik", y: {{$daftarSpr[6]}}, indexLabel: "{y}" },
+                    { label: "Kompresor", y: {{$daftarSpr[7]}}, indexLabel: "{y}" },
+                    { label: "Rolling Dor", y: {{$daftarSpr[8]}}, indexLabel: "{y}" },
+                    { label: "Forklift", y: {{$daftarSpr[9]}}, indexLabel: "{y}" },
+                    { label: "Tambangan", y: {{$daftarSpr[10]}}, indexLabel: "{y}" },
+                    { label: "Mobil Golf", y: {{$daftarSpr[11]}}, indexLabel: "{y}" }
+                ]
+            }]
+        });
 
-}
+        chart2.render();
 
+        function toggleDataSeries2(e) {
+            if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+                e.dataSeries.visible = false;
+            } else {
+                e.dataSeries.visible = true;
+            }
+            chart2.render();
+        }
+    }
 </script>
+
+
 <script>
   document.addEventListener("DOMContentLoaded", function() {
       var checkAllBtnYear = document.getElementById('checkAllBtnYear');
@@ -278,4 +322,6 @@ function toggleDataSeries(e) {
       
     });
 </script>
+
+
 </html>

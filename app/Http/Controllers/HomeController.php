@@ -138,8 +138,8 @@ class HomeController extends Controller
                             } else if($bagian == 'g-'){
                                 $query->orWhere('kode_mesin', 'LIKE', "%$bagian%")
                                         ->where('kode_mesin', 'NOT LIKE',"%tbg%") 
-                                         ->where('kode_mesin', 'NOT LIKE',"%ang%")
-                                         ->where('kode_mesin', 'NOT LIKE',"%jig%");
+                                        ->where('kode_mesin', 'NOT LIKE',"%ang%")
+                                        ->where('kode_mesin', 'NOT LIKE',"%jig%");
                             }else if($bagian == 'tb'){
                                 $query->orWhere('kode_mesin', 'LIKE', "%$bagian%")
                                         ->where('kode_mesin', 'NOT LIKE',"%tbg%");

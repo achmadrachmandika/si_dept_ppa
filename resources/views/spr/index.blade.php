@@ -10,10 +10,11 @@
                 <div class="card-header">
                     <div class="d-flex justify-content-between align-items-center">
                         <h2 class="font-weight-bold">SPR</h2>
-                        <div class="d-flex">  
-                            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="No SPR.." class="form-control" title="Type in a name">
-                            <button onclick="window.location.href='{{ route('spr.create') }}'" class="btn btn-success ml-1" type="button"><span class="h6">Tambah</span></button>
-
+                        <div class="d-flex">
+                          <input type="text" id="myInput" onkeyup="myFunction()" placeholder="No SPR.." class="form-control"
+                            title="Type in a name">
+                          <button onclick="window.location.href='{{ route('spr.create') }}'" class="btn btn-success ml-1" type="button"><span
+                              class="h6">Tambah</span></button>
                         </div>
                     </div>
                     <div class="row">
@@ -121,11 +122,11 @@
                         <!-- Tambahkan id myTable -->
                         <thead class="bg-secondary text-white text-center">
                           <tr>
+                            <th style="width: 500px; white-space: nowrap;">No SPR</th>
                             <th style="width: 500px; white-space: nowrap;">Nama</th>
                             <th style="width: 500px; white-space: nowrap;">Kode Mesin</th>
                             <th style="width: 500px; white-space: nowrap;">Lokasi</th>
                             <th style="width: 500px; white-space: nowrap;">Status</th>
-                            <th style="width: 500px; white-space: nowrap;">No SPR</th>
                             <th style="width: 500px; white-space: nowrap;">No Aset</th>
                             <th style="width: 500px; white-space: nowrap;">Tanggal Kerusakan</th>
                             <th style="width: 500px; white-space: nowrap;">Tanggal SPR diterima</th>
@@ -139,11 +140,11 @@
                         <tbody>
                           @foreach ($spr as $crud)
                           <tr>
+                            <td style="width: 500px; white-space: nowrap;">{{ $crud->nomor_spr }}</td>
                             <td style="width: 500px; white-space: nowrap;">{{ $crud->nama_barang }}</td>
                             <td style="width: 500px; white-space: nowrap;">{{ $crud->kode_mesin }}</td>
                             <td style="width: 500px; white-space: nowrap;">{{ $crud->lokasi }}</td>
                             <td style="width: 500px; white-space: nowrap;">{{ $crud->status_kerusakan }}</td>
-                            <td style="width: 500px; white-space: nowrap;">{{ $crud->nomor_spr }}</td>
                             <td style="width: 500px; white-space: nowrap;">{{ $crud->no_aset }}</td>
                             <td style="width: 500px; white-space: nowrap;">{{ $crud->tanggal_kerusakan}}</td>
                             <td style="width: 500px; white-space: nowrap;">{{ $crud->tanggal_sprditerima}}</td>
@@ -197,7 +198,7 @@
       table = document.getElementById("myTable");
       tr = table.getElementsByTagName("tr");
       for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[3]; // Ubah indeks kolom menjadi 0 untuk mencari berdasarkan nama
+        td = tr[i].getElementsByTagName("td")[0]; // Ubah indeks kolom menjadi 0 untuk mencari berdasarkan nama
         if (td) {
           txtValue = td.textContent || td.innerText;
           if (txtValue.toUpperCase().indexOf(filter) > -1) {
