@@ -80,6 +80,29 @@
                         <button type='button' class="btn btn-outline-secondary form-control"id="uncheckAllBtnYear"><span class="h6">Batal</span></button>
                       </div>
                     </div>
+
+                    <div class="dropdown">
+                      <button class="btn btn-outline-secondary dropdown-toggle form-control" type="button" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">
+                        <span class="h6">Bulan</span>
+                      </button>
+                      <div class="dropdown-content-month" aria-labelledby="dropdownMenuButton">
+                          <label class="h6"><input type="checkbox" name="bulan[]" value="january" {{ in_array('january', $queryBulanBagian) ? 'checked' : '' }}> Januari</label>
+                          <label class="h6"><input type="checkbox" name="bulan[]" value="february" {{ in_array('february', $queryBulanBagian) ? 'checked' : '' }}> Februari</label>
+                          <label class="h6"><input type="checkbox" name="bulan[]" value="march" {{ in_array('march', $queryBulanBagian) ? 'checked' : '' }}> Maret</label>
+                          <label class="h6"><input type="checkbox" name="bulan[]" value="april" {{ in_array('april', $queryBulanBagian) ? 'checked' : '' }}> April</label>
+                          <label class="h6"><input type="checkbox" name="bulan[]" value="may" {{ in_array('may', $queryBulanBagian) ? 'checked' : '' }}> Mei</label>
+                          <label class="h6"><input type="checkbox" name="bulan[]" value="june" {{ in_array('june', $queryBulanBagian) ? 'checked' : '' }}> Juni</label>
+                          <label class="h6"><input type="checkbox" name="bulan[]" value="july" {{ in_array('july', $queryBulanBagian) ? 'checked' : '' }}> Juli</label>
+                          <label class="h6"><input type="checkbox" name="bulan[]" value="august" {{ in_array('august', $queryBulanBagian) ? 'checked' : '' }}> Agustus</label>
+                          <label class="h6"><input type="checkbox" name="bulan[]" value="september" {{ in_array('september', $queryBulanBagian) ? 'checked' : '' }}> September</label>
+                          <label class="h6"><input type="checkbox" name="bulan[]" value="october" {{ in_array('october', $queryBulanBagian) ? 'checked' : '' }}> Oktober</label>
+                          <label class="h6"><input type="checkbox" name="bulan[]" value="november" {{ in_array('november', $queryBulanBagian) ? 'checked' : '' }}> November</label>
+                          <label class="h6"><input type="checkbox" name="bulan[]" value="december" {{ in_array('december', $queryBulanBagian) ? 'checked' : '' }}> Desember</label>
+                          <button type='button' class="btn btn-primary form-control"id="checkAllBtnMonth"><span class="h6">Pilih Semua</span></button>
+                          <button type='button' class="btn btn-outline-secondary form-control"id="uncheckAllBtnMonth"><span class="h6">Batal</span></button>
+                      </div>
+                    </div>
+                    
                     <div class="dropdown">
                       <button class="btn btn-outline-secondary dropdown-toggle form-control" type="button" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">
                         <span class="h6">Bagian</span>
@@ -100,7 +123,7 @@
                           <label class="h6"><input type="checkbox" name="bagian[]" value="golf_car" {{ in_array('golf', $queryBagian) ? 'checked' : '' }}> Mobil Golf</label>
                           <label class="h6"><input type="checkbox" name="bagian[]" value="pompa" {{ in_array('kran', $queryBagian) ? 'checked' : '' }}> Pompa</label>
                           <label class="h6"><input type="checkbox" name="bagian[]" value="temporary_bogie" {{ in_array('tb', $queryBagian) ? 'checked' : '' }}> Temporary Bogie</label>
-                          <label class="h6"><input type="checkbox" name="bagian[]" value="zeiweg" {{ in_array('zeiweg', $queryBagian) ? 'checked' : '' }}> Zeiweg</label>
+                          <label class="h6"><input type="checkbox" name="bagian[]" value="zweiweg" {{ in_array('zweiweg', $queryBagian) ? 'checked' : '' }}> Zweiweg</label>
                           <label class="h6"><input type="checkbox" name="bagian[]" value="elevator" {{ in_array('lift', $queryBagian) ? 'checked' : '' }}> Elevator</label>
                           <label class="h6"><input type="checkbox" name="bagian[]" value="viar" {{ in_array('viar', $queryBagian) ? 'checked' : '' }}> Viar</label>
                           <label class="h6"><input type="checkbox" name="bagian[]" value="carlifter" {{ in_array('crl', $queryBagian) ? 'checked' : '' }}> Carlifter</label>
@@ -118,8 +141,8 @@
                 </form>
               </div>
             </div>
-            <div id="chartContainer" style="height: 300px; width: 100%;"></div>
-            <div id="chartContainer2" style="height: 300px; width: 100%;"></div>
+            <div id="chartContainer" style="height: 350px; width: 100%;"></div>
+            <div id="chartContainer2" style="height: 350px; width: 100%;"></div>
         </div>
     </div>
 
@@ -227,31 +250,42 @@
         var chart2 = new CanvasJS.Chart("chartContainer2", {
             animationEnabled: true,
             title: {
-                text: "Detail Data Mesin"
+                text: "Data Mesin"
+            },
+            axisX: {
+              interval: 1
             },
             axisY: {
-                title: "Detail Jumlah Mesin",
                 maximum: 200 
             },
             data: [{
                 type: "bar",
                 showInLegend: true,
-                legendText: "Gold",
+                legendText: "Jumlah SPR",
                 color: "gold",
                 dataPoints: [
-                    { label: "Gedung", y: {{$daftarSpr[1]}}, indexLabel: "{y}" },
-                    { label: "Instalasi", y: {{$daftarSpr[2]}}, indexLabel: "{y}" },
-                    { label: "Lampu", y: {{$daftarSpr[2]}}, indexLabel: "{y}" },
-                    { label: "AC", y: {{$daftarSpr[2]}}, indexLabel: "{y}" },
-                    { label: "Mesin Las", y: {{$daftarSpr[3]}}, indexLabel: "{y}" },
-                    { label: "Mesin", y: {{$daftarSpr[4]}}, indexLabel: "{y}" },
-                    { label: "Crane", y: {{$daftarSpr[5]}}, indexLabel: "{y}" },
-                    { label: "Gardu Listrik", y: {{$daftarSpr[6]}}, indexLabel: "{y}" },
-                    { label: "Kompresor", y: {{$daftarSpr[7]}}, indexLabel: "{y}" },
-                    { label: "Rolling Dor", y: {{$daftarSpr[8]}}, indexLabel: "{y}" },
-                    { label: "Forklift", y: {{$daftarSpr[9]}}, indexLabel: "{y}" },
-                    { label: "Tambangan", y: {{$daftarSpr[10]}}, indexLabel: "{y}" },
-                    { label: "Mobil Golf", y: {{$daftarSpr[11]}}, indexLabel: "{y}" }
+                    { label: "Gedung", y: {{$daftarDataBagian['gd']}}, indexLabel: "{y}" },
+                    { label: "Instalasi", y: {{$daftarDataBagian['ins']}}, indexLabel: "{y}" },
+                    { label: "Lampu", y: {{$daftarDataBagian['lampu']}}, indexLabel: "{y}" },
+                    { label: "AC", y: {{$daftarDataBagian['ac']}}, indexLabel: "{y}" },
+                    { label: "Mesin Las", y: {{$daftarDataBagian['wld']}}, indexLabel: "{y}" },
+                    { label: "Mesin", y: {{$daftarDataBagian['ms']}}, indexLabel: "{y}" },
+                    { label: "Crane", y: {{$daftarDataBagian['crn']}}, indexLabel: "{y}" },
+                    { label: "Gardu Listrik", y: {{$daftarDataBagian['gdl']}}, indexLabel: "{y}" },
+                    { label: "Kompresor", y: {{$daftarDataBagian['com']}}, indexLabel: "{y}" },
+                    { label: "Rolling Dor", y: {{$daftarDataBagian['rd']}}, indexLabel: "{y}" },
+                    { label: "Forklift", y: {{$daftarDataBagian['fork']}}, indexLabel: "{y}" },
+                    { label: "Tambangan", y: {{$daftarDataBagian['tbg']}}, indexLabel: "{y}" },
+                    { label: "Mobil Golf", y: {{$daftarDataBagian['golf']}}, indexLabel: "{y}" },
+                    { label: "Pompa", y: {{$daftarDataBagian['kran']}}, indexLabel: "{y}" },
+                    { label: "Temporary Bogie", y: {{$daftarDataBagian['tb']}}, indexLabel: "{y}" },
+                    { label: "Zweiweg", y: {{$daftarDataBagian['zweiweg']}}, indexLabel: "{y}" },
+                    { label: "Elevator", y: {{$daftarDataBagian['lift']}}, indexLabel: "{y}" },
+                    { label: "Viar", y: {{$daftarDataBagian['viar']}}, indexLabel: "{y}" },
+                    { label: "Carlifter", y: {{$daftarDataBagian['crl']}}, indexLabel: "{y}" },
+                    { label: "Bejana Tekan", y: {{$daftarDataBagian['bjn']}}, indexLabel: "{y}" },
+                    { label: "Genset", y: {{$daftarDataBagian['g-']}}, indexLabel: "{y}" },
+                    
                 ]
             }]
         });
@@ -274,6 +308,8 @@
   document.addEventListener("DOMContentLoaded", function() {
       var checkAllBtnYear = document.getElementById('checkAllBtnYear');
       var uncheckAllBtnYear = document.getElementById('uncheckAllBtnYear');
+      var checkAllBtnMonth = document.getElementById('checkAllBtnMonth');
+      var uncheckAllBtnMonth = document.getElementById('uncheckAllBtnMonth');
       var checkAllBtnDept = document.getElementById('checkAllBtnDept');
       var uncheckAllBtnDept = document.getElementById('uncheckAllBtnDept');
       var checkAllBtnStatus = document.getElementById('checkAllBtnStatus');
@@ -292,6 +328,21 @@
           checkbox.checked = false;
         });
       });
+
+      checkAllBtnMonth.addEventListener('click', function() {
+        var checkboxes = document.querySelectorAll('.dropdown-content-month input[type="checkbox"]');
+        checkboxes.forEach(function(checkbox) {
+          checkbox.checked = true;
+        });
+      });
+    
+      uncheckAllBtnMonth.addEventListener('click', function() {
+        var checkboxes = document.querySelectorAll('.dropdown-content-month input[type="checkbox"]');
+        checkboxes.forEach(function(checkbox) {
+          checkbox.checked = false;
+        });
+      });
+
         checkAllBtnDept.addEventListener('click', function() {
         var checkboxes = document.querySelectorAll('.dropdown-content-dept input[type="checkbox"]');
         checkboxes.forEach(function(checkbox) {

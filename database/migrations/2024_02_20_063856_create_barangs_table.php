@@ -20,6 +20,7 @@ return new class extends Migration
         $table->string('no_aset');
         $table->time('jam_kerusakan');
         $table->string('user_peminta');
+        $table->string('email_user');
         $table->string('status');
         $table->text('deskripsi_kerusakan');
         $table->enum('site', ['INKA MADIUN', 'GA BANYUWANGI', 'GA BANDUNG', 'GA JAKARTA', 'QC BANYUWANGI', 'QC BANDUNG', 'QC JAKARTA', 'LAIN NYA']);

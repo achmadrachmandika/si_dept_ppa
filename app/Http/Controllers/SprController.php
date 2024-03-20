@@ -8,13 +8,17 @@ use Carbon\Carbon;
 use App\Models\lp3m;
 use Illuminate\Support\Facades\DB; 
 
+use Illuminate\Support\Facades\Mail;
+
+use App\Mail\SPRMailer;
+
 class SprController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
-    {
+    {   
 
         $tahuns = Barang::selectRaw('YEAR(tanggal_sprditerima) as tahun')
         ->groupBy('tahun')
@@ -47,7 +51,6 @@ class SprController extends Controller
     public function store(Request $request)
 {
     $data = $request->validate([
-        // 'nomor_spr' => 'required|unique:barangs',
         'nama_barang' => 'required|string|max:255',
         'lokasi' => 'required|string|max:255',
         'tanggal_kerusakan' => 'required|date',
@@ -62,12 +65,23 @@ class SprController extends Controller
         'tanggal_sprditerima' => 'required|date',
         'jam_sprditerima' => 'required',
     ]);
+    $user = auth()->user(); // Ambil data pengguna dari sesi saat ini
 
      $data['status'] = 'open';
-
-
+     $data['email_user'] = $user->email;
     // Membuat entri barang dengan data yang telah disiapkan
     Barang::create($data);
+
+    $noSprUser = Barang::where('email_user', $user->email)
+    ->latest() // Mengurutkan berdasarkan kolom created_at secara descending
+    ->value('nomor_spr'); // Mengambil nilai kolom nomor_spr dari entri terbaru
+        
+            // Kirim email notifikasi SPR
+    Mail::to('satriiadaffa@gmail.com')->send(new SPRMailer($user->name, $user->email, $noSprUser));
+
+
+
+    
     return redirect()->route('spr.index')->with('success', 'Data berhasil disimpan.');
 }
 
@@ -76,7 +90,7 @@ class SprController extends Controller
      * Display the specified resource.
      */
     public function show($id)
-    {
+    {   dd('masuk');
         $barang = Barang::where('nomor_spr',$id)->first();
         return view('spr.detail', compact('barang'));
     }
@@ -175,6 +189,7 @@ class SprController extends Controller
 
         public function filterSPR(Request $request)
         {   
+            
 
             $tahuns = Barang::selectRaw('YEAR(tanggal_sprditerima) as tahun')
             ->groupBy('tahun')
@@ -190,7 +205,7 @@ class SprController extends Controller
 
             $daftarBagian = [
                 'gd', 'ins', 'wld', 'ms', 'crn', 'gdl',
-                'com', 'rd', 'fork', 'tbg', 'golf', 'kran','tb', 'lift', 'crl', 'bjn','g-','viar','lampu','ac', 'zeiweg'
+                'com', 'rd', 'fork', 'tbg', 'golf', 'kran','tb', 'lift', 'crl', 'bjn','g-','viar','lampu','ac', 'zweiweg'
             ];
 
             $daftarStatus = [
