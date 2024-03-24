@@ -154,7 +154,17 @@
 
 <script type="text/javascript">
   window.onload = function () {
+    CanvasJS.addColorSet("bluePastel",
+                [//colorSet Array
+
+                "#008DDA",
+                "#41C9E2",
+                "#ACE2E1",
+                "#F7EEDD",
+             
+                ]);
         var chart = new CanvasJS.Chart("chartContainer", {
+          colorSet: "bluePastel",
             animationEnabled: true,
             title: {
                 text: "Data SPR"
