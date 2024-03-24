@@ -48,7 +48,7 @@ protected function authenticated(Request $request, $user)
         return redirect()->route('dashboard');
     }
 
-    return redirect()->route('/welcome');
+    return redirect()->route('dashboard');
 
 }
 

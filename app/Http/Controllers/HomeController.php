@@ -10,24 +10,6 @@ class HomeController extends Controller
   public function index()
     {   
 
-        // $spr = Barang::all();
-        // $sprClose = Barang::where('status', 'close')->get();
-        // $sprOpen = Barang::where('status', 'open')->get();
-
-        // $countSpr = count($spr);
-        // $countsprClose = count($sprClose);
-        // $countSprOpen = count($sprOpen);
-
-        // $tahuns = Barang::selectRaw('YEAR(tanggal_sprditerima) as tahun')
-        // ->groupBy('tahun')
-        // ->pluck('tahun');
-
-        // $queryTahun = [];   
-        // $queryBagian = [];
-        // $daftarSpr = [1,2,3,4,5,6,7,8,9,10,11,12,13];//
-
-        // return view('dashboard', compact('spr', 'queryTahun','daftarSpr','daftarSprOpen','daftarSprClose','queryBulan' ,'queryBagian','tahuns'));
-
 
          $tahuns = Barang::selectRaw('YEAR(tanggal_sprditerima) as tahun')
             ->groupBy('tahun')
@@ -43,7 +25,7 @@ class HomeController extends Controller
 
             $daftarBagian = [
                 'gd', 'ins', 'wld', 'ms', 'crn', 'gdl',
-                'com', 'rd', 'fork', 'tbg', 'golf', 'kran','tb', 'lift', 'crl', 'bjn','g-','viar','lampu','ac', 'zeiweg'
+                'com', 'rd', 'fork', 'tbg', 'golf', 'kran','tb', 'lift', 'crl', 'bjn','g-','viar','lampu','ac', 'zweiweg'
             ];
 
             $daftarStatus = [
@@ -66,8 +48,8 @@ class HomeController extends Controller
             // //---------------------------------------------------------------------------------------------------------------------//
 
             // //-----------------------------------------------------FILTER BULAN-----------------------------------------------------//
-            $queryBulan = $daftarBulan;
-            $bulans = collect($queryBulan)->map(function ($item) {
+            $queryBulanBagian = $daftarBulan;
+            $bulans = collect($queryBulanBagian)->map(function ($item) {
                 return Carbon::parse($item)->month;
             })->toArray();
 
@@ -260,10 +242,70 @@ class HomeController extends Controller
         }
 
         // ---------------------------------------------------------------------------------------------
-            
+        // ----------------------------------------Daftar Data Bagian----------------------------------------
+        $daftarDataBagian = [];
+        $daftarDataBagianPerTahun = [];
 
-            return view('dashboard', compact('spr', 'queryTahun','daftarSpr','daftarSprOpen','daftarSprClose','queryBulan' ,'queryBagian','tahuns'));
-    }
+        $CountDaftarDataBagianPerTahun= [];
+
+        $daftarDataBagianPerBulan = [];
+
+        foreach($daftarBagian as $bagian) {
+            foreach ($bulans as $bulan) {
+                    $totalBagianPerBulan = 0; // Inisialisasi total per bulan
+        
+                    foreach ($queryTahun as $tahun) {
+                        if($bagian == 'gd'){
+                            $dataBagian = Barang::whereYear('tanggal_sprditerima', $tahun)
+                                            ->whereMonth('tanggal_sprditerima', $bulan)
+                                            ->where('kode_mesin', 'LIKE', "%$bagian%")
+                                            ->where('kode_mesin', 'NOT LIKE',"%gdl%")
+                                            ->get();
+                        } else if($bagian == 'g-'){
+                            $dataBagian = Barang::whereYear('tanggal_sprditerima', $tahun)
+                                            ->whereMonth('tanggal_sprditerima', $bulan)
+                                            ->where('kode_mesin', 'LIKE', "%$bagian%")
+                                            ->where('kode_mesin', 'NOT LIKE',"%tbg%") 
+                                            ->where('kode_mesin', 'NOT LIKE',"%ang%")
+                                            ->where('kode_mesin', 'NOT LIKE',"%jig%")
+                                            ->get();
+                        }else if($bagian == 'tb'){
+                            $dataBagian = Barang::whereYear('tanggal_sprditerima', $tahun)
+                                            ->whereMonth('tanggal_sprditerima', $bulan)
+                                            ->where('kode_mesin', 'LIKE', "%$bagian%")
+                                            ->where('kode_mesin', 'NOT LIKE',"%tbg%")
+                                            ->get();
+                        }
+                        else{
+                            $dataBagian = Barang::whereYear('tanggal_sprditerima', $tahun)
+                                            ->whereMonth('tanggal_sprditerima', $bulan)
+                                            ->where('kode_mesin', 'LIKE', "%$bagian%")
+                                            ->get();
+                        }
+
+                        $daftarDataBagianPerTahun[$tahun] = $dataBagian;
+
+                        $CountDaftarDataBagianPerTahun[$tahun] = count($daftarDataBagianPerTahun[$tahun]);
+                        
+                        $jumlahPerTahun = array_sum($CountDaftarDataBagianPerTahun);
+
+                        
+                }
+
+                $daftarDataBagianPerBulan[$bulan] = $jumlahPerTahun;
+
+                
+            }
+            $totalDataBagianPerBulan = array_sum($daftarDataBagianPerBulan);
+            
+            $daftarDataBagian[$bagian] = $totalDataBagianPerBulan;
+        }
+    
+
+        // ---------------------------------------------------------------------------------------------
+
+            return view('dashboard', compact('spr', 'queryTahun','daftarSpr','daftarSprOpen','queryBulanBagian','daftarDataBagian','daftarSprClose' ,'queryBagian','tahuns'));
+        }
 
     public function filterHome(Request $request)
         {   
@@ -282,7 +324,7 @@ class HomeController extends Controller
 
             $daftarBagian = [
                 'gd', 'ins', 'wld', 'ms', 'crn', 'gdl',
-                'com', 'rd', 'fork', 'tbg', 'golf', 'kran','tb', 'lift', 'crl', 'bjn','g-','viar','lampu','ac', 'zeiweg'
+                'com', 'rd', 'fork', 'tbg', 'golf', 'kran','tb', 'lift', 'crl', 'bjn','g-','viar','lampu','ac', 'zweiweg'
             ];
 
             $daftarStatus = [
@@ -305,10 +347,22 @@ class HomeController extends Controller
             // //---------------------------------------------------------------------------------------------------------------------//
 
             // //-----------------------------------------------------FILTER BULAN-----------------------------------------------------//
+
+            
             $queryBulan = $daftarBulan;
             $bulans = collect($queryBulan)->map(function ($item) {
                 return Carbon::parse($item)->month;
             })->toArray();
+
+            $queryBulanBagian = $request->bulan;
+
+            if ($queryBulanBagian == null) {
+                $queryBulanBagian = $daftarBulan;
+            }
+            $bulanBagians = collect($queryBulanBagian)->map(function ($item) {
+                return Carbon::parse($item)->month;
+            })->toArray();
+
 
             // //---------------------------------------------------------------------------------------------------------------------//
 
@@ -457,7 +511,7 @@ class HomeController extends Controller
         // ---------------------------------------------------------------------------------------------
 
 
-        // ----------------------------------------Daftar Spr Open----------------------------------------
+        // ----------------------------------------Daftar Spr Close----------------------------------------
 
         foreach ($bulans as $bulan) {
             $totalPerBulan = 0; // Inisialisasi total per bulan
@@ -491,11 +545,8 @@ class HomeController extends Controller
 
                 // Menyimpan data Barang untuk bulan tertentu ke dalam array
                 $daftarSprClosePerBulan[$bulan] = $spr;
-
                 $CountDaftarSprClosePerBulan[$bulan] = count($daftarSprClosePerBulan[$bulan]);
-
                 $daftarSprClosePerTahun[$tahun] = $CountDaftarSprClosePerBulan[$bulan];
-
                 $totalPerBulan += $CountDaftarSprClosePerBulan[$bulan]; // Menambahkan jumlah ke total per bulan
             }
 
@@ -503,9 +554,69 @@ class HomeController extends Controller
         }
 
         // ---------------------------------------------------------------------------------------------
-            
 
-            return view('dashboard', compact('spr', 'queryTahun','daftarSpr','daftarSprOpen','daftarSprClose','queryBulan' ,'queryBagian','tahuns'));
+
+        // ----------------------------------------Daftar Data Bagian----------------------------------------
+        $daftarDataBagian = [];
+        $daftarDataBagianPerTahun = [];
+
+        $CountDaftarDataBagianPerTahun= [];
+
+        $daftarDataBagianPerBulan = [];
+
+        foreach($daftarBagian as $bagian) {
+            foreach ($bulanBagians as $bulan) {
+                    $totalBagianPerBulan = 0; // Inisialisasi total per bulan
+        
+                    foreach ($queryTahun as $tahun) {
+                        if($bagian == 'gd'){
+                            $dataBagian = Barang::whereYear('tanggal_sprditerima', $tahun)
+                                            ->whereMonth('tanggal_sprditerima', $bulan)
+                                            ->where('kode_mesin', 'LIKE', "%$bagian%")
+                                            ->where('kode_mesin', 'NOT LIKE',"%gdl%")
+                                            ->get();
+                        } else if($bagian == 'g-'){
+                            $dataBagian = Barang::whereYear('tanggal_sprditerima', $tahun)
+                                            ->whereMonth('tanggal_sprditerima', $bulan)
+                                            ->where('kode_mesin', 'LIKE', "%$bagian%")
+                                            ->where('kode_mesin', 'NOT LIKE',"%tbg%") 
+                                            ->where('kode_mesin', 'NOT LIKE',"%ang%")
+                                            ->where('kode_mesin', 'NOT LIKE',"%jig%")
+                                            ->get();
+                        }else if($bagian == 'tb'){
+                            $dataBagian = Barang::whereYear('tanggal_sprditerima', $tahun)
+                                            ->whereMonth('tanggal_sprditerima', $bulan)
+                                            ->where('kode_mesin', 'LIKE', "%$bagian%")
+                                            ->where('kode_mesin', 'NOT LIKE',"%tbg%")
+                                            ->get();
+                        }
+                        else{
+                            $dataBagian = Barang::whereYear('tanggal_sprditerima', $tahun)
+                                            ->whereMonth('tanggal_sprditerima', $bulan)
+                                            ->where('kode_mesin', 'LIKE', "%$bagian%")
+                                            ->get();
+                        }
+
+                        $daftarDataBagianPerTahun[$tahun] = $dataBagian;
+
+                        $CountDaftarDataBagianPerTahun[$tahun] = count($daftarDataBagianPerTahun[$tahun]);
+                        
+                        $jumlahPerTahun = array_sum($CountDaftarDataBagianPerTahun);
+
+                        
+                }
+
+                $daftarDataBagianPerBulan[$bulan] = $jumlahPerTahun;
+
+                
+            }
+            $totalDataBagianPerBulan = array_sum($daftarDataBagianPerBulan);
+            
+            $daftarDataBagian[$bagian] = $totalDataBagianPerBulan;
+        }
+        // ---------------------------------------------------------------------------------------------
+
+            return view('dashboard', compact('spr', 'queryTahun','queryBulanBagian','daftarSpr','daftarSprOpen','daftarSprClose','daftarDataBagian','queryBulan' ,'queryBagian','tahuns'));
         }
 }
 

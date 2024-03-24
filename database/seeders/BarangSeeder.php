@@ -25,6 +25,7 @@ class BarangSeeder extends Seeder
                 'no_aset' => 'No Aset ' . $i,
                 'jam_kerusakan' => now()->subMinutes(rand(1, 1440))->format('H:i:s'),
                 'user_peminta' => 'User Peminta ' . $i,
+                'email_user'   => 'user' . $i.'@gmail.com',
                 'status' => ['open', 'close'][rand(0, 1)], // Menambahkan kolom status dengan nilai acak antara 'open' dan 'close'
                 'deskripsi_kerusakan' => 'Deskripsi Kerusakan ' . $i,
                 'site' => ['INKA MADIUN', 'GA BANYUWANGI', 'GA BANDUNG', 'GA JAKARTA', 'QC BANYUWANGI', 'QC BANDUNG', 'QC JAKARTA', 'LAIN NYA'][rand(0, 7)],

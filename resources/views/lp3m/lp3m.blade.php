@@ -359,7 +359,6 @@
     $(document).ready(function() {
     // Event handler untuk input no_spr
     $('#no_spr').keyup(function() {
-        console.log('damn')
         var query = $(this).val();
         if (query != '') {
             var _token = $('input[name="csrf-token"]').val();
@@ -414,38 +413,6 @@
         $(`#SparepartList_${i}`).fadeOut();
     });
 }
-
-
-    // $(document).on('keyup', '#kode_sparepart_2', function() {
-    //     var query = $(this).val();
-    //     if (query != '') {
-    //         var _token = $('input[name="csrf-token"]').val();
-    //         $.ajax({
-    //             url: '/ajax-autocomplete-sparepart-code',
-    //             method: "GET",
-    //             data: {
-    //                 query: query,
-    //                 _token: _token
-    //             },
-    //             success: function(data) {
-    //                 $('#SparepartList_2').fadeIn();
-    //                 $('#SparepartList_2').html(data);
-    //             }
-    //         });
-    //     }
-    // });
-
-    
-
-    // // Event handler untuk menangani klik pada elemen li di #SparepartList_2
-    // $(document).on('click', '#SparepartList_2 li', function() {
-    //     var nama_sparepart = $(this).data('nama');
-    //     var spek_sparepart = $(this).data('spek');
-    //     $('#kode_sparepart_2').val($(this).text());
-    //     $('#nama_sparepart_2').val(nama_sparepart);
-    //     $('#spesifikasi_sparepart_2').val(spek_sparepart);
-    //     $('#SparepartList_2').fadeOut();
-    // });
 
     
 

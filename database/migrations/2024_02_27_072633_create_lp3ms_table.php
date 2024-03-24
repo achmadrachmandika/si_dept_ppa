@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('lp3ms', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('no_spr');
-            $table->string('hasil_pengukuran');
-            $table->string('penyebab_kerusakan');
-            $table->string('alasan');
+            $table->string('hasil_pengukuran')->nullable();
+            $table->string('penyebab_kerusakan')->nullable();
+            $table->string('alasan')->nullable();
             $table->string('nama_personil_1')->nullable();
             $table->string('nama_personil_2')->nullable();
             $table->string('nama_personil_3')->nullable();
@@ -30,7 +30,7 @@ return new class extends Migration
             $table->string('tanggal');
             $table->string('jam_mulai');
             $table->string('jam_selesai');
-            $table->string('penyelesaian');
+            $table->string('penyelesaian')->nullable();
             $table->string('nama_sparepart_1')->nullable();
             $table->string('kode_sparepart_1')->nullable();
             $table->string('spek_sparepart_1')->nullable();

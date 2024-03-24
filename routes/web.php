@@ -22,12 +22,16 @@ Route::get('/', function(){
     return view('/auth/login');
 })->middleware('guest');
 
+
+
 Auth::routes();
 
 Route::middleware('auth')->group(function () {
 
      Route::middleware('role:admin')->get('/laporan/closed', [ClosedController::class, 'index'])->name('laporan.closed');
     Route::middleware('role:admin')->get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+
+    Route::get('/spr-convert', [SprController::class, 'sprConvert']); //buat ubah spr yang udh ada lp3m dari open ke close (cukup 1x aja)
 
 Route::get('/ajax-autocomplete', [lp3mController::class, 'searchCode'])->name('code.search');
 Route::get('/ajax-autocomplete-sparepart-code', [lp3mController::class, 'searchCodeSparepart'])->name('code.search');
