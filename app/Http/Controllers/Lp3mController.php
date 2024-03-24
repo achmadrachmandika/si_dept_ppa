@@ -16,6 +16,8 @@ class Lp3mController extends Controller
                 
                 return view('lp3m.lp3m');
         }
+
+
         public function searchCode(Request $request)
         {
 
@@ -178,7 +180,7 @@ class Lp3mController extends Controller
         {
         
         // Ambil data LP3M
-        $datas = Lp3m::all();
+        $datas = Lp3m::paginate(100);;
         
         // Kirimkan data ke view
         return view('lp3m.riwayat-lp3m', compact('datas'));

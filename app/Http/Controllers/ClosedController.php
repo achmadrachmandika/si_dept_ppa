@@ -112,7 +112,7 @@ class ClosedController extends Controller
             ->leftJoin('lp3ms', 'barangs.nomor_spr', '=', 'lp3ms.no_spr')
             ->leftJoin('lp3ms AS lpr3ms', 'lp3ms.no_spr', '=', 'lpr3ms.no_spr') // Use a unique alias for the second instance
             ->where('barangs.status', 'close')
-            ->get();
+            ->paginate(100); 
 
            $tahuns = Barang::selectRaw('YEAR(tanggal_sprditerima) as tahun')
             ->groupBy('tahun')
