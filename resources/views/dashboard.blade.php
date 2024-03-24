@@ -81,7 +81,7 @@
                       </div>
                     </div>
 
-                    <div class="dropdown">
+                    {{-- <div class="dropdown">
                       <button class="btn btn-outline-secondary dropdown-toggle form-control" type="button" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">
                         <span class="h6">Bulan</span>
                       </button>
@@ -101,7 +101,7 @@
                           <button type='button' class="btn btn-primary form-control"id="checkAllBtnMonth"><span class="h6">Pilih Semua</span></button>
                           <button type='button' class="btn btn-outline-secondary form-control"id="uncheckAllBtnMonth"><span class="h6">Batal</span></button>
                       </div>
-                    </div>
+                    </div> --}}
                     
                     <div class="dropdown">
                       <button class="btn btn-outline-secondary dropdown-toggle form-control" type="button" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">
@@ -141,8 +141,7 @@
                 </form>
               </div>
             </div>
-            <div id="chartContainer" style="height: 350px; width: 100%;"></div>
-            <div id="chartContainer2" style="height: 350px; width: 100%;"></div>
+            <div id="chartContainer" style="height: 600px; width: 100%;"></div>
         </div>
     </div>
 
@@ -175,7 +174,7 @@
                 itemclick: toggleDataSeries
             },
             data: [{
-                    type: "column",
+                    type: "line",
                     name: "Jumlah SPR",
                     legendText: "Jumlah SPR",
                     showInLegend: true,
@@ -195,7 +194,7 @@
                     ]
                 },
                 {
-                    type: "column",
+                    type: "stackedColumn",
                     name: "SPR Proses",
                     legendText: "SPR Proses",
                     showInLegend: true,
@@ -215,7 +214,7 @@
                     ]
                 },
                 {
-                    type: "column",
+                    type: "stackedColumn",
                     name: "SPR Selesai",
                     legendText: "SPR Selesai",
                     showInLegend: true,
@@ -247,59 +246,7 @@
             chart.render();
         }
 
-        var chart2 = new CanvasJS.Chart("chartContainer2", {
-            animationEnabled: true,
-            title: {
-                text: "Data Mesin"
-            },
-            axisX: {
-              interval: 1
-            },
-            axisY: {
-                maximum: 200 
-            },
-            data: [{
-                type: "bar",
-                showInLegend: true,
-                legendText: "Jumlah SPR",
-                color: "gold",
-                dataPoints: [
-                    { label: "Gedung", y: {{$daftarDataBagian['gd']}}, indexLabel: "{y}" },
-                    { label: "Instalasi", y: {{$daftarDataBagian['ins']}}, indexLabel: "{y}" },
-                    { label: "Lampu", y: {{$daftarDataBagian['lampu']}}, indexLabel: "{y}" },
-                    { label: "AC", y: {{$daftarDataBagian['ac']}}, indexLabel: "{y}" },
-                    { label: "Mesin Las", y: {{$daftarDataBagian['wld']}}, indexLabel: "{y}" },
-                    { label: "Mesin", y: {{$daftarDataBagian['ms']}}, indexLabel: "{y}" },
-                    { label: "Crane", y: {{$daftarDataBagian['crn']}}, indexLabel: "{y}" },
-                    { label: "Gardu Listrik", y: {{$daftarDataBagian['gdl']}}, indexLabel: "{y}" },
-                    { label: "Kompresor", y: {{$daftarDataBagian['com']}}, indexLabel: "{y}" },
-                    { label: "Rolling Dor", y: {{$daftarDataBagian['rd']}}, indexLabel: "{y}" },
-                    { label: "Forklift", y: {{$daftarDataBagian['fork']}}, indexLabel: "{y}" },
-                    { label: "Tambangan", y: {{$daftarDataBagian['tbg']}}, indexLabel: "{y}" },
-                    { label: "Mobil Golf", y: {{$daftarDataBagian['golf']}}, indexLabel: "{y}" },
-                    { label: "Pompa", y: {{$daftarDataBagian['kran']}}, indexLabel: "{y}" },
-                    { label: "Temporary Bogie", y: {{$daftarDataBagian['tb']}}, indexLabel: "{y}" },
-                    { label: "Zweiweg", y: {{$daftarDataBagian['zweiweg']}}, indexLabel: "{y}" },
-                    { label: "Elevator", y: {{$daftarDataBagian['lift']}}, indexLabel: "{y}" },
-                    { label: "Viar", y: {{$daftarDataBagian['viar']}}, indexLabel: "{y}" },
-                    { label: "Carlifter", y: {{$daftarDataBagian['crl']}}, indexLabel: "{y}" },
-                    { label: "Bejana Tekan", y: {{$daftarDataBagian['bjn']}}, indexLabel: "{y}" },
-                    { label: "Genset", y: {{$daftarDataBagian['g-']}}, indexLabel: "{y}" },
-                    
-                ]
-            }]
-        });
-
-        chart2.render();
-
-        function toggleDataSeries2(e) {
-            if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
-                e.dataSeries.visible = false;
-            } else {
-                e.dataSeries.visible = true;
-            }
-            chart2.render();
-        }
+        
     }
 </script>
 

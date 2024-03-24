@@ -314,4 +314,18 @@ class SprController extends Controller
 
 
 
+        public function sprConvert()
+        {   
+            // Mendapatkan semua nomor SPR yang ada di tabel lp3m
+            $nomorSprLp3m = lp3m::pluck('no_spr')->toArray();
+        
+            // Mengupdate status menjadi 'close' pada model Barang berdasarkan nomor SPR dari lp3m
+            $jumlahUpdated = Barang::whereIn('nomor_spr', $nomorSprLp3m)->update(['status' => 'close']);
+                
+            // Mengirimkan data ke view atau pesan sukses
+            return $jumlahUpdated > 0 ? "Update berhasil" : "Tidak ada data yang diperbarui";
+        }
+
+
+
 }
