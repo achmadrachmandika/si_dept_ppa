@@ -54,9 +54,9 @@
                             <!-- Mengurutkan data berdasarkan tanggal secara descending -->
                             <tr>
                                 <td>{{ $item->nomor_spr }}</td>
-                                <td style="width: 500px; white-space: nowrap;">{{ $item->nama_barang }}</td>
+                                <td>{{ $item->nama_barang }}</td>
                                 <td>{{ $item->kode_mesin }}</td>
-                                <td style="width: 500px; white-space: nowrap;">{{ $item->lokasi }}</td>
+                                <td>{{ $item->lokasi }}</td>
                                 <td>{{ $item->tanggal_kerusakan }}</td>
                                 <td>{{ $item->no_aset }}</td>
                                 <td>{{ $item->jam_kerusakan }}</td>
@@ -68,10 +68,10 @@
                                 <td>{{ $item->jam_sprditerima }}</td>
                                 <td>{{ $item->hasil_pengukuran }}</td>
                                 <td>{{ $item->penyebab_kerusakan }}</td>
-                                <td style="width: 500px; white-space: nowrap;">{{ $item->tanggal }}</td>
+                                <td>{{ $item->tanggal }}</td>
                                 <td>{{ $item->jam_mulai }}</td>
                                 <td>{{ $item->jam_selesai }}</td>
-                                <td style="width: 500px; white-space: nowrap;">{{ $item->penyelesaian }}</td>
+                                <td>{{ $item->penyelesaian }}</td>
                                 
                                     <td style="width: 500px; white-space: nowrap;">
                                         @for ($i = 1; $i <= 10; $i++) 
@@ -104,10 +104,10 @@
                                             @endfor
                                     </td>
 
-                                    <td style="width: 500px; white-space: nowrap;">
+                                    <td>
                                         @for ($i = 1; $i <= 10; $i++) @if (!empty($item["nama_personil_$i"])) <p><span style="color: red;">{{ $i }}.</span>
                                             {{ $item["nama_personil_$i"] }}</p>
-                                            <br>
+                                           
                                             @endif
                                             @endfor
                                     </td>

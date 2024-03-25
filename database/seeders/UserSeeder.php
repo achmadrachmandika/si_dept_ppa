@@ -11,22 +11,26 @@ class UserSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
+      public function run(): void
     {
-        $admin = User::create([
-            'name' => 'Admin',
-            'email' => 'admin@role.test',
-            'password' => bcrypt('12345')
-        ]);
+        // Membuat admin jika belum ada
+        if (!User::where('email', 'admin@role.test')->exists()) {
+            $admin = User::create([
+                'name' => 'Admin',
+                'email' => 'admin@role.test',
+                'password' => bcrypt('12345')
+            ]);
+            $admin->assignRole('admin');
+        }
 
-        $admin->assignRole('admin');
-
-        //  $user = User::create([
-        //     'name' => 'User',
-        //     'email' => 'user@role.test',
-        //     'password' => bcrypt('12345')
-        // ]);
-
-        // $user->assignRole('user');
+        // Membuat monitoring jika belum ada
+        if (!User::where('email', 'monitor@role.test')->exists()) {
+            $monitoring = User::create([
+                'name' => 'Monitoring',
+                'email' => 'monitor@role.test',
+                'password' => bcrypt('12345')
+            ]);
+            $monitoring->assignRole('monitoring');
+        }
     }
 }

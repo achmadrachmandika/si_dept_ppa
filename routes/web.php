@@ -5,6 +5,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Lp3mController;
 use App\Http\Controllers\SprController;
 use App\Http\Controllers\ClosedController;
+use App\Http\Controllers\SparepartController;
+use App\Http\Controllers\MonitorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -60,6 +62,25 @@ Route::post('/filter-home', [HomeController::class, 'filterHome'])->name('filter
         Route::get('/cetak-pdf/{nomor_spr}', [SprController::class, 'cetak_pdf'])->name('spr_pdf');
 
     });
+
+    Route::middleware('role:admin')->prefix('spareparts')->group(function () {
+    Route::get('/', [SparepartController::class, 'index'])->name('spareparts.index');
+    Route::get('/create', [SparepartController::class, 'create'])->name('spareparts.create');
+    Route::post('/', [SparepartController::class, 'store'])->name('spareparts.store');
+    Route::get('/{id}', [SparepartController::class, 'show'])->name('spareparts.show');
+    Route::get('/{id}/edit', [SparepartController::class, 'edit'])->name('spareparts.edit');
+    Route::put('/{id}', [SparepartController::class, 'update'])->name('spareparts.update');
+    Route::delete('/{id}', [SparepartController::class, 'destroy'])->name('spareparts.destroy');
 });
 
+    
+});
+
+
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::middleware('role:monitoring')->prefix('monitoring')->group(function () {
+    Route::get('/monitor', [MonitorController::class, 'index'])->name('monitoring.monitor');
+    
+});
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout'); // tambahkan route logout untuk pengguna monitoring
