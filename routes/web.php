@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Lp3mController;
 use App\Http\Controllers\SprController;
+use App\Http\Controllers\AsetController;
 use App\Http\Controllers\ClosedController;
 use Illuminate\Support\Facades\Route;
 
@@ -50,16 +51,24 @@ Route::post('/filter-home', [HomeController::class, 'filterHome'])->name('filter
     Route::middleware('role:admin')->delete('/delete-lp3m/{id}', [Lp3mController::class, 'deleteLp3m']);
     // SPR
     Route::middleware('role:admin')->prefix('spr')->group(function () {
-        Route::get('/crud/index', [SprController::class, 'index'])->name('spr.index');
-        Route::get('/create', [SprController::class, 'create'])->name('spr.create');
-        Route::post('/', [SprController::class, 'store'])->name('spr.store');
-        Route::get('/{id}', [SprController::class, 'show'])->name('spr.show');
-        Route::get('/{id}/edit', [SprController::class, 'edit'])->name('spr.edit');
-        Route::put('/{id}', [SprController::class, 'update'])->name('spr.update');
-        Route::delete('/{id}', [SprController::class, 'destroy'])->name('spr.destroy');
-        Route::get('/cetak-pdf/{nomor_spr}', [SprController::class, 'cetak_pdf'])->name('spr_pdf');
+        Route::get('/spr/index', [SprController::class, 'index'])->name('spr.index');
+        Route::get('/spr/create', [SprController::class, 'create'])->name('spr.create');
+        Route::post('/spr/store', [SprController::class, 'store'])->name('spr.store');
+        Route::get('/spr/{id}/show', [SprController::class, 'show'])->name('spr.show');
+        Route::get('/spr/{id}/edit', [SprController::class, 'edit'])->name('spr.edit');
+        Route::put('/spr/{id}/update', [SprController::class, 'update'])->name('spr.update');
+        Route::delete('/spr/{id}/update', [SprController::class, 'destroy'])->name('spr.destroy');
+        Route::get('/spr/cetak-pdf/{nomor_spr}', [SprController::class, 'cetak_pdf'])->name('spr_pdf');
 
     });
+
+    Route::get('/aset/index', [asetController::class, 'index'])->name('aset.index');
+        Route::get('/aset/create', [asetController::class, 'create'])->name('aset.create');
+        Route::post('/aset/store', [asetController::class, 'store'])->name('aset.store');
+        Route::get('/aset/{id}/edit', [asetController::class, 'edit'])->name('aset.edit');
+        Route::put('/aset/{id}/update', [asetController::class, 'update'])->name('aset.update');
+        Route::delete('/aset/{id}/delete', [asetController::class, 'destroy'])->name('aset.destroy');
+        // Route::get('/cetak-pdf/{nomor_aset}', [asetController::class, 'cetak_pdf'])->name('aset_pdf');
 });
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
