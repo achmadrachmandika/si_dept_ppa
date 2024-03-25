@@ -134,9 +134,9 @@
     CanvasJS.addColorSet("bluePastel",
                 [//colorSet Array
 
-                "#008DDA",
-                "#41C9E2",
+                "E72929", //red pastel
                 "#ACE2E1",
+                "#41C9E2",
                 "#F7EEDD",
              
                 ]);
@@ -166,8 +166,8 @@
                     legendText: "Jumlah SPR",
                     showInLegend: true,
                     dataPoints: [
-                        { label: "Januari", y: {{$daftarSpr[1]}}, indexLabel: "{y}" },
-                        { label: "Februari", y: {{$daftarSpr[2]}}, indexLabel: "{y}" },
+                        { label: "Januari", y: {{$daftarSpr[1]}}, indexLabel: "{y}"},
+                        { label: "Februari", y: {{$daftarSpr[2]}}, indexLabel: "{y}", },
                         { label: "Maret", y: {{$daftarSpr[3]}}, indexLabel: "{y}" },
                         { label: "April", y: {{$daftarSpr[4]}}, indexLabel: "{y}" },
                         { label: "Mei", y: {{$daftarSpr[5]}}, indexLabel: "{y}" },
@@ -179,6 +179,26 @@
                         { label: "November", y: {{$daftarSpr[11]}}, indexLabel: "{y}" },
                         { label: "Desember", y: {{$daftarSpr[12]}}, indexLabel: "{y}" }
                     ]
+                },
+                {
+                type: "stackedColumn",
+                name: "SPR Selesai",
+                legendText: "SPR Selesai",
+                showInLegend: true,
+                dataPoints: [
+                { label: "Januari", y: {{$daftarSprClose[1]}}, indexLabel: "{y}" },
+                { label: "Februari", y: {{$daftarSprClose[2]}}, indexLabel: "{y}" },
+                { label: "Maret", y: {{$daftarSprClose[3]}}, indexLabel: "{y}" },
+                { label: "April", y: {{$daftarSprClose[4]}}, indexLabel: "{y}" },
+                { label: "Mei", y: {{$daftarSprClose[5]}}, indexLabel: "{y}" },
+                { label: "Juni", y: {{$daftarSprClose[6]}}, indexLabel: "{y}" },
+                { label: "Juli", y: {{$daftarSprClose[7]}}, indexLabel: "{y}" },
+                { label: "Agustus", y: {{$daftarSprClose[8]}}, indexLabel: "{y}" },
+                { label: "September", y: {{$daftarSprClose[9]}}, indexLabel: "{y}" },
+                { label: "Oktober", y: {{$daftarSprClose[10]}}, indexLabel: "{y}" },
+                { label: "November", y: {{$daftarSprClose[11]}}, indexLabel: "{y}" },
+                { label: "Desember", y: {{$daftarSprClose[12]}}, indexLabel: "{y}" }
+                ]
                 },
                 {
                     type: "stackedColumn",
@@ -199,27 +219,8 @@
                         { label: "November", y: {{$daftarSprOpen[11]}}, indexLabel: "{y}" },
                         { label: "Desember", y: {{$daftarSprOpen[12]}}, indexLabel: "{y}" }
                     ]
-                },
-                {
-                    type: "stackedColumn",
-                    name: "SPR Selesai",
-                    legendText: "SPR Selesai",
-                    showInLegend: true,
-                    dataPoints: [
-                        { label: "Januari", y: {{$daftarSprClose[1]}}, indexLabel: "{y}" },
-                        { label: "Februari", y: {{$daftarSprClose[2]}}, indexLabel: "{y}" },
-                        { label: "Maret", y: {{$daftarSprClose[3]}}, indexLabel: "{y}" },
-                        { label: "April", y: {{$daftarSprClose[4]}}, indexLabel: "{y}" },
-                        { label: "Mei", y: {{$daftarSprClose[5]}}, indexLabel: "{y}" },
-                        { label: "Juni", y: {{$daftarSprClose[6]}}, indexLabel: "{y}" },
-                        { label: "Juli", y: {{$daftarSprClose[7]}}, indexLabel: "{y}" },
-                        { label: "Agustus", y: {{$daftarSprClose[8]}}, indexLabel: "{y}" },
-                        { label: "September", y: {{$daftarSprClose[9]}}, indexLabel: "{y}" },
-                        { label: "Oktober", y: {{$daftarSprClose[10]}}, indexLabel: "{y}" },
-                        { label: "November", y: {{$daftarSprClose[11]}}, indexLabel: "{y}" },
-                        { label: "Desember", y: {{$daftarSprClose[12]}}, indexLabel: "{y}" }
-                    ]
                 }
+                
             ]
         });
         chart.render();

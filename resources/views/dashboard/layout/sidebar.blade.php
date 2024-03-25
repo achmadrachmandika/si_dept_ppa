@@ -33,6 +33,15 @@
                         <p>Laporan SPR Closed</p>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('spareparts.index') }}"
+                        class="nav-link {{ (request()->routeIs('spareparts.index') ? 'active' : '') }}">
+                        <img src="{{ asset('assets/dist/img/closed.jpg') }}" class="nav-icon" alt="Logo">
+                        <p>Sparepart</p>
+                    </a>
+                </li>
+
                 <li class="nav-item">
                     <a href="{{ route('aset.index') }}"
                         class="nav-link {{ (request()->routeIs('aset.index') ? 'active' : '') }}">

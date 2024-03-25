@@ -6,6 +6,8 @@ use App\Http\Controllers\Lp3mController;
 use App\Http\Controllers\SprController;
 use App\Http\Controllers\AsetController;
 use App\Http\Controllers\ClosedController;
+use App\Http\Controllers\SparepartController;
+use App\Http\Controllers\MonitorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -57,7 +59,7 @@ Route::post('/filter-home', [HomeController::class, 'filterHome'])->name('filter
         Route::get('/spr/{id}/show', [SprController::class, 'show'])->name('spr.show');
         Route::get('/spr/{id}/edit', [SprController::class, 'edit'])->name('spr.edit');
         Route::put('/spr/{id}/update', [SprController::class, 'update'])->name('spr.update');
-        Route::delete('/spr/{id}/update', [SprController::class, 'destroy'])->name('spr.destroy');
+        Route::delete('/spr/{id}/delete', [SprController::class, 'destroy'])->name('spr.destroy');
         Route::get('/spr/cetak-pdf/{nomor_spr}', [SprController::class, 'cetak_pdf'])->name('spr_pdf');
 
     });
@@ -69,6 +71,23 @@ Route::post('/filter-home', [HomeController::class, 'filterHome'])->name('filter
         Route::put('/aset/{id}/update', [asetController::class, 'update'])->name('aset.update');
         Route::delete('/aset/{id}/delete', [asetController::class, 'destroy'])->name('aset.destroy');
         // Route::get('/cetak-pdf/{nomor_aset}', [asetController::class, 'cetak_pdf'])->name('aset_pdf');
+
+    Route::middleware('role:admin')->prefix('spareparts')->group(function () {
+    Route::get('/sparepart/index', [SparepartController::class, 'index'])->name('spareparts.index');
+    Route::get('/sparepart/create', [SparepartController::class, 'create'])->name('spareparts.create');
+    Route::post('/sparepart/store', [SparepartController::class, 'store'])->name('spareparts.store');
+    Route::get('/sparepart/{id}/edit', [SparepartController::class, 'edit'])->name('spareparts.edit');
+    Route::put('/sparepart/{id}/update', [SparepartController::class, 'update'])->name('spareparts.update');
+    Route::delete('/sparepart/{id}/delete', [SparepartController::class, 'destroy'])->name('spareparts.destroy');
 });
 
+    
+
+
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::middleware('role:monitoring')->prefix('monitoring')->group(function () {
+    Route::get('/monitor', [MonitorController::class, 'index'])->name('monitoring.monitor');
+    
+});
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout'); // tambahkan route logout untuk pengguna monitoring

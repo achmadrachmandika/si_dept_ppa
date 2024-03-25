@@ -46,6 +46,8 @@ protected function authenticated(Request $request, $user)
 
     if ($user->hasRole('admin')) {
         return redirect()->route('dashboard');
+    }elseif ($user->hasRole('monitoring')) {
+        return redirect()->route('monitoring.monitor');
     }
 
     return redirect()->route('dashboard');
