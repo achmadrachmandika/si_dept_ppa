@@ -177,14 +177,14 @@ class Lp3mController extends Controller
         }
 
         public function riwayatLp3m()
-        {
-        
-        // Ambil data LP3M
-        $datas = Lp3m::paginate(100);;
-        
-        // Kirimkan data ke view
-        return view('lp3m.riwayat-lp3m', compact('datas'));
-        }
+{
+    // Ambil data LP3M dengan data terbaru
+    $datas = Lp3m::latest()->paginate(1000);
+    
+    // Kirimkan data ke view
+    return view('lp3m.riwayat-lp3m', compact('datas'));
+}
+
 
 
 

@@ -123,15 +123,15 @@
                         <thead class="bg-secondary text-white text-center">
                           <tr>
                             <th style="width: 500px; white-space: nowrap;">No SPR</th>
-                            <th style="width: 500px; white-space: nowrap;">Nama</th>
+                            <th>Nama</th>
                             <th style="width: 500px; white-space: nowrap;">Kode Mesin</th>
-                            <th style="width: 500px; white-space: nowrap;">Lokasi</th>
+                            <th>Lokasi</th>
                             <th style="width: 500px; white-space: nowrap;">Status</th>
                             <th style="width: 500px; white-space: nowrap;">No Aset</th>
                             <th style="width: 500px; white-space: nowrap;">Tanggal Kerusakan</th>
                             <th style="width: 500px; white-space: nowrap;">Tanggal SPR diterima</th>
                             <th style="width: 500px; white-space: nowrap;">User Peminta</th>
-                            <th style="width: 500px; white-space: nowrap;">Deskripsi Kerusakan</th>
+                            <th>Deskripsi Kerusakan</th>
                             <th style="width: 500px; white-space: nowrap;">Site</th>
                            <th style="width: 500px; white-space: nowrap;">LP3M</th>
                             <th width="150px">Action</th>
@@ -141,15 +141,15 @@
                           @foreach ($spr as $crud)
                           <tr>
                             <td style="width: 500px; white-space: nowrap;">{{ $crud->nomor_spr }}</td>
-                            <td style="width: 500px; white-space: nowrap;">{{ $crud->nama_barang }}</td>
+                            <td>{{ $crud->nama_barang }}</td>
                             <td style="width: 500px; white-space: nowrap;">{{ $crud->kode_mesin }}</td>
-                            <td style="width: 500px; white-space: nowrap;">{{ $crud->lokasi }}</td>
+                            <td>{{ $crud->lokasi }}</td>
                             <td style="width: 500px; white-space: nowrap;">{{ $crud->status_kerusakan }}</td>
                             <td style="width: 500px; white-space: nowrap;">{{ $crud->no_aset }}</td>
                             <td style="width: 500px; white-space: nowrap;">{{ $crud->tanggal_kerusakan}}</td>
                             <td style="width: 500px; white-space: nowrap;">{{ $crud->tanggal_sprditerima}}</td>
                             <td style="width: 500px; white-space: nowrap;">{{ $crud->user_peminta }}</td>
-                            <td style="width: 500px; white-space: nowrap;">{{ $crud->deskripsi_kerusakan }}</td>
+                            <td>{{ $crud->deskripsi_kerusakan }}</td>
                             <td style="width: 500px; white-space: nowrap;">{{ $crud->site }}</td>
                             <td>
                               <!-- Tambahkan logika untuk menampilkan tanda jika nomor SPR sudah di LP3M -->

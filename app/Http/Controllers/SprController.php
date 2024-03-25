@@ -90,7 +90,7 @@ class SprController extends Controller
      * Display the specified resource.
      */
     public function show($id)
-    {   dd('masuk');
+    {  
         $barang = Barang::where('nomor_spr',$id)->first();
         return view('spr.detail', compact('barang'));
     }

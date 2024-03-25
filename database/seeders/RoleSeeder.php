@@ -11,16 +11,30 @@ class RoleSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
+     public function run(): void
     {
-        Role::create([
-            'name' => 'admin',
-            'guard_name' => 'web',
-        ]);
+        // Membuat role 'admin' jika belum ada
+        if (!Role::where('name', 'admin')->exists()) {
+            Role::create([
+                'name' => 'admin',
+                'guard_name' => 'web',
+            ]);
+        }
 
-        Role::create([
-            'name' => 'user',
-            'guard_name' => 'web',
-        ]);
+        // Membuat role 'user' jika belum ada
+        if (!Role::where('name', 'user')->exists()) {
+            Role::create([
+                'name' => 'user',
+                'guard_name' => 'web',
+            ]);
+        }
+
+        // Membuat role 'monitoring' jika belum ada
+        if (!Role::where('name', 'monitoring')->exists()) {
+            Role::create([
+                'name' => 'monitoring',
+                'guard_name' => 'web',
+            ]);
+        }
     }
 }
