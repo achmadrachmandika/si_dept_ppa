@@ -120,6 +120,35 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="row justify-content-center">
+                        <div class="col-md-12">
+                            <div class="text-center">
+                                <nav aria-label="Page navigation">
+                                    <ul class="pagination">
+                                        @if ($closed->onFirstPage())
+                                        <li class="page-item disabled"><span class="page-link">Previous</span></li>
+                                        @else
+                                        <li class="page-item"><a class="page-link" href="{{ $closed->previousPageUrl() }}"
+                                                rel="prev">Previous</a></li>
+                                        @endif
+                    
+                                        @for ($i = 1; $i <= $closed->lastPage(); $i++)
+                                            <li class="page-item {{ $closed->currentPage() == $i ? 'active' : '' }}">
+                                                <a class="page-link" href="{{ $closed->url($i) }}">{{ $i }}</a>
+                                            </li>
+                                            @endfor
+                    
+                                            @if ($closed->hasMorePages())
+                                            <li class="page-item"><a class="page-link" href="{{ $closed->nextPageUrl() }}"
+                                                    rel="next">Next</a></li>
+                                            @else
+                                            <li class="page-item disabled"><span class="page-link">Next</span></li>
+                                            @endif
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

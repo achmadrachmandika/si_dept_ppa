@@ -80,30 +80,7 @@
                         <button type='button' class="btn btn-outline-secondary form-control"id="uncheckAllBtnYear"><span class="h6">Batal</span></button>
                       </div>
                     </div>
-
-                    {{-- <div class="dropdown">
-                      <button class="btn btn-outline-secondary dropdown-toggle form-control" type="button" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">
-                        <span class="h6">Bulan</span>
-                      </button>
-                      <div class="dropdown-content-month" aria-labelledby="dropdownMenuButton">
-                          <label class="h6"><input type="checkbox" name="bulan[]" value="january" {{ in_array('january', $queryBulanBagian) ? 'checked' : '' }}> Januari</label>
-                          <label class="h6"><input type="checkbox" name="bulan[]" value="february" {{ in_array('february', $queryBulanBagian) ? 'checked' : '' }}> Februari</label>
-                          <label class="h6"><input type="checkbox" name="bulan[]" value="march" {{ in_array('march', $queryBulanBagian) ? 'checked' : '' }}> Maret</label>
-                          <label class="h6"><input type="checkbox" name="bulan[]" value="april" {{ in_array('april', $queryBulanBagian) ? 'checked' : '' }}> April</label>
-                          <label class="h6"><input type="checkbox" name="bulan[]" value="may" {{ in_array('may', $queryBulanBagian) ? 'checked' : '' }}> Mei</label>
-                          <label class="h6"><input type="checkbox" name="bulan[]" value="june" {{ in_array('june', $queryBulanBagian) ? 'checked' : '' }}> Juni</label>
-                          <label class="h6"><input type="checkbox" name="bulan[]" value="july" {{ in_array('july', $queryBulanBagian) ? 'checked' : '' }}> Juli</label>
-                          <label class="h6"><input type="checkbox" name="bulan[]" value="august" {{ in_array('august', $queryBulanBagian) ? 'checked' : '' }}> Agustus</label>
-                          <label class="h6"><input type="checkbox" name="bulan[]" value="september" {{ in_array('september', $queryBulanBagian) ? 'checked' : '' }}> September</label>
-                          <label class="h6"><input type="checkbox" name="bulan[]" value="october" {{ in_array('october', $queryBulanBagian) ? 'checked' : '' }}> Oktober</label>
-                          <label class="h6"><input type="checkbox" name="bulan[]" value="november" {{ in_array('november', $queryBulanBagian) ? 'checked' : '' }}> November</label>
-                          <label class="h6"><input type="checkbox" name="bulan[]" value="december" {{ in_array('december', $queryBulanBagian) ? 'checked' : '' }}> Desember</label>
-                          <button type='button' class="btn btn-primary form-control"id="checkAllBtnMonth"><span class="h6">Pilih Semua</span></button>
-                          <button type='button' class="btn btn-outline-secondary form-control"id="uncheckAllBtnMonth"><span class="h6">Batal</span></button>
-                      </div>
-                    </div> --}}
-                    
-                    <div class="dropdown">
+                     <div class="dropdown">
                       <button class="btn btn-outline-secondary dropdown-toggle form-control" type="button" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">
                         <span class="h6">Bagian</span>
                       </button>
@@ -123,7 +100,7 @@
                           <label class="h6"><input type="checkbox" name="bagian[]" value="golf_car" {{ in_array('golf', $queryBagian) ? 'checked' : '' }}> Mobil Golf</label>
                           <label class="h6"><input type="checkbox" name="bagian[]" value="pompa" {{ in_array('kran', $queryBagian) ? 'checked' : '' }}> Pompa</label>
                           <label class="h6"><input type="checkbox" name="bagian[]" value="temporary_bogie" {{ in_array('tb', $queryBagian) ? 'checked' : '' }}> Temporary Bogie</label>
-                          <label class="h6"><input type="checkbox" name="bagian[]" value="zweiweg" {{ in_array('zweiweg', $queryBagian) ? 'checked' : '' }}> Zweiweg</label>
+                          <label class="h6"><input type="checkbox" name="bagian[]" value="zeiweg" {{ in_array('zeiweg', $queryBagian) ? 'checked' : '' }}> Zeiweg</label>
                           <label class="h6"><input type="checkbox" name="bagian[]" value="elevator" {{ in_array('lift', $queryBagian) ? 'checked' : '' }}> Elevator</label>
                           <label class="h6"><input type="checkbox" name="bagian[]" value="viar" {{ in_array('viar', $queryBagian) ? 'checked' : '' }}> Viar</label>
                           <label class="h6"><input type="checkbox" name="bagian[]" value="carlifter" {{ in_array('crl', $queryBagian) ? 'checked' : '' }}> Carlifter</label>
@@ -265,10 +242,10 @@
   document.addEventListener("DOMContentLoaded", function() {
       var checkAllBtnYear = document.getElementById('checkAllBtnYear');
       var uncheckAllBtnYear = document.getElementById('uncheckAllBtnYear');
-      var checkAllBtnMonth = document.getElementById('checkAllBtnMonth');
-      var uncheckAllBtnMonth = document.getElementById('uncheckAllBtnMonth');
       var checkAllBtnDept = document.getElementById('checkAllBtnDept');
       var uncheckAllBtnDept = document.getElementById('uncheckAllBtnDept');
+      var checkAllBtnMonth = document.getElementById('checkAllBtnMonth');
+      var uncheckAllBtnMonth = document.getElementById('uncheckAllBtnMonth');
       var checkAllBtnStatus = document.getElementById('checkAllBtnStatus');
       var uncheckAllBtnStatus = document.getElementById('uncheckAllBtnStatus');
     
@@ -281,6 +258,20 @@
     
       uncheckAllBtnYear.addEventListener('click', function() {
         var checkboxes = document.querySelectorAll('.dropdown-content-year input[type="checkbox"]');
+        checkboxes.forEach(function(checkbox) {
+          checkbox.checked = false;
+        });
+      });
+
+      checkAllBtnDept.addEventListener('click', function() {
+        var checkboxes = document.querySelectorAll('.dropdown-content-dept input[type="checkbox"]');
+        checkboxes.forEach(function(checkbox) {
+          checkbox.checked = true;
+        });
+      });
+    
+      uncheckAllBtnDept.addEventListener('click', function() {
+        var checkboxes = document.querySelectorAll('.dropdown-content-dept input[type="checkbox"]');
         checkboxes.forEach(function(checkbox) {
           checkbox.checked = false;
         });
@@ -300,20 +291,6 @@
         });
       });
 
-        checkAllBtnDept.addEventListener('click', function() {
-        var checkboxes = document.querySelectorAll('.dropdown-content-dept input[type="checkbox"]');
-        checkboxes.forEach(function(checkbox) {
-          checkbox.checked = true;
-        });
-      });
-    
-      uncheckAllBtnDept.addEventListener('click', function() {
-        var checkboxes = document.querySelectorAll('.dropdown-content-dept input[type="checkbox"]');
-        checkboxes.forEach(function(checkbox) {
-          checkbox.checked = false;
-        });
-      });
-
       checkAllBtnStatus.addEventListener('click', function() {
         var checkboxes = document.querySelectorAll('.dropdown-content-status input[type="checkbox"]');
         checkboxes.forEach(function(checkbox) {
@@ -327,8 +304,7 @@
           checkbox.checked = false;
         });
       });
-      
-    });
+  });
 </script>
 
 

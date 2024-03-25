@@ -75,6 +75,38 @@
                                 </tr>
                                 @endforeach
                                 <!-- Data absensi lainnya bisa ditambahkan di sini -->
+                                <!-- Bagian pagination -->
+                                <tr>
+                                    <td colspan="7" class="text-center">
+                                        <nav aria-label="Page navigation">
+                                            <ul class="pagination justify-content-center">
+                                                {{-- Tautan Previous --}}
+                                                @if ($datas->onFirstPage())
+                                                <li class="page-item disabled"><span class="page-link">Previous</span></li>
+                                                @else
+                                                <li class="page-item"><a class="page-link" href="{{ $datas->previousPageUrl() }}"
+                                                        rel="prev">Previous</a></li>
+                                                @endif
+                                
+                                                {{-- Tautan Pagination --}}
+                                                @for ($i = 1; $i <= $datas->lastPage(); $i++)
+                                                    <li class="page-item {{ $datas->currentPage() == $i ? 'active' : '' }}">
+                                                        <a class="page-link" href="{{ $datas->url($i) }}">{{ $i }}</a>
+                                                    </li>
+                                                    @endfor
+                                
+                                                    {{-- Tautan Next --}}
+                                                    @if ($datas->hasMorePages())
+                                                    <li class="page-item"><a class="page-link" href="{{ $datas->nextPageUrl() }}" rel="next">Next</a>
+                                                    </li>
+                                                    @else
+                                                    <li class="page-item disabled"><span class="page-link">Next</span></li>
+                                                    @endif
+                                            </ul>
+                                        </nav>
+                                    </td>
+                                </tr>
+
                             </tbody>
                           </table>
                         </div>
