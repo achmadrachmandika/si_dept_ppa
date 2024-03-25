@@ -43,6 +43,14 @@
                 </li>
 
                 <li class="nav-item">
+                    <a href="{{ route('aset.index') }}"
+                        class="nav-link {{ (request()->routeIs('aset.index') ? 'active' : '') }}">
+                        <img src="{{ asset('assets/dist/img/closed.jpg') }}" class="nav-icon" alt="Logo">
+                        <p>Master Data Aset</p>
+                    </a>
+                </li>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('logout') }}" class="nav-link"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         <i class="nav-icon fas fa-sign-out-alt"></i>
