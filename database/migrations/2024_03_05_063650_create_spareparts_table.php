@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('kode_material')->primary(); // kode_material menjadi primary key
             $table->string('nama_material');
             $table->string('spek_material');
+            $table->timestamps();
         });
     }
 

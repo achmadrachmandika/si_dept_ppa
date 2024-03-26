@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Barang;
+use Carbon\Carbon;
 use App\Models\lp3m;
 use Illuminate\Support\Facades\DB; 
 use PDF;
@@ -177,13 +178,25 @@ class Lp3mController extends Controller
         }
 
         public function riwayatLp3m()
-{
-    // Ambil data LP3M dengan data terbaru
-    $datas = Lp3m::latest()->paginate(1000);
-    
-    // Kirimkan data ke view
-    return view('lp3m.riwayat-lp3m', compact('datas'));
-}
+        {
+        // Ambil data LP3M dengan data terbaru
+
+        $tahuns = Lp3m::selectRaw('YEAR(tanggal) as tahun')
+                ->groupBy('tahun')
+                ->pluck('tahun');
+
+                $queryTahun = [];
+                $queryBulan = [];
+                $queryBagian = [];
+                $queryStatus= [];
+        
+        
+        // Mengambil data SPR dari model Lp3m
+        $lp3ms = Lp3m::orderBy('created_at', 'desc')->paginate(1000);
+        
+        return view('lp3m.riwayat-lp3m', compact('lp3ms', 'queryTahun','queryBulan','queryBagian','queryStatus','tahuns'));
+        }
+
 
 
 
@@ -246,6 +259,63 @@ class Lp3mController extends Controller
                 lp3m::where('no_spr', $id)->delete();
                 Barang::where('nomor_spr', $id)->update(['status_lp3m' => 'Open']); 
                 return redirect('/riwayat-lp3m')->with('message-delete',"LP3M Untuk SPR No. " . $id . " Berhasil Dihapus");
+        }
+
+        public function filterLp3m(Request $request)
+        {   
+            
+        //         $tahuns = Lp3m::selectRaw('DATE_FORMAT(tanggal, "%Y-%m-%d") as tanggal_formatted')
+        //     ->groupBy('tanggal_formatted')
+        //     ->pluck('tanggal_formatted');
+
+            $tahuns = Lp3m::selectRaw('YEAR(tanggal) as tahun')
+            ->groupBy('tahun')
+            ->pluck('tahun');
+
+        //     dd($tahuns);
+            $tahunArray = Lp3m::selectRaw('YEAR(tanggal) as tahun')
+            ->groupBy('tahun')
+            ->pluck('tahun')
+            ->toArray();
+            $daftarBulan = [
+                'january', 'february', 'march', 'april', 'may', 'june',
+                'july', 'august', 'september', 'october', 'november', 'december'
+            ];
+            //-----------------------------------------------------FILTER TAHUN-----------------------------------------------------//
+            $queryTahun = $request->tahun;
+            // Konversi data ke integer
+            $queryTahun = collect($queryTahun)->map(function ($item) {
+                return (int) $item;
+            })->toArray();
+
+
+            // Jika $queryTahun kosong, atur nilai menjadi array kosong
+            if ($queryTahun == null) {
+                $queryTahun = $tahunArray;
+            }
+
+            //---------------------------------------------------------------------------------------------------------------------//
+
+            //-----------------------------------------------------FILTER BULAN-----------------------------------------------------//
+            $queryBulan = $request->bulan;
+            if($queryBulan == null){
+                $queryBulan = $daftarBulan;
+            }
+             // Mengambil nilai 'date' dari request
+            // Mengonversi nama bulan menjadi nilai bulan dalam format angka
+            $bulan = collect($queryBulan)->map(function ($item) {
+                return Carbon::parse($item)->month;
+            })->toArray();
+
+            //---------------------------------------------------------------------------------------------------------------------//
+            
+            
+            // Mengambil data Lp3m dengan tanggal_spr dibuat pada bulan dan tahun yang spesifik
+            $lp3ms = Lp3m::whereIn(DB::raw('MONTH(tanggal)'), $bulan)
+            ->whereIn(DB::raw('YEAR(tanggal)'), $queryTahun)
+            ->get();
+
+            return view('lp3m.riwayat-lp3m', compact('lp3ms', 'queryTahun','queryBulan','tahuns'));
         }
 
 

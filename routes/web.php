@@ -41,6 +41,7 @@ Route::get('/ajax-autocomplete-sparepart-code', [lp3mController::class, 'searchC
 Route::get('/ajax-autocomplete-machine-code', [SprController::class, 'searchCodeMachine'])->name('machineCode.search');
 
 Route::post('/filter-spr', [SprController::class, 'filterSPR'])->name('filter-spr');
+Route::post('/filter-lp3m', [lp3mController::class, 'filterLp3m'])->name('filter-lp3m');
 Route::post('/filter-home', [HomeController::class, 'filterHome'])->name('filter-home');
 
     // LP3M
@@ -79,9 +80,8 @@ Route::post('/filter-home', [HomeController::class, 'filterHome'])->name('filter
     Route::get('/sparepart/{id}/edit', [SparepartController::class, 'edit'])->name('spareparts.edit');
     Route::put('/sparepart/{id}/update', [SparepartController::class, 'update'])->name('spareparts.update');
     Route::delete('/sparepart/{id}/delete', [SparepartController::class, 'destroy'])->name('spareparts.destroy');
+    });
 });
-
-    
 
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
@@ -90,4 +90,3 @@ Route::middleware('role:monitoring')->prefix('monitoring')->group(function () {
     Route::get('/monitor', [MonitorController::class, 'index'])->name('monitoring.monitor');
     
 });
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout'); // tambahkan route logout untuk pengguna monitoring
