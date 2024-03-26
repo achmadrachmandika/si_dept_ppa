@@ -1,17 +1,25 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="row justify-content-center">
-    <div class="col-lg-10">
-        <div class="card mt-4">
-            <div class="card-body">
-                <h2 class="font-weight-bold">DAFTAR SPAREPART</h2>
-                <div class="d-flex">
-                    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Kode Material.."
-                        class="form-control" title="Type in a name">
-                    <button onclick="window.location.href='{{ route('spareparts.create') }}'"
-                        class="btn btn-success ml-1" type="button"><span class="h6">Tambah</span></button>
-                </div>
+<title>INKA | PPA | SPAREPART</title>
+<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+<script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+
+<script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+<div class="">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card" style="margin:0px 20px;padding:20px">
+                <div class="card-header">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h2 class="font-weight-bold">DAFTAR SPAREPART</h2>
+                        <div class="d-flex">
+                            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Kode Material.."
+                                class="form-control" title="Type in a name">
+                            <button onclick="window.location.href='{{ route('spareparts.create') }}'"
+                                class="btn btn-success ml-1" type="button"><span class="h6">Tambah</span></button>
+                        </div>
+                    </div>
 
                 @if ($message = Session::get('success'))
                 <div class="alert alert-success mt-3">
@@ -19,10 +27,10 @@
                 </div>
                 @endif
 
-                <table id="myTable" class="table table-striped mt-4">
+                <table id="myTable" class="table table-striped mt-4" style="text-align: center;">
                     <thead>
                         <tr>
-                            <th>Kode Material</th>
+                            <th style="width: 50px; white-space: nowrap;">Kode Material</th>
                             <th>Nama Material</th>
                             <th>Spek Material</th>
                             <th style="width: 280px; text-align: center;">Action</th>

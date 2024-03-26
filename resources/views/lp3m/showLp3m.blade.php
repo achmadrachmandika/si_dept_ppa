@@ -112,8 +112,10 @@
                         
                             <div class="col-4">
                                 <div class="row">
-                                    <div class="col bordered text-center" style="height: 80px;">
+                                    <div class="col bordered text-center" style="height: 120px;">
                                         <h6>Departemen <br> Pengendalian & Pemeliharaan Aset</h6>
+                                        <br><br>
+                                        <h6>SM</h6>
                                     </div>
                                 </div>
                                 <div class="row">

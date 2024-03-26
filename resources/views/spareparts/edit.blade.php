@@ -22,7 +22,7 @@
                     </div>
                     @endif
 
-                    <form method="post" action="{{ route('spareparts.update', $sparepart->kode_material) }}">
+                    <form method="post" action="{{ route('spareparts.update', $sparepart->kode_material) }} ">
                         @csrf
                         @method('PUT')
 
@@ -31,7 +31,7 @@
                                 <div class="form-group">
                                     <strong>Kode Material:</strong>
                                     <input type="text" name="kode_material" value="{{ $sparepart->kode_material }}"
-                                        class="form-control" placeholder="Kode Material">
+                                        class="form-control" placeholder="Kode Material" readonly>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -44,8 +44,8 @@
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <strong>Spek Material:</strong>
-                                    <textarea class="form-control" style="height:150px" name="spek_material"
-                                        placeholder="Spek Material">{{ $sparepart->spek_material }}</textarea>
+                                    <input class="form-control" style="height:150px" name="spek_material" placeholder="Spek Material"
+                                        value="{{ $sparepart->spek_material }}">
                                 </div>
                             </div>
                             <div class="row">
