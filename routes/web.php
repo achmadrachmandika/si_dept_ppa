@@ -81,7 +81,6 @@ Route::post('/filter-closed', [ClosedController::class, 'filterClosed'])->name('
     Route::delete('/sparepart/{id}/delete', [SparepartController::class, 'destroy'])->name('spareparts.destroy');
     });
 });
-});
 
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
