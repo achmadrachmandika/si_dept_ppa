@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('nama_unit')->nullable();
             $table->string('no_aset')->nullable();
             $table->string('tipe')->nullable();
+            $table->timestamps();
 
         });
     }
