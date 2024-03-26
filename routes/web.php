@@ -25,13 +25,11 @@ Route::get('/', function(){
     return view('/auth/login');
 })->middleware('guest');
 
-
-
 Auth::routes();
 
 Route::middleware('auth')->group(function () {
 
-     Route::middleware('role:admin')->get('/laporan/closed', [ClosedController::class, 'index'])->name('laporan.closed');
+    Route::middleware('role:admin')->get('/laporan/closed', [ClosedController::class, 'index'])->name('laporan.closed');
     Route::middleware('role:admin')->get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
 
     Route::get('/spr-convert', [SprController::class, 'sprConvert']); //buat ubah spr yang udh ada lp3m dari open ke close (cukup 1x aja)
@@ -42,6 +40,7 @@ Route::get('/ajax-autocomplete-machine-code', [SprController::class, 'searchCode
 
 Route::post('/filter-spr', [SprController::class, 'filterSPR'])->name('filter-spr');
 Route::post('/filter-home', [HomeController::class, 'filterHome'])->name('filter-home');
+Route::post('/filter-closed', [ClosedController::class, 'filterClosed'])->name('filter-closed');
 
     // LP3M
     Route::middleware('role:admin')->get('/lp3m', [Lp3mController::class, 'index'])->name('lp3m');
@@ -63,14 +62,14 @@ Route::post('/filter-home', [HomeController::class, 'filterHome'])->name('filter
         Route::get('/spr/cetak-pdf/{nomor_spr}', [SprController::class, 'cetak_pdf'])->name('spr_pdf');
 
     });
-
-    Route::get('/aset/index', [asetController::class, 'index'])->name('aset.index');
+        Route::middleware('role:admin')->prefix('spr')->group(function () {
+        Route::get('/aset/index', [asetController::class, 'index'])->name('aset.index');
         Route::get('/aset/create', [asetController::class, 'create'])->name('aset.create');
         Route::post('/aset/store', [asetController::class, 'store'])->name('aset.store');
         Route::get('/aset/{id}/edit', [asetController::class, 'edit'])->name('aset.edit');
         Route::put('/aset/{id}/update', [asetController::class, 'update'])->name('aset.update');
         Route::delete('/aset/{id}/delete', [asetController::class, 'destroy'])->name('aset.destroy');
-        // Route::get('/cetak-pdf/{nomor_aset}', [asetController::class, 'cetak_pdf'])->name('aset_pdf');
+        });
 
     Route::middleware('role:admin')->prefix('spareparts')->group(function () {
     Route::get('/sparepart/index', [SparepartController::class, 'index'])->name('spareparts.index');
@@ -80,14 +79,11 @@ Route::post('/filter-home', [HomeController::class, 'filterHome'])->name('filter
     Route::put('/sparepart/{id}/update', [SparepartController::class, 'update'])->name('spareparts.update');
     Route::delete('/sparepart/{id}/delete', [SparepartController::class, 'destroy'])->name('spareparts.destroy');
 });
-
-    
-
-
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-
-Route::middleware('role:monitoring')->prefix('monitoring')->group(function () {
-    Route::get('/monitor', [MonitorController::class, 'index'])->name('monitoring.monitor');
-    
 });
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout'); // tambahkan route logout untuk pengguna monitoring
+
+    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+    Route::middleware('role:monitoring')->prefix('monitoring')->group(function () {
+    Route::get('/monitor', [MonitorController::class, 'index'])->name('monitoring.monitor');
+
+});
