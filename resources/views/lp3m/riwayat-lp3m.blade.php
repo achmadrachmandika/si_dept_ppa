@@ -2,6 +2,7 @@
 
 @section('content')
 <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+<title>INKA | PPA | LP3M</title>
 <section>
     <div class="">
         <div class="row">
@@ -76,13 +77,13 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        @elseif (session('message-delete'))
-                        <div class="row">
-                            <div class="col">
-                                <div class="alert-con">
-                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                        <label>{{ session('message-delete') }}</label>
+                            @elseif (session('message-delete'))
+                            <div class="row">
+                                <div class="col">
+                                    <div class="alert-con">
+                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                            <label>{{ session('message-delete') }}</label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -158,13 +159,11 @@
                                     </ul>
                                 </nav> --}}
                         </div>
-    
                     </div>
-                  </div>
-          </div>
+                </div>
+            </div>
         </div>
-      </div>
-</div>
+    </div>
 
     <script>
         function myFunction() {

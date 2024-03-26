@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+<title>INKA | PPA | SPR</title>
 <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
 <div class="">
     <div class="row">
@@ -76,7 +76,7 @@
                                   <label class="h6"><input type="checkbox" name="bagian[]" value="golf_car" {{ in_array('golf', $queryBagian) ? 'checked' : '' }}> Mobil Golf</label>
                                   <label class="h6"><input type="checkbox" name="bagian[]" value="pompa" {{ in_array('kran', $queryBagian) ? 'checked' : '' }}> Pompa</label>
                                   <label class="h6"><input type="checkbox" name="bagian[]" value="temporary_bogie" {{ in_array('tb', $queryBagian) ? 'checked' : '' }}> Temporary Bogie</label>
-                                  <label class="h6"><input type="checkbox" name="bagian[]" value="zeiweg" {{ in_array('zeiweg', $queryBagian) ? 'checked' : '' }}> Zeiweg</label>
+                                  <label class="h6"><input type="checkbox" name="bagian[]" value="zweiweg" {{ in_array('zweiweg', $queryBagian) ? 'checked' : '' }}> Zeiweg</label>
                                   <label class="h6"><input type="checkbox" name="bagian[]" value="elevator" {{ in_array('lift', $queryBagian) ? 'checked' : '' }}> Elevator</label>
                                   <label class="h6"><input type="checkbox" name="bagian[]" value="viar" {{ in_array('viar', $queryBagian) ? 'checked' : '' }}> Viar</label>
                                   <label class="h6"><input type="checkbox" name="bagian[]" value="carlifter" {{ in_array('crl', $queryBagian) ? 'checked' : '' }}> Carlifter</label>

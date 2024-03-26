@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+<title>INKA | PPA | ASET</title>
 <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
 
@@ -14,7 +14,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <h2 class="font-weight-bold">Aset</h2>
                         <div class="d-flex">
-                          <input type="text" id="myInput" onkeyup="myFunction()" placeholder="No SPR.." class="form-control"
+                          <input type="text" id="myInput" onkeyup="myFunction()" placeholder="No Unit.." class="form-control"
                             title="Type in a name">
                           <button onclick="window.location.href='{{ route('aset.create') }}'" class="btn btn-success ml-1" type="button"><span
                               class="h6">Tambah</span></button>
@@ -32,7 +32,7 @@
                     </div>
                     
                     @endif
-                    <div class="table-responsive">
+                    <div class="table-responsive" style="text-align: center;">
                       <table id="myTable" class="table table-striped">
                         <thead class="bg-secondary text-white text-center">
                           <tr>
