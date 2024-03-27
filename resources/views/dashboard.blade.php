@@ -142,7 +142,7 @@
           colorSet: "bluePastel",
             animationEnabled: true,
             title: {
-                text: "Data SPR " + "{!! implode(', ', $queryBagian) !!}",
+                text: "Data SPR ",
             },
             axisY: {
                 title: "Jumlah SPR",

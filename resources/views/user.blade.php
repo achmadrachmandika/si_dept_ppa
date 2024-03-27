@@ -7,8 +7,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header text-center">
-                    <h2 class="font-weight-bold" style="opacity: 0.5; font-family: 'Open Sans', sans-serif;">Data
-                        Peminta SPR</h2>
+                    <h2 class="font-weight-bold" style="opacity: 0.5; font-family: 'Open Sans', sans-serif;">Daftar User</h2>
                 </div>
                 <div class="card-body">
                     @if ($message = Session::get('success'))

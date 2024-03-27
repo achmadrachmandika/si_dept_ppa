@@ -74,6 +74,8 @@ class SprController extends Controller
 
      $data['status'] = 'open';
      $data['email_user'] = $user->email;
+     $data['tipe'] = $request->tipe;
+
     // Membuat entri barang dengan data yang telah disiapkan
     Barang::create($data);
 
@@ -82,7 +84,7 @@ class SprController extends Controller
     ->value('nomor_spr'); // Mengambil nilai kolom nomor_spr dari entri terbaru
         
             // Kirim email notifikasi SPR
-    Mail::to('satriiadaffa@gmail.com')->send(new SPRMailer($user->name, $user->email, $noSprUser));
+    Mail::to($user->email)->send(new SPRMailer($user->name, $user->email, $noSprUser));
 
 
 
@@ -179,7 +181,7 @@ class SprController extends Controller
                         foreach ($data as $row) {
                                 $output .= '
                                 <a href="#" style="text-decoration:none; color:black;">
-                                    <li data-nama="' . $row->no_aset . '" style="background-color: white; list-style-type: none; cursor: pointer; padding-left:10px" onmouseover="this.style.backgroundColor=\'grey\'" onmouseout="this.style.backgroundColor=\'initial\'">'
+                                    <li data-tipe="'.$row->tipe .'" data-nama="' . $row->no_aset . '" style="background-color: white; list-style-type: none; cursor: pointer; padding-left:10px" onmouseover="this.style.backgroundColor=\'grey\'" onmouseout="this.style.backgroundColor=\'initial\'">'
                                         . $row->no_unit .
                                     '</li>
                                 </a>
