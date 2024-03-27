@@ -70,11 +70,11 @@
                         <span class="h6">Tahun</span>
                       </button>
                       <div class="dropdown-content-year" aria-labelledby="dropdownMenuButton">
+                        <button type='button' class="btn btn-primary form-control"id="checkAllBtnYear"><span class="h6">Pilih Semua</span></button>
+                        <button type='button' class="btn btn-outline-secondary form-control mt-1"id="uncheckAllBtnYear"><span class="h6">Batal</span></button>
                           @foreach($tahuns as $tahun)
                           <label class="h6"><input type="checkbox" name="tahun[]" value="{{$tahun}}" {{ in_array($tahun, $queryTahun) ? 'checked' : '' }}>{{$tahun}}</label>
                           @endforeach
-                        <button type='button' class="btn btn-primary form-control"id="checkAllBtnYear"><span class="h6">Pilih Semua</span></button>
-                        <button type='button' class="btn btn-outline-secondary form-control"id="uncheckAllBtnYear"><span class="h6">Batal</span></button>
                       </div>
                     </div>
                      <div class="dropdown">
@@ -82,29 +82,11 @@
                         <span class="h6">Bagian</span>
                       </button>
                       <div class="dropdown-content-dept" aria-labelledby="dropdownMenuButton">
-                          <label class="h6"><input type="checkbox" name="bagian[]" value="gedung" {{ in_array('gd', $queryBagian) ? 'checked' : '' }}> Gedung</label>
-                          <label class="h6"><input type="checkbox" name="bagian[]" value="instalasi" {{ in_array('ins', $queryBagian) ? 'checked' : '' }}> Instalasi</label>
-                          <label class="h6"><input type="checkbox" name="bagian[]" value="lampu" {{ in_array('lampu', $queryBagian) ? 'checked' : '' }}> Lampu</label>
-                          <label class="h6"><input type="checkbox" name="bagian[]" value="ac" {{ in_array('ac', $queryBagian) ? 'checked' : '' }}> AC</label>
-                          <label class="h6"><input type="checkbox" name="bagian[]" value="mesin_las" {{ in_array('wld', $queryBagian) ? 'checked' : '' }}> Mesin Las</label>
-                          <label class="h6"><input type="checkbox" name="bagian[]" value="mesin" {{ in_array('ms', $queryBagian) ? 'checked' : '' }}> Mesin</label>
-                          <label class="h6"><input type="checkbox" name="bagian[]" value="crane" {{ in_array('crn', $queryBagian) ? 'checked' : '' }}> Crane</label>
-                          <label class="h6"><input type="checkbox" name="bagian[]" value="gardu_listrik" {{ in_array('gdl', $queryBagian) ? 'checked' : '' }}> Gardu Listrik</label>
-                          <label class="h6"><input type="checkbox" name="bagian[]" value="kompresor" {{ in_array('com', $queryBagian) ? 'checked' : '' }}> Kompresor</label>
-                          <label class="h6"><input type="checkbox" name="bagian[]" value="rolling_door" {{ in_array('rd', $queryBagian) ? 'checked' : '' }}> Rolling Door</label>
-                          <label class="h6"><input type="checkbox" name="bagian[]" value="forklift" {{ in_array('fork', $queryBagian) ? 'checked' : '' }}> Forklift</label>
-                          <label class="h6"><input type="checkbox" name="bagian[]" value="tambangan" {{ in_array('tbg', $queryBagian) ? 'checked' : '' }}> Tambangan</label>
-                          <label class="h6"><input type="checkbox" name="bagian[]" value="golf_car" {{ in_array('golf', $queryBagian) ? 'checked' : '' }}> Mobil Golf</label>
-                          <label class="h6"><input type="checkbox" name="bagian[]" value="pompa" {{ in_array('kran', $queryBagian) ? 'checked' : '' }}> Pompa</label>
-                          <label class="h6"><input type="checkbox" name="bagian[]" value="temporary_bogie" {{ in_array('tb', $queryBagian) ? 'checked' : '' }}> Temporary Bogie</label>
-                          <label class="h6"><input type="checkbox" name="bagian[]" value="zweiweg" {{ in_array('zweiweg', $queryBagian) ? 'checked' : '' }}> Zeiweg</label>
-                          <label class="h6"><input type="checkbox" name="bagian[]" value="elevator" {{ in_array('lift', $queryBagian) ? 'checked' : '' }}> Elevator</label>
-                          <label class="h6"><input type="checkbox" name="bagian[]" value="viar" {{ in_array('viar', $queryBagian) ? 'checked' : '' }}> Viar</label>
-                          <label class="h6"><input type="checkbox" name="bagian[]" value="carlifter" {{ in_array('crl', $queryBagian) ? 'checked' : '' }}> Carlifter</label>
-                          <label class="h6"><input type="checkbox" name="bagian[]" value="bejana_tekan" {{ in_array('bjn', $queryBagian) ? 'checked' : '' }}> Bejana Tekan</label>
-                          <label class="h6"><input type="checkbox" name="bagian[]" value="genset" {{ in_array('g-', $queryBagian) ? 'checked' : '' }}> Genset</label>
-                          <button type='button' class="btn btn-primary form-control"id="checkAllBtnDept"><span class="h6">Pilih Semua</span></button>
-                          <button type='button' class="btn btn-outline-secondary form-control"id="uncheckAllBtnDept"><span class="h6">Batal</span></button>
+                        <button type='button' class="btn btn-primary form-control"id="checkAllBtnDept"><span class="h6">Pilih Semua</span></button>
+                        <button type='button' class="btn btn-outline-secondary form-control mt-1"id="uncheckAllBtnDept"><span class="h6">Batal</span></button>
+                        @foreach($daftarAset as $aset)
+                        <label class="h6"><input type="checkbox" name="aset[]" value="{{$aset}}" {{ in_array($aset, $queryBagian) ? 'checked' : '' }}>{{$aset}}</label>
+                        @endforeach
                       </div>
                     </div>
                   <div class="dropdown">
@@ -131,9 +113,9 @@
     CanvasJS.addColorSet("bluePastel",
                 [//colorSet Array
 
-                "E72929", //red pastel
-                "#ACE2E1",
                 "#41C9E2",
+                "#ACE2E1",
+                "#FF6868", //red pastel
                 "#F7EEDD",
              
                 ]);
@@ -157,24 +139,25 @@
                 cursor: "pointer",
                 itemclick: toggleDataSeries
             },
-            data: [{
-                    type: "line",
-                    name: "Jumlah SPR",
-                    legendText: "Jumlah SPR",
+            data: [
+                {
+                    type: "stackedColumn",
+                    name: "SPR Proses",
+                    legendText: "SPR Proses",
                     showInLegend: true,
                     dataPoints: [
-                        { label: "Januari", y: {{$daftarSpr[1]}}, indexLabel: "{y}"},
-                        { label: "Februari", y: {{$daftarSpr[2]}}, indexLabel: "{y}", },
-                        { label: "Maret", y: {{$daftarSpr[3]}}, indexLabel: "{y}" },
-                        { label: "April", y: {{$daftarSpr[4]}}, indexLabel: "{y}" },
-                        { label: "Mei", y: {{$daftarSpr[5]}}, indexLabel: "{y}" },
-                        { label: "Juni", y: {{$daftarSpr[6]}}, indexLabel: "{y}" },
-                        { label: "Juli", y: {{$daftarSpr[7]}}, indexLabel: "{y}" },
-                        { label: "Agustus", y: {{$daftarSpr[8]}}, indexLabel: "{y}" },
-                        { label: "September", y: {{$daftarSpr[9]}}, indexLabel: "{y}" },
-                        { label: "Oktober", y: {{$daftarSpr[10]}}, indexLabel: "{y}" },
-                        { label: "November", y: {{$daftarSpr[11]}}, indexLabel: "{y}" },
-                        { label: "Desember", y: {{$daftarSpr[12]}}, indexLabel: "{y}" }
+                        { label: "Januari", y: {{$daftarSprOpen[1]}}, indexLabel: "{y}" },
+                        { label: "Februari", y: {{$daftarSprOpen[2]}}, indexLabel: "{y}" },
+                        { label: "Maret", y: {{$daftarSprOpen[3]}}, indexLabel: "{y}" },
+                        { label: "April", y: {{$daftarSprOpen[4]}}, indexLabel: "{y}" },
+                        { label: "Mei", y: {{$daftarSprOpen[5]}}, indexLabel: "{y}" },
+                        { label: "Juni", y: {{$daftarSprOpen[6]}}, indexLabel: "{y}" },
+                        { label: "Juli", y: {{$daftarSprOpen[7]}}, indexLabel: "{y}" },
+                        { label: "Agustus", y: {{$daftarSprOpen[8]}}, indexLabel: "{y}" },
+                        { label: "September", y: {{$daftarSprOpen[9]}}, indexLabel: "{y}" },
+                        { label: "Oktober", y: {{$daftarSprOpen[10]}}, indexLabel: "{y}" },
+                        { label: "November", y: {{$daftarSprOpen[11]}}, indexLabel: "{y}" },
+                        { label: "Desember", y: {{$daftarSprOpen[12]}}, indexLabel: "{y}" }
                     ]
                 },
                 {
@@ -198,25 +181,26 @@
                 ]
                 },
                 {
-                    type: "stackedColumn",
-                    name: "SPR Proses",
-                    legendText: "SPR Proses",
+                    type: "line",
+                    name: "Jumlah SPR",
+                    legendText: "Jumlah SPR",
                     showInLegend: true,
                     dataPoints: [
-                        { label: "Januari", y: {{$daftarSprOpen[1]}}, indexLabel: "{y}" },
-                        { label: "Februari", y: {{$daftarSprOpen[2]}}, indexLabel: "{y}" },
-                        { label: "Maret", y: {{$daftarSprOpen[3]}}, indexLabel: "{y}" },
-                        { label: "April", y: {{$daftarSprOpen[4]}}, indexLabel: "{y}" },
-                        { label: "Mei", y: {{$daftarSprOpen[5]}}, indexLabel: "{y}" },
-                        { label: "Juni", y: {{$daftarSprOpen[6]}}, indexLabel: "{y}" },
-                        { label: "Juli", y: {{$daftarSprOpen[7]}}, indexLabel: "{y}" },
-                        { label: "Agustus", y: {{$daftarSprOpen[8]}}, indexLabel: "{y}" },
-                        { label: "September", y: {{$daftarSprOpen[9]}}, indexLabel: "{y}" },
-                        { label: "Oktober", y: {{$daftarSprOpen[10]}}, indexLabel: "{y}" },
-                        { label: "November", y: {{$daftarSprOpen[11]}}, indexLabel: "{y}" },
-                        { label: "Desember", y: {{$daftarSprOpen[12]}}, indexLabel: "{y}" }
+                        { label: "Januari", y: {{$daftarSpr[1]}}, indexLabel: "{y}"},
+                        { label: "Februari", y: {{$daftarSpr[2]}}, indexLabel: "{y}", },
+                        { label: "Maret", y: {{$daftarSpr[3]}}, indexLabel: "{y}" },
+                        { label: "April", y: {{$daftarSpr[4]}}, indexLabel: "{y}" },
+                        { label: "Mei", y: {{$daftarSpr[5]}}, indexLabel: "{y}" },
+                        { label: "Juni", y: {{$daftarSpr[6]}}, indexLabel: "{y}" },
+                        { label: "Juli", y: {{$daftarSpr[7]}}, indexLabel: "{y}" },
+                        { label: "Agustus", y: {{$daftarSpr[8]}}, indexLabel: "{y}" },
+                        { label: "September", y: {{$daftarSpr[9]}}, indexLabel: "{y}" },
+                        { label: "Oktober", y: {{$daftarSpr[10]}}, indexLabel: "{y}" },
+                        { label: "November", y: {{$daftarSpr[11]}}, indexLabel: "{y}" },
+                        { label: "Desember", y: {{$daftarSpr[12]}}, indexLabel: "{y}" }
                     ]
                 }
+                
                 
             ]
         });
