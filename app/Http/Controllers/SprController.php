@@ -28,13 +28,18 @@ class SprController extends Controller
         $queryBulan = [];
         $queryBagian = [];
         $queryStatus= [];
+
+        $daftarAset = Barang::select('tipe')
+            ->distinct()
+            ->pluck('tipe')
+            ->toArray();
     
     
     // Mengambil data SPR dari model Barang
     $spr = Barang::orderBy('created_at', 'desc')->paginate(10);
     
     // Mengirimkan data ke view
-    return view('spr.index', compact('spr', 'queryTahun','queryBulan','queryBagian','queryStatus','tahuns'));
+    return view('spr.index', compact('spr', 'queryTahun','queryBulan','queryBagian','queryStatus','tahuns', 'daftarAset'));
     }
 
     /**
@@ -203,10 +208,10 @@ class SprController extends Controller
                 'july', 'august', 'september', 'october', 'november', 'december'
             ];
 
-            $daftarBagian = [
-                'gd', 'ins', 'wld', 'ms', 'crn', 'gdl',
-                'com', 'rd', 'fork', 'tbg', 'golf', 'kran','tb', 'lift', 'crl', 'bjn','g-','viar','lampu','ac', 'zweiweg'
-            ];
+            $daftarAset = Barang::select('tipe')
+            ->distinct()
+            ->pluck('tipe')
+            ->toArray();
 
             $daftarStatus = [
                 'open', 'close'
@@ -242,29 +247,10 @@ class SprController extends Controller
 
             //-----------------------------------------------------FILTER BAGIAN-----------------------------------------------------//
             
-            $queryBagian = $request->bagian;
+            $queryBagian = $request->aset;
             if($queryBagian == null){
-                $queryBagian = $daftarBagian;
-            } else{
-                $queryBagian = str_replace('gedung', 'gd', $queryBagian);
-                $queryBagian = str_replace('instalasi', 'ins', $queryBagian);
-                $queryBagian = str_replace('mesin_las', 'wld', $queryBagian);
-                $queryBagian = str_replace('mesin', 'ms', $queryBagian);
-                $queryBagian = str_replace('crane', 'crn', $queryBagian);
-                $queryBagian = str_replace('gardu_listrik', 'gdl', $queryBagian);
-                $queryBagian = str_replace('kompresor', 'com', $queryBagian);
-                $queryBagian = str_replace('rolling_door', 'rd', $queryBagian);
-                $queryBagian = str_replace('forklift', 'fork', $queryBagian);
-                $queryBagian = str_replace('tambangan', 'tbg', $queryBagian); 
-                $queryBagian = str_replace('golf_car', 'golf', $queryBagian);
-                $queryBagian = str_replace('pompa', 'kran', $queryBagian);
-                $queryBagian = str_replace('temporary_bogie', 'tb', $queryBagian); //overlap tbg
-                $queryBagian = str_replace('elevator', 'lift', $queryBagian);
-                $queryBagian = str_replace('carlifter', 'crl', $queryBagian);
-                $queryBagian = str_replace('bejana_tekan', 'bjn', $queryBagian);
-                $queryBagian = str_replace('genset', 'g-', $queryBagian); //overlap gd & gdl
-
-            }
+                $queryBagian = $daftarAset;
+            } 
 
             //---------------------------------------------------------------------------------------------------------------------//
             
@@ -282,24 +268,8 @@ class SprController extends Controller
             $spr = Barang::whereIn(DB::raw('MONTH(tanggal_sprditerima)'), $bulan)
             ->whereIn(DB::raw('YEAR(tanggal_sprditerima)'), $queryTahun)
             ->where(function($query) use ($queryBagian) {
-                foreach ($queryBagian as $bagian) {
-
-                    if($bagian == 'gd'){
-                        $query->orWhere('kode_mesin', 'LIKE', "%$bagian%")
-                            ->where('kode_mesin', 'NOT LIKE',"%gdl%");
-                    } else if($bagian == 'g-'){
-                        $query->orWhere('kode_mesin', 'LIKE', "%$bagian%")
-                                ->where('kode_mesin', 'NOT LIKE',"%tbg%") 
-                                 ->where('kode_mesin', 'NOT LIKE',"%ang%")
-                                 ->where('kode_mesin', 'NOT LIKE',"%jig%");
-                    }else if($bagian == 'tb'){
-                        $query->orWhere('kode_mesin', 'LIKE', "%$bagian%")
-                                ->where('kode_mesin', 'NOT LIKE',"%tbg%");
-                    }
-                    else{
-                        $query->orWhere('kode_mesin', 'LIKE', "%$bagian%");
-                    }
-                    
+                foreach ($queryBagian as $tipe) {           
+                        $query->orwhere('tipe',$tipe);  
                 }
             })
             ->where(function($query) use ($queryStatus) {
@@ -309,7 +279,7 @@ class SprController extends Controller
                 })
             ->get();
 
-            return view('spr.index', compact('spr', 'queryTahun','queryBulan' ,'queryBagian','queryStatus','tahuns'));
+            return view('spr.index', compact('spr', 'queryTahun','queryBulan' ,'queryBagian','queryStatus','tahuns', 'daftarAset'));
         }
 
 

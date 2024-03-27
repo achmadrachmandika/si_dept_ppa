@@ -86,8 +86,8 @@ Route::post('/filter-closed', [ClosedController::class, 'filterClosed'])->name('
     Route::get('/', [UserController::class, 'index'])->name('user.index');
     Route::delete('/{id}', [UserController::class, 'destroy'])->name('user.destroy');
 });
-
 });
+
 
 
 

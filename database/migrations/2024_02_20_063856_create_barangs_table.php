@@ -17,6 +17,7 @@ return new class extends Migration
         $table->string('lokasi');
         $table->date('tanggal_kerusakan');
         $table->string('kode_mesin');
+        $table->string('tipe');
         $table->string('no_aset')->nullable();
         $table->time('jam_kerusakan');
         $table->string('user_peminta')->nullable();
@@ -28,6 +29,7 @@ return new class extends Migration
         $table->date('tanggal_sprditerima');
         $table->time('jam_sprditerima');
         $table->timestamps();
+
     });
 
     
