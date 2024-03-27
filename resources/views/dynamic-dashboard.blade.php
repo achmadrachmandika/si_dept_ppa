@@ -58,61 +58,34 @@
 
 @section('content') 
 <title>Dashboard</title>
-<body >
-    <div class="container">
-        <div class="card">
-          <div class="card-header">
-            <div class="row">
-              <div class="col">
-                <form action="{{route('filter-home')}}" method="post">
-                  @csrf
-                  <div class="dropdown">
-                      <button class="btn btn-outline-secondary dropdown-toggle form-control" type="button" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">
-                        <span class="h6">Tahun</span>
-                      </button>
-                      <div class="dropdown-content-year" aria-labelledby="dropdownMenuButton">
-                        <button type='button' class="btn btn-primary form-control"id="checkAllBtnYear"><span class="h6">Pilih Semua</span></button>
-                        <button type='button' class="btn btn-outline-secondary form-control mt-1"id="uncheckAllBtnYear"><span class="h6">Batal</span></button>
-                          @foreach($tahuns as $tahun)
-                          <label class="h6"><input type="checkbox" name="tahun[]" value="{{$tahun}}" {{ in_array($tahun, $queryTahun) ? 'checked' : '' }}>{{$tahun}}</label>
-                          @endforeach
-                      </div>
-                    </div>
-                     <div class="dropdown">
-                      <button class="btn btn-outline-secondary dropdown-toggle form-control" type="button" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">
-                        <span class="h6">Bagian</span>
-                      </button>
-                      <div class="dropdown-content-dept" aria-labelledby="dropdownMenuButton">
-                        <button type='button' class="btn btn-primary form-control"id="checkAllBtnDept"><span class="h6">Pilih Semua</span></button>
-                        <button type='button' class="btn btn-outline-secondary form-control mt-1"id="uncheckAllBtnDept"><span class="h6">Batal</span></button>
-                        @foreach($daftarAset as $aset)
-                        <label class="h6"><input type="checkbox" name="aset[]" value="{{$aset}}" {{ in_array($aset, $queryBagian) ? 'checked' : '' }}>{{$aset}}</label>
-                        @endforeach
-                      </div>
-                    </div>
-                  <div class="dropdown">
-                    <button type="submit" class="btn btn-success form-control"><span class="h6">Cari</span></button>
-                  </div>
-                </form>
-              </div>
-              <div class="col-6"></div>
-              <div class="col">
-                <button type="button" class="btn btn-secondary form-control" onclick="window.location.href = '{{ route('dynamic.dashboard') }}'">Monitoring Dinamis</button>
-
-              </div>
-            </div>
-          </div>
-          <div class="card-body">
-            <div id="chartContainer" style="height: 600px; width: 100%;"></div>
-          </div>
-            </div>
-        </div>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="card-body">
+        <div id="chartContainer" style="height: 600px; width: 100%;"></div>
+      </div>
     </div>
+  </div>
 
-    
-    
+  <script>
+      $(document).ready(function() {
+          setInterval(function() {
+              $.ajax({
+                  url: "{{ route('dashboard') }}",
+                  type: 'GET',
+                  success: function(response) {
+                      window.location.href ='{{ route('dynamic.dashboard') }}';
+                      console.log('Controller executed successfully');
+                      // You can handle the response here if needed
+                  },
+                  error: function(xhr, status, error) {
+                      console.error('Error executing controller:', error);
+                  }
+              });
+          }, 5000); // Mengirim permintaan setiap 5 detik (5000 milidetik)
+      });
+  </script>
 </body>
-
 
 @endsection
 
@@ -149,9 +122,6 @@
         var chart = new CanvasJS.Chart("chartContainer", {
           colorSet: "bluePastel",
             animationEnabled: true,
-            title: {
-                text: "Data SPR ",
-            },
             axisY: {
                 title: "Jumlah SPR",
                 titleFontColor: "#4F81BC",
@@ -161,6 +131,8 @@
             },
             toolTip: {
                 shared: true
+            },title: {
+                text: "Data SPR {{$aset}}",
             },
             legend: {
                 cursor: "pointer",
