@@ -117,13 +117,32 @@
                 "#ACE2E1",
                 "#FF6868", //red pastel
                 "#F7EEDD",
-             
+            
                 ]);
+                function updateDataSprText() {
+                var selectedBagians = document.querySelectorAll('input[name="bagian[]"]:checked');
+                var dataSprText = "Data SPR";
+                
+                if (selectedBagians.length > 0) {
+                var selectedBagianNames = [];
+                selectedBagians.forEach(function(bagian) {
+                selectedBagianNames.push(bagian.getAttribute('data-name'));
+                });
+                dataSprText += " " + selectedBagianNames.join(', ');
+                }
+                
+                document.getElementById("dataSprText").innerText = dataSprText;
+                }
+                
+                var checkboxes = document.querySelectorAll('input[name="bagian[]"]');
+                checkboxes.forEach(function(checkbox) {
+                checkbox.addEventListener('click', updateDataSprText);
+                });
         var chart = new CanvasJS.Chart("chartContainer", {
           colorSet: "bluePastel",
             animationEnabled: true,
             title: {
-                text: "Data SPR"
+                text: "Data SPR " + "{!! implode(', ', $queryBagian) !!}",
             },
             axisY: {
                 title: "Jumlah SPR",

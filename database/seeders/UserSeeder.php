@@ -32,5 +32,14 @@ class UserSeeder extends Seeder
             ]);
             $monitoring->assignRole('monitoring');
         }
+
+         if (!User::where('email', 'user@role.test')->exists()) {
+            $monitoring = User::create([
+                'name' => 'User',
+                'email' => 'user@role.test',
+                'password' => bcrypt('12345')
+            ]);
+            $monitoring->assignRole('user');
+        }
     }
 }

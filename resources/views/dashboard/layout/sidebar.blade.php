@@ -52,6 +52,12 @@
                         <p>Daftar Aset</p>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('user.index') }}" class="nav-link {{ (request()->routeIs('user.index') ? 'active' : '') }}">
+                        <img src="{{ asset('assets/dist/img/closed.jpg') }}" class="nav-icon" alt="Logo">
+                        <p>Data Peminta SPR</p>
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('logout') }}" class="nav-link"

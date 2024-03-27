@@ -8,6 +8,8 @@ use App\Http\Controllers\AsetController;
 use App\Http\Controllers\ClosedController;
 use App\Http\Controllers\SparepartController;
 use App\Http\Controllers\MonitorController;
+use App\Http\Controllers\AkunController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,7 +33,6 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('role:admin')->get('/laporan/closed', [ClosedController::class, 'index'])->name('laporan.closed');
     Route::middleware('role:admin')->get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
-
     Route::get('/spr-convert', [SprController::class, 'sprConvert']); //buat ubah spr yang udh ada lp3m dari open ke close (cukup 1x aja)
 
 Route::get('/ajax-autocomplete', [lp3mController::class, 'searchCode'])->name('code.search');
@@ -80,12 +81,24 @@ Route::post('/filter-closed', [ClosedController::class, 'filterClosed'])->name('
     Route::put('/sparepart/{id}/update', [SparepartController::class, 'update'])->name('spareparts.update');
     Route::delete('/sparepart/{id}/delete', [SparepartController::class, 'destroy'])->name('spareparts.destroy');
     });
+
+    Route::middleware('role:admin')->prefix('user')->group(function () {
+    Route::get('/', [UserController::class, 'index'])->name('user.index');
+    Route::delete('/{id}', [UserController::class, 'destroy'])->name('user.destroy');
 });
+});
+
+
 
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
     Route::middleware('role:monitoring')->prefix('monitoring')->group(function () {
     Route::get('/monitor', [MonitorController::class, 'index'])->name('monitoring.monitor');
+    
+});
+
+    Route::middleware('role:user')->prefix('user')->group(function () {
+    Route::get('/dashboard', [AkunController::class, 'index'])->name('user.dashboard');
     
 });

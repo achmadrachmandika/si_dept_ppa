@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.applogin')
 
 @section('content')
 <div class="container">
@@ -24,6 +24,36 @@
                                 @enderror
                             </div>
                         </div>
+{{-- 
+                        <div class="row mb-3">
+                            <label for="nip" class="col-md-4 col-form-label text-md-end">{{ __('NIP') }}</label>
+                        
+                            <div class="col-md-6">
+                                <input id="nip" type="text" class="form-control @error('nip') is-invalid @enderror" name="nip"
+                                    value="{{ old('nip') }}" required autocomplete="nip" autofocus>
+                        
+                                @error('nip')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                            <div class="row mb-3">
+                                <label for="bagian" class="col-md-4 col-form-label text-md-end">{{ __('Bagian') }}</label>
+                            
+                                <div class="col-md-6">
+                                    <input id="bagian" type="text" class="form-control @error('bagian') is-invalid @enderror" name="bagian"
+                                        value="{{ old('bagian') }}" required autocomplete="bagian" autofocus>
+                            
+                                    @error('bagian')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div> --}}
 
                         <div class="row mb-3">
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
@@ -62,11 +92,15 @@
                         </div>
 
                         <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
+                            <div class="col-md-6 pl-1">
+                                <!-- Menambahkan kelas "pl-1" untuk memberikan padding kiri minimal -->
+                                <button type="submit" class="btn btn-primary btn-block">{{ __('Register') }}</button>
                             </div>
+                            <div class="col-md-6 pr-1">
+                                <!-- Menambahkan kelas "pr-1" untuk memberikan padding kanan minimal -->
+                                <button onclick="history.back()" class="btn btn-secondary btn-block">Kembali</button>
+                            </div>
+                           
                         </div>
                     </form>
                 </div>
