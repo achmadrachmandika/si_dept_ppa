@@ -22,6 +22,7 @@ class BarangSeeder extends Seeder
                 'lokasi' => 'Lokasi ' . $i,
                 'tanggal_kerusakan' => now()->subDays(rand(1, 100)),
                 'kode_mesin' => ['gd-', 'g-', 'gdl-', 'tb-', 'wld-', 'ms-', 'crn-'][rand(0, 6)]. $i,
+                'tipe' => "isi disini",
                 'no_aset' => 'No Aset ' . $i,
                 'jam_kerusakan' => now()->subMinutes(rand(1, 1440))->format('H:i:s'),
                 'user_peminta' => 'User Peminta ' . $i,

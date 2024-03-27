@@ -1,3 +1,6 @@
+<script src="https://kit.fontawesome.com/41f4b13e34.js" crossorigin="anonymous"></script>
+
+
 <aside class="main-sidebar sidebar-dark-primary elevation-4"
     style="background: linear-gradient(to bottom, rgb(41, 48, 66), rgb(41, 48, 66)); color: #fff;">
     <!-- Brand Logo -->
@@ -15,21 +18,21 @@
                 <li class="nav-item">
                     <a href="{{ route('spr.index') }}"
                         class="nav-link {{ (request()->routeIs('spr.index') ? 'active' : '') }}">
-                        <img src="{{ asset('assets/dist/img/spr1.png') }}" class="nav-icon" alt="Logo">
+                        <i class="fa-solid fa-file mr-2"></i>
                         <p>SPR</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('riwayatLp3m') }}"
                         class="nav-link {{ (request()->routeIs('riwayatLp3m') ? 'active' : '') }}">
-                        <img src="{{ asset('assets/dist/img/lp3m.png') }}" class="nav-icon" alt="Logo">
+                        <i class="fa-solid fa-file-invoice mr-2"></i>
                         <p>LP3M</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('laporan.closed') }}"
                         class="nav-link {{ (request()->routeIs('laporan.closed') ? 'active' : '') }}">
-                        <img src="{{ asset('assets/dist/img/closed.jpg') }}" class="nav-icon" alt="Logo">
+                        <i class="fa-solid fa-file-circle-check mr-2"></i>
                         <p>Laporan SPR Closed</p>
                     </a>
                 </li>
@@ -37,23 +40,23 @@
                 <li class="nav-item">
                     <a href="{{ route('spareparts.index') }}"
                         class="nav-link {{ (request()->routeIs('spareparts.index') ? 'active' : '') }}">
-                        <img src="{{ asset('assets/dist/img/closed.jpg') }}" class="nav-icon" alt="Logo">
-                        <p>Sparepart</p>
+                        <i class="fa-solid fa-database mr-2"></i>
+                        <p>Daftar Sparepart</p>
                     </a>
                 </li>
 
                 <li class="nav-item">
                     <a href="{{ route('aset.index') }}"
                         class="nav-link {{ (request()->routeIs('aset.index') ? 'active' : '') }}">
-                        <img src="{{ asset('assets/dist/img/closed.jpg') }}" class="nav-icon" alt="Logo">
-                        <p>Master Data Aset</p>
+                        <i class="fa-solid fa-database mr-2"></i>
+                        <p>Daftar Aset</p>
                     </a>
                 </li>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('logout') }}" class="nav-link"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        <i class="nav-icon fas fa-sign-out-alt"></i>
+                        <i class="fa-solid fa-right-from-bracket mr-2"></i>
                         <p>Logout</p>
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
