@@ -57,12 +57,14 @@
               <div class="dropdown">
                 <button type="submit" class="btn btn-success form-control"><span class="h6">Cari</span></button>
               </div>
+              @if(Auth::user()->hasRole('admin'))
               <div class="dropdown">  
                 <button onclick="ExportToExcel('xlsx')" class="btn btn-outline-info form-control" type="button">
                   <span class="h6">Ekspor</span>
                 </button>
                 
               </div>
+              @endif
             </form>
           </div>
       </div>
@@ -99,7 +101,9 @@
                     <th style="width: 500px; white-space: nowrap;">Tanggal</th>
                     <th style="width: 500px; white-space: nowrap;">Jam Mulai</th>
                     <th style="width: 500px; white-space: nowrap;">Penyelesaian</th>
+                    @if(Auth::user()->hasRole('admin'))
                     <th style="width: 500px; white-space: nowrap;">Aksi</th>
+                    @endif
                 </tr>
             </thead>
             <tbody>
@@ -112,6 +116,7 @@
                     <td>{{$lp3m->tanggal}}</td>
                     <td>{{$lp3m->jam_mulai}}</td>
                     <td>{{$lp3m->penyelesaian}}</td>
+                    @if(Auth::user()->hasRole('admin'))
                     <td class="text-center">
                         <form method="POST" action="{{ url('delete-lp3m/'.$lp3m->no_spr) }}">
                             @csrf
@@ -123,6 +128,7 @@
                                 class="btn btn-outline-danger mb-1">Hapus</button>
                         </form>
                     </td>
+                    @endif
                 </tr>
                 @endforeach
                 <!-- Data absensi lainnya bisa ditambahkan di sini -->

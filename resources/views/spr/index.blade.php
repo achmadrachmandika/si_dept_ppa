@@ -83,12 +83,14 @@
                 <div class="dropdown">
                   <button type="submit" class="btn btn-success form-control"><span class="h6">Cari</span></button>
                 </div>
+                @if(Auth::user()->hasRole('admin'))
                 <div class="dropdown">  
                   <button onclick="ExportToExcel('xlsx')" class="btn btn-outline-info form-control" type="button">
                     <span class="h6">Ekspor</span>
                   </button>
                   
                 </div>
+                @endif
               </form>
             </div>
           </div>
@@ -115,7 +117,9 @@
                     <th>Deskripsi Kerusakan</th>
                     <th style="width: 500px; white-space: nowrap;">Site</th>
                     <th style="width: 500px; white-space: nowrap;">LP3M</th>
+                    @if(Auth::user()->hasRole('admin'))
                     <th width="150px">Action</th>
+                    @endif
                   </tr>
                 </thead>
                 <tbody>
@@ -140,6 +144,7 @@
                       <span class="spr-filled text-primary">Open</span>
                       @endif
                   </td>
+                  @if(Auth::user()->hasRole('admin'))
                   <td>
                       <div class="d-flex">
                           <!-- Tombol Show akan selalu aktif -->
@@ -158,6 +163,7 @@
                             @endif
                       </div>
                   </td>
+                  @endif
                   </tr>
                   @endforeach
                 </tbody>

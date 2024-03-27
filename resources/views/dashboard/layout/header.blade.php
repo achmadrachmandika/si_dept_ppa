@@ -11,7 +11,7 @@
     <ul class="navbar-nav ml-auto">
         <!-- Messages Dropdown Menu -->
         <li class="nav-item dropdown">
-           <span class="brand-text" style="font-weight: bold;">DEPARTEMEN PPA</span>
+           <span class="brand-text" style="font-weight: bold;">Selamat Datang, {{Auth::user()->name}}</span>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <a href="#" class="dropdown-item">
                     <!-- Message Start -->

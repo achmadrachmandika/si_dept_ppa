@@ -46,13 +46,15 @@
                     </label>
                 </div>
 
-                <div class="button-group">
-                    <button type="submit" class="btn btn-login btn-primary form-control">Login</button>
-
+                <div class="row">
+                    <div class="col">
+                        <button type="submit" class="btn btn-login btn-primary form-control ">Login</button>
+                    </div>
+                    <div class="col">
                     @if (Route::has('register'))
-                    <a href="{{ route('register') }}" class="btn btn-secondary form-control">Register</a>
+                    <button type="button" class="btn btn-secondary form-control" onclick="window.location.href = '{{ route('register') }}'">Register</button>
                     @endif
-
+                    </div>
                 </div>
             </form>
         </div>

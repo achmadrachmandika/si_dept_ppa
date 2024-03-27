@@ -83,7 +83,7 @@
                 </div>
                 <div class="col-3">
                     <input type="text" name="no_spr" class="form-control" value="{{ old('no_spr') }}" id="no_spr" aria-describedby="no_spr"
-                        placeholder="NO. SPR">
+                        placeholder="NO. SPR" readonly>
                 </div>
             </div>
 
@@ -107,6 +107,7 @@
                     <input class="textarea form-control" value="{{ old('kode_mesin') }}" name="kode_mesin" id="kode_mesin" aria-describedby="kode_mesin"
                         placeholder="Masukkan Kode Mesin">
                         <div id="kodeMesinList"></div>
+                        <input type="hidden" value="{{ old('kode_mesin') }}" name="tipe" id="tipe" >
                 </div>
                 <div class="col-3">
                     <input class="textarea form-control" value="{{ old('no_aset') }}" name="no_aset" id="no_aset" aria-describedby="no_aset"
@@ -215,11 +216,11 @@
 
     $(document).on('click', `#kodeMesinList li`, function() {
         var no_aset = $(this).data('nama');
+        var tipe = $(this).data('tipe');
 
-        console.log('tes');
-        console.log(no_aset);
         $(`#kode_mesin`).val($(this).text());
         $(`#no_aset`).val(no_aset);
+        $(`#tipe`).val(tipe);
         $(`#kodeMesinList`).fadeOut();
     });
 
