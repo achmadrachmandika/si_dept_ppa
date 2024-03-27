@@ -10,7 +10,7 @@ class asetController extends Controller
     public function index()
     {   
 
-    $asets = aset::all();
+        $asets = Aset::orderBy('created_at', 'desc')->get();
     
     // Mengirimkan data ke view
     return view('aset.index', compact('asets'));

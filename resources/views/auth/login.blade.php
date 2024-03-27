@@ -49,6 +49,10 @@
                 <div class="button-group">
                     <button type="submit" class="btn btn-login btn-primary form-control">Login</button>
 
+                    @if (Route::has('register'))
+                    <a href="{{ route('register') }}" class="btn btn-secondary form-control">Register</a>
+                    @endif
+
                 </div>
             </form>
         </div>

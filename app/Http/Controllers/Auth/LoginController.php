@@ -50,7 +50,7 @@ protected function authenticated(Request $request, $user)
         return redirect()->route('monitoring.monitor');
     }
 
-    return redirect()->route('dashboard');
+    return redirect()->route('user.dashboard');
 
 }
 
