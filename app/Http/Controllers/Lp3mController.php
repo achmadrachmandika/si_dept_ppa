@@ -16,6 +16,7 @@ class Lp3mController extends Controller
         public function index(){
                 
                 return view('lp3m.lp3m');
+                
         }
 
 

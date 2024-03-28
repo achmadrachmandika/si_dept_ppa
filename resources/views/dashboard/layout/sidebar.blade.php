@@ -29,6 +29,8 @@
                         <p>SPR</p>
                     </a>
                 </li>
+                @endif
+                @if(Auth::user()->hasRole('user') || Auth::user()->hasRole('admin'))
                 <li class="nav-item">
                     <a href="{{ route('riwayatLp3m') }}"
                         class="nav-link {{ (request()->routeIs('riwayatLp3m') ? 'active' : '') }}">
@@ -36,7 +38,7 @@
                         <p>LP3M</p>
                     </a>
                 </li>
-                @endif
+               @endif
                 @if(Auth::user()->hasRole('admin'))
                 <li class="nav-item">
                     <a href="{{ route('laporan.closed') }}"
@@ -67,6 +69,23 @@
                         <p>Daftar User</p>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('pm.index') }}"
+                        class="nav-link {{ (request()->routeIs('pm.index') ? 'active' : '') }}">
+                        <i class="fa-solid fa-file-invoice mr-2"></i>
+                        <p>Preventive Maintenance</p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('pm.realisasi') }}" class="nav-link {{ (request()->routeIs('pm.realisasi') ? 'active' : '') }}">
+                        <i class="fa-solid fa-file-invoice mr-2"></i>
+                        <p>Realisasi PM</p>
+                    </a>
+                </li>
+
+                
                 @endif
                 <li class="nav-item">
                     <a href="{{ route('logout') }}" class="nav-link"

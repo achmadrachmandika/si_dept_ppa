@@ -93,9 +93,8 @@
   window.onload = function () {
     CanvasJS.addColorSet("bluePastel",
                 [//colorSet Array
-
-                "#41C9E2",
                 "#ACE2E1",
+                "#41C9E2",
                 "#FF6868", //red pastel
                 "#F7EEDD",
             
@@ -132,13 +131,13 @@
             toolTip: {
                 shared: true
             },title: {
-                text: "Data SPR {{$aset}}",
+                text: "Data SPR {{$aset}} Tahun {{ $tahunSekarang }}",
             },
             legend: {
                 cursor: "pointer",
                 itemclick: toggleDataSeries
             },
-            data: [
+            data: [ 
                 {
                     type: "stackedColumn",
                     name: "SPR Proses",

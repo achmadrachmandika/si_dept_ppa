@@ -137,32 +137,6 @@
 
             </tbody>
           </table>
-                {{-- <nav aria-label="Page navigation">
-                    <ul class="pagination justify-content-center">
-                        Tautan Previous
-                        @if ($lp3ms->onFirstPage())
-                        <li class="page-item disabled"><span class="page-link">Previous</span></li>
-                        @else
-                        <li class="page-item"><a class="page-link" href="{{ $lp3ms->previousPageUrl() }}"
-                                rel="prev">Previous</a></li>
-                        @endif
-        
-                        Tautan Pagination
-                        @for ($i = 1; $i <= $lp3ms->lastPage(); $i++)
-                            <li class="page-item {{ $lp3ms->currentPage() == $i ? 'active' : '' }}">
-                                <a class="page-link" href="{{ $lp3ms->url($i) }}">{{ $i }}</a>
-                            </li>
-                            @endfor
-        
-                            Tautan Next
-                            @if ($lp3ms->hasMorePages())
-                            <li class="page-item"><a class="page-link" href="{{ $lp3ms->nextPageUrl() }}" rel="next">Next</a>
-                            </li>
-                            @else
-                            <li class="page-item disabled"><span class="page-link">Next</span></li>
-                            @endif
-                    </ul>
-                </nav> --}}
         </div>
     </div>
   </div>

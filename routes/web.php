@@ -10,6 +10,8 @@ use App\Http\Controllers\SparepartController;
 use App\Http\Controllers\MonitorController;
 use App\Http\Controllers\AkunController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PmController;
+use App\Http\Controllers\RealisasiPmController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -78,6 +80,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/user/index', [UserController::class, 'index'])->name('user.index');
         Route::delete('/user/{id}/delete', [UserController::class, 'destroy'])->name('user.destroy');
 
+        Route::get('/pm/index', [PmController::class, 'index'])->name('pm.index');
+        Route::get('/pm/realisasi', [RealisasiPmController::class, 'index'])->name('pm.realisasi');
+
     });
 
     
@@ -91,6 +96,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/filter-lp3m', [lp3mController::class, 'filterLp3m'])->name('filter-lp3m');
     Route::post('/filter-home', [HomeController::class, 'filterHome'])->name('filter-home');
     Route::post('/filter-closed', [ClosedController::class, 'filterClosed'])->name('filter-closed');
+    Route::post('/filter-aset', [AsetController::class, 'filterAset'])->name('filter-aset');    
 
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 });

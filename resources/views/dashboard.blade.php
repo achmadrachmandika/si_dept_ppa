@@ -120,9 +120,8 @@
   window.onload = function () {
     CanvasJS.addColorSet("bluePastel",
                 [//colorSet Array
-
-                "#41C9E2",
                 "#ACE2E1",
+                "#41C9E2",
                 "#FF6868", //red pastel
                 "#F7EEDD",
             

@@ -558,15 +558,21 @@ class HomeController extends Controller
         //     }
         // }
 
-        public function monitoringDinamis(Request $request){
+         public function monitoringDinamis(Request $request){
 
-            $tahuns = Barang::selectRaw('YEAR(tanggal_sprditerima) as tahun')
-            ->groupBy('tahun')
-            ->pluck('tahun');
-            $tahunArray = Barang::selectRaw('YEAR(tanggal_sprditerima) as tahun')
-            ->groupBy('tahun')
-            ->pluck('tahun')
-            ->toArray();
+            // $tahuns = Barang::selectRaw('YEAR(tanggal_sprditerima) as tahun')
+            // ->groupBy('tahun')
+            // ->pluck('tahun');
+            // $tahunArray = Barang::selectRaw('YEAR(tanggal_sprditerima) as tahun')
+            // ->groupBy('tahun')
+            // ->pluck('tahun')
+            // ->toArray();
+
+            // Membuat objek Carbon dengan zona waktu Jakarta
+            $now = Carbon::now('Asia/Jakarta');
+            
+            // Mengambil tahun sekarang
+            $tahunSekarang = $now->year;
             $daftarBulan = [
                 'january', 'february', 'march', 'april', 'may', 'june',
                 'july', 'august', 'september', 'october', 'november', 'december'
@@ -577,11 +583,11 @@ class HomeController extends Controller
                 return Carbon::parse($item)->month;
             })->toArray();
 
-            $queryTahun = $tahuns;
-                // Konversi data ke integer
-                $queryTahun = collect($queryTahun)->map(function ($item) {
-                    return (int) $item;
-                })->toArray();
+            // $queryTahun = $tahuns;
+            //     // Konversi data ke integer
+            //     $queryTahun = collect($queryTahun)->map(function ($item) {
+            //         return (int) $item;
+            //     })->toArray();
 
             $daftarAset = session()->get('daftarAset', []);
         
@@ -611,9 +617,8 @@ class HomeController extends Controller
 
             foreach ($bulans as $bulan) {
                         $totalPerBulan = 0; // Inisialisasi total per bulan
-                        foreach ($queryTahun as $tahun) {
                             // Mengambil data Barang untuk bulan tertentu
-                            $spr = Barang::whereYear('tanggal_sprditerima', $tahun)
+                            $spr = Barang::whereYear('tanggal_sprditerima', $tahunSekarang)
                                 ->whereMonth('tanggal_sprditerima', $bulan)
                                 ->where('tipe',$aset)
                                 ->get();
@@ -622,7 +627,6 @@ class HomeController extends Controller
                             $daftarSprPerBulan[$bulan] = $spr;
                             $CountDaftarSprPerBulan[$bulan] = count($daftarSprPerBulan[$bulan]);
                             $totalPerBulan += $CountDaftarSprPerBulan[$bulan]; // Menambahkan jumlah ke total per bulan
-                        }
                         $daftarSpr[$bulan] = $totalPerBulan; // Menyimpan total per bulan ke dalam array utama
                     }
                 
@@ -632,9 +636,8 @@ class HomeController extends Controller
         
                     foreach ($bulans as $bulan) {
                         $totalPerBulan = 0; // Inisialisasi total per bulan
-                        foreach ($queryTahun as $tahun) {
                             // Mengambil data Barang untuk bulan tertentu
-                            $spr = Barang::whereYear('tanggal_sprditerima', $tahun)
+                            $spr = Barang::whereYear('tanggal_sprditerima', $tahunSekarang)
                                 ->whereMonth('tanggal_sprditerima', $bulan)
                                 ->where('status', 'open')
                                 ->where('tipe',$aset)
@@ -644,7 +647,6 @@ class HomeController extends Controller
                             $daftarSprOpenPerBulan[$bulan] = $spr;
                             $CountDaftarSprOpenPerBulan[$bulan] = count($daftarSprOpenPerBulan[$bulan]);
                             $totalPerBulan += $CountDaftarSprOpenPerBulan[$bulan]; // Menambahkan jumlah ke total per bulan
-                        }
                         $daftarSprOpen[$bulan] = $totalPerBulan; // Menyimpan total per bulan ke dalam array utama
                     }
         
@@ -656,9 +658,8 @@ class HomeController extends Controller
                     foreach ($bulans as $bulan) {
                         $totalPerBulan = 0; // Inisialisasi total per bulan
         
-                        foreach ($queryTahun as $tahun) {
                             // Mengambil data Barang untuk bulan tertentu
-                            $spr = Barang::whereYear('tanggal_sprditerima', $tahun)
+                            $spr = Barang::whereYear('tanggal_sprditerima', $tahunSekarang)
                                 ->whereMonth('tanggal_sprditerima', $bulan)
                                 ->where('status', 'close')
                                 ->where('tipe',$aset)
@@ -667,14 +668,14 @@ class HomeController extends Controller
                             $daftarSprClosePerBulan[$bulan] = $spr;
                             $CountDaftarSprClosePerBulan[$bulan] = count($daftarSprClosePerBulan[$bulan]);
                             $totalPerBulan += $CountDaftarSprClosePerBulan[$bulan]; // Menambahkan jumlah ke total per bulan
-                        }
                         $daftarSprClose[$bulan] = $totalPerBulan; // Menyimpan total per bulan ke dalam array utama
                     }
         
                     // ---------------------------------------------------------------------------------------------
         
-            return view('dynamic-dashboard', compact('daftarSpr','daftarSprClose','daftarSprOpen' ,'daftarAset','aset'));
+            return view('dynamic-dashboard', compact('daftarSpr','daftarSprClose','daftarSprOpen' ,'daftarAset','aset','tahunSekarang'));
         }
+
         
 
         

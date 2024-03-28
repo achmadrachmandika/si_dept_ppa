@@ -19,8 +19,41 @@
                 </div>
             </div>
         </div>
+
+        
                 
         <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <form action="{{route('filter-aset')}}" method="post">
+                @csrf
+              <div class="dropdown">
+                <button class="btn btn-outline-secondary dropdown-toggle form-control" type="button" id="dropdownMenuButton"
+                  aria-haspopup="true" aria-expanded="false">
+                  <span class="h6">Equipment</span>
+                </button>
+                <div class="dropdown-content-dept" aria-labelledby="dropdownMenuButton">
+                  <button type='button' class="btn btn-primary form-control" id="checkAllBtnDept"><span class="h6">Pilih
+                      Semua</span></button>
+                  <button type='button' class="btn btn-outline-secondary form-control mt-1" id="uncheckAllBtnDept"><span
+                      class="h6">Batal</span></button>
+                  @foreach($daftarAset as $aset)
+                  <label class="h6"><input type="checkbox" name="tipe[]" value="{{$aset}}" {{ in_array($aset, $queryBagian)
+                      ? 'checked' : '' }}>{{$aset}}</label>
+                  @endforeach
+                </div>
+              </div>
+              <div class="dropdown">
+                <button type="submit" class="btn btn-success form-control"><span class="h6">Cari</span></button>
+              </div>
+              <div class="dropdown">
+              <button onclick="ExportToExcel('xlsx')" class="btn btn-info form-control ml-1" type="button">
+                  <span class="h6">Ekspor</span>
+                </button>
+              </div>
+              </form>
+            </div>
+          </div>
             @if ($message = Session::get('success'))
             <div class="alert alert-success">
                 <p>{{ $message }}</p>
@@ -92,6 +125,30 @@
       }
     }
 </script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+      var checkAllBtnDept = document.getElementById('checkAllBtnDept');
+      var uncheckAllBtnDept = document.getElementById('uncheckAllBtnDept');
+
+        checkAllBtnDept.addEventListener('click', function() {
+        var checkboxes = document.querySelectorAll('.dropdown-content-dept input[type="checkbox"]');
+        checkboxes.forEach(function(checkbox) {
+          checkbox.checked = true;
+        });
+      });
+    
+      uncheckAllBtnDept.addEventListener('click', function() {
+        var checkboxes = document.querySelectorAll('.dropdown-content-dept input[type="checkbox"]');
+        checkboxes.forEach(function(checkbox) {
+          checkbox.checked = false;
+        });
+      });
+
+    });
+</script>
+
+
 <script>
   function ExportToExcel(type, dl) {
        var elt = document.getElementById('myTable');

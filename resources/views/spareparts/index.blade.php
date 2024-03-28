@@ -16,6 +16,11 @@
                     class="form-control" title="Type in a name">
                 <button onclick="window.location.href='{{ route('spareparts.create') }}'"
                     class="btn btn-success ml-1" type="button"><span class="h6">Tambah</span></button>
+                    <div class="dropdown">
+                            <button onclick="ExportToExcel('xlsx')" class="btn btn-info form-control ml-1" type="button">
+                                <span class="h6">Ekspor</span>
+                            </button>
+                        </div>
             </div>
         </div>
     </div>
@@ -118,6 +123,24 @@
 
     function confirmDelete() {
         return confirm('Apakah Anda yakin ingin menghapus Sparepart ini?');
+    }
+</script>
+
+<script>
+    function ExportToExcel(type, dl) {
+       var elt = document.getElementById('myTable');
+       var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1", autoSize: true });
+
+       // Mendapatkan tanggal saat ini
+       var currentDate = new Date();
+       var dateString = currentDate.toISOString().slice(0,10);
+
+       // Gabungkan tanggal dengan nama file
+       var fileName = 'Tabel SPR ' + dateString + '.' + (type || 'xlsx');
+
+       return dl ?
+         XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }):
+         XLSX.writeFile(wb, fileName);
     }
 </script>
 @endsection

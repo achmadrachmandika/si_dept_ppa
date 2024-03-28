@@ -78,7 +78,7 @@
                                 </div>
                             </div>
                 
-                            <div class="dropdown">
+                            {{-- <div class="dropdown">
                                 <button class="btn btn-outline-secondary dropdown-toggle form-control" type="button" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">
                                   <span class="h6">Bagian</span>
                                 </button>
@@ -89,7 +89,7 @@
                                   <label class="h6"><input type="checkbox" name="aset[]" value="{{$aset}}" {{ in_array($aset, $queryBagian) ? 'checked' : '' }}>{{$aset}}</label>
                                   @endforeach
                                 </div>
-                              </div>
+                              </div> --}}
                             <div class="dropdown">
                                 <button type="submit" class="btn btn-success form-control"><span class="h6">Cari</span></button>
                             </div>

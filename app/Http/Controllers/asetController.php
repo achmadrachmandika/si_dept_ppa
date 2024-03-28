@@ -7,14 +7,49 @@ use App\Models\aset;
 
 class asetController extends Controller
 {
-    public function index()
+      public function index()
     {   
+        // Mengambil daftar equipment yang unik dari aset
+        $daftarAset = Aset::select('tipe')
+            ->distinct()
+            ->pluck('tipe')
+            ->toArray();
 
+        // Inisialisasi queryBagian kosong
+        $queryBagian = [];
+
+        // Mengambil semua aset terurut berdasarkan tanggal dibuat
         $asets = Aset::orderBy('created_at', 'desc')->get();
     
-    // Mengirimkan data ke view
-    return view('aset.index', compact('asets'));
+        // Mengirimkan data ke view
+        return view('aset.index', compact('asets', 'daftarAset', 'queryBagian'));
     }
+
+    public function filterAset(Request $request)
+    {
+        // Mengambil daftar equipment yang unik dari aset
+        $daftarAset = Aset::select('tipe')
+            ->distinct()
+            ->pluck('tipe')
+            ->toArray();
+
+        // Mengambil nilai 'tipe' dari permintaan
+        $queryBagian = $request->tipe;
+        
+        // Jika nilai 'tipe' tidak ada atau null, kita menggunakan semua tipe yang tersedia
+        if ($queryBagian === null) {
+            $queryBagian = $daftarAset;
+        }
+
+        // Mengambil aset berdasarkan tipe yang dipilih
+        $asets = Aset::whereIn('tipe', $queryBagian)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        // Mengirimkan data ke view
+        return view('aset.index', compact('asets', 'daftarAset', 'queryBagian'));
+    }
+
 
     /**
      * Show the form for creating a new resource.
