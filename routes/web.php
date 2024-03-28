@@ -51,6 +51,7 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('role:admin|monitoring')->group(function () {
         Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+        Route::get('/dashboard-dinamis', [HomeController::class, 'monitoringDinamis'])->name('dynamic.dashboard');
     });
 
 
